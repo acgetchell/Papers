@@ -1,5 +1,14 @@
-newtonian-derivation-cdt.tex = LaTeX source for CDT research paper
+Agent-based-Modeling = A look at agent based modeling and tools
 
-cdt-newtonian-limit-biblio.bib = BibTeX bibliography
+cdt-survey = A survey of quantum gravity approaches and Causal Dynamical Triangulations in particular
 
-Initialization.png = Proposed algorithm overview
+Higgs = A look at the Higg's search at the TevaTron (out of date due to results from LHC!)
+
+LIGO = A look at the  Laser Interferometer Gravitational Wave Observatory and what we might find from it
+
+newtonian-derivation-cdt = Current research into the Newtonian limit of CDT
+* newtonian-derivation-cdt.tex = LaTeX source
+* cdt-newtonian-limit-biblio.bib = BibTeX bibliography
+* Initialization.png = Proposed algorithm overview
+
+TraversableLorenzianWormholes-Overview = A paper examining the 1988 findings of Morris/Thorne and results since on the practicality of constructing wormholes
