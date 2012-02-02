@@ -21,7 +21,8 @@
 \tableofcontents
 
 \section{Motivation}
-\subsection[Basic Problem]{Newton's Law of Gravitation from General Relativity}
+
+We would like to address the following issues:
 
 \begin{itemize}
 \item Can we recover $F=-\frac{Gm_{1}m_{2}}{r^{2}}$ from CDT?
@@ -30,36 +31,54 @@ in CDT?
 \item Semi-classical approximations not yet completely convincing \cite{trzesniewski2011analysis}
 \end{itemize}
 
-\subsection{Previous Work}
+In order to do so, we look for a solution with the following properties:
 
 \begin{itemize}
 \item Separation between two objects $\gg$ Schwarzschild radius
 
-\item Self-fields not excluded
-
-\item Cylindrical symmetry
+\item Self-fields are not excluded
 
 \item Object size $\ll$ separation
 
 \end{itemize}
 
-We will see that a "strut" holds objects apart. Change...
+Following previous work\cite{katz1967derivation}, the plan of attack is:
 
-Following Synge\citep{synge_relativity:_1960}, the most generally cylindrically
-symmetric static metric is:
+\begin{enumerate}
+\item Find the most general axisymmetric (Weyl) metric
+\item Impose boundary conditions
+\item Find an expression for the "strut" of stress energy between two masses
+\item Integrate $T_{zz}$ around the "strut"
+\item Recover $F=-\frac{Gm_{1}m_{2}}{r^{2}}$ 
+\end{enumerate}
+
+\subsection{Newton's Law of Gravitation from General Relativity}
+
+We begin by deriving the general axisymmetric Weyl metric.
+
+Following Synge\cite{synge_relativity}, we have a set of components $\{x^0,x^1,x^2,x^3\}$ 
+
+where $x^{0}$ is the time coordinate, $x^{1}$,$x^{2}$ are any two coordinates in the meridianal (vertical)
+plane containing the z-axis, and $x^{3}$ is the angular component about the z-axis. 
+
+Imposing the static condition implies that our metric is independent of $x^{0}$, and axisymmetry implies that $x^{3}\rightarrow x^{3}+2\pi$.
+
+However, this does not sufficiently restrict possible solutions. We also assume time and angular reversibility, i.e. $\phi = -\phi$ and $t = -t$. Then we have:
 
 \begin{equation}
-ds^{2}=g_{00}dt^{2}-\left(g_{11}\left(dx^{1}\right)^{2}+2g_{12}dx^{1}dx^{2}+g_{22}\left(dx^{2}\right)^{2}\right)-g_{33}d\phi^{2}\label{eq:positive-definite-quadratic-differential}
+ds^{2}=g_{00}\left(dx^{0}\right)^{2}-\Phi -g_{33}\left(dx^{3}\right)^{2}\label{eq:positive-definite-quadratic-differential}
 \end{equation}
 
-where $x^{1}$,$x^{2}$ are any two coordinates in the meridianal (vertical)
-plane containing the z-axis.
+where
+\begin{equation}
+\Phi=g_{11}\left(dx^{1}\right)^{2}+2g_{12}dx^{1}dx^{2}+g_{22}\left(dx^{2}\right)^{2}
+\end{equation}
 
 We furthermore assume that $g_{\mu\nu}=f\left(x^{1},x^{2}\right)$
 
 For positive definite quadratic differential forms of two variables
 such as explicit values of $g_{11}$,$g_{12}$, and $g_{22}$ from
-the parenthetical part of Equation (\ref{eq:positive-definite-quadratic-differential}),
+$\Phi$ in Equation (\ref{eq:positive-definite-quadratic-differential}),
 one can make a real, single-valued, continuous transformation from
 $x^{1}$ and $x^{2}$ to $u$ and $v$ by:
 
@@ -71,23 +90,23 @@ where $J=\left[\nicefrac{\partial(x^{1},x^{2})}{\partial(u,v)}\right]\neq0$
 such that:
 
 \begin{equation}
-g_{11}\left(dx^{1}\right)^{2}+2g_{12}dx^{1}dx^{2}+g_{22}\left(dx^{2}\right)^{2}=e^{2m}\left(du^{2}+dv^{2}\right)
+g_{11}\left(dx^{1}\right)^{2}+2g_{12}dx^{1}dx^{2}+g_{22}\left(dx^{2}\right)^{2}=\beta^{2}\left(du^{2}+dv^{2}\right)
 \end{equation}
 
-Equation (\ref{eq:positive-definite-quadratic-differential}) becomes:
+Since $x^{1}$, $x^2$, $u$, and $v$ are all arbitrary, Equation (\ref{eq:positive-definite-quadratic-differential}) becomes:
 
 \begin{equation}
-ds^{2}=e^{2\nu}dt^{2}-e^{2m}(du^{2}+dv^{2})-e^{2n}d\phi^{2}\label{eq:generic-axisymmetric-static-metric}
+ds^{2}=\alpha^{2} \left(dx^{0}\right)^{2}-\beta^{2}\left(\left(dx^{1}\right)^{2}+\left(dx^{2}\right)^{2}\right)-\gamma^{2}\left(dx^{3}\right)^{2}\label{eq:generic-axisymmetric-static-metric}
 \end{equation}
 
 Explicitly, we then have the metric:
 
 \begin{equation}
 g_{\mu\nu}=\left(\begin{array}{cccc}
-e^{2\nu}dt^{2} & 0 & 0 & 0\\
-0 & -e^{2m}du^{2} & 0 & 0\\
-0 & 0 & -e^{2m}dv^{2} & 0\\
-0 & 0 & 0 & -e^{2n}d\phi^{2}
+\alpha^{2}\left(dx^{0}\right)^{2} & 0 & 0 & 0\\
+0 & -\beta^{2}\left(dx^{1}\right)^{2} & 0 & 0\\
+0 & 0 & -\beta^{2}\left(dx^{2}\right)^{2} & 0\\
+0 & 0 & 0 & -\gamma^{2}\left(dx^{3}\right)^{2}
 \end{array}\right)\label{eq:general-axisymmetric-static-matrix-metric}
 \end{equation}
 
@@ -100,23 +119,36 @@ We can get the non-zero Christoffel connections as:
 
 \begin{center}
 \begin{equation}
-\begin{array}{cc}
-\Gamma_{00}^{1}=e^{2(\nu-m)}\partial_{u}\nu & \Gamma_{22}^{2}=\partial_{v}m\\
-\Gamma_{33}^{1}=-e^{2(n-m)}\partial_{u}n & \Gamma_{21}^{2}=\partial_{u}m\\
-\Gamma_{22}^{1}=-\partial_{u}m & \Gamma_{11}^{2}=-\partial_{v}m\\
-\Gamma_{21}^{1}=\partial_{v}m & \Gamma_{32}^{3}=\partial_{v}n\\
-\Gamma_{11}^{1}=\partial_{u}m & \Gamma_{31}^{3}=\partial_{u}n\\
-\Gamma_{00}^{2}=e^{2(\nu-m)}\partial_{v}\nu & \Gamma_{02}^{0}=\partial_{v}\nu\\
-\Gamma_{33}^{2}=-e^{2(n-m)}\partial_{v}n & \Gamma_{01}^{0}=\partial_{u}\nu
+\begin{array}{c}
+\Gamma_{01}^{0}=\frac{\alpha_{1}}{\alpha}\\
+\Gamma_{02}^{0}=\frac{\alpha_{2}}{\alpha}\\
+\Gamma_{00}^{1}=\frac{\alpha \alpha_{1}}{\beta^{2}}\\
+\Gamma_{11}^{1}=\frac{\beta_{1}}{\beta}\\
+\Gamma_{12}^{1}=\frac{\beta_{2}}{\beta}\\
+\Gamma_{22}^{1}=-\frac{\beta_{1}}{\beta}\\
+\Gamma_{33}^{1}=-\frac{\gamma\gamma_{1}}{\beta^{2}}\\
+\Gamma_{00}^{2}=\frac{\alpha\alpha_{2}}{\beta^{2}}\\
+\Gamma_{11}^{2}=-\frac{\beta_{2}}{\beta}\\
+\Gamma_{12}^{2}=\frac{\beta_{1}}{\beta}\\ 
+\Gamma_{22}^{2}=\partial_{v}m\\
+\Gamma_{33}^{2}=-\frac{\gamma\gamma_{2}}{\beta^{2}}\\
+\Gamma_{13}^{3}=\frac{\gamma_{1}}{\gamma}\\
+\Gamma_{23}^{3}=\frac{\gamma_{2}}{\gamma}\\
 \end{array}
 \end{equation}
 \end{center}
 
-Using:
+Where the subscripts denote partial derivatives, i.e. $\alpha_{1}=\frac{\partial\alpha}{\partial x^{1}}$
+
+The components of the Riemann tensor are given by:
 \begin{equation}
 R_{\sigma\mu\nu}^{\rho}=\partial_{\mu}\Gamma_{\nu\sigma}^{\rho}-\partial_{\nu}\Gamma_{\mu\sigma}^{\rho}+\Gamma_{\mu\lambda}^{\rho}\Gamma_{\nu\sigma}^{\lambda}-\Gamma_{\nu\lambda}^{\rho}\Gamma_{\mu\sigma}^{\lambda}
 \end{equation}
 
+Using Synge's method whereby:
+\begin{equation}
+01\longleftrightarrow1
+\end{equation}
 \begin{equation}
 R_{\mu\nu}=R_{\mu\lambda\nu}^{\lambda}
 \end{equation}
@@ -126,6 +158,7 @@ R_{\mu\nu}=R_{\mu\lambda\nu}^{\lambda}
 R=R_{\mu}^{\mu}=g^{\mu\nu}R_{\mu\nu}
 \end{equation}
 
+We get the Ricci tensor components as:
 
 \begin{equation}
 G_{\mu\nu}=R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}
