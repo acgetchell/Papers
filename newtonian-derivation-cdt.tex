@@ -116,29 +116,28 @@ Using \cite{carroll2003spacetime}:
 \end{equation}
 
 We can get the non-zero Christoffel connections as:
-
 \begin{center}
 \begin{equation}
-\begin{array}{c}
-\Gamma_{01}^{0}=\frac{\alpha_{1}}{\alpha}\\
-\Gamma_{02}^{0}=\frac{\alpha_{2}}{\alpha}\\
-\Gamma_{00}^{1}=\frac{\alpha \alpha_{1}}{\beta^{2}}\\
-\Gamma_{11}^{1}=\frac{\beta_{1}}{\beta}\\
-\Gamma_{12}^{1}=\frac{\beta_{2}}{\beta}\\
-\Gamma_{22}^{1}=-\frac{\beta_{1}}{\beta}\\
-\Gamma_{33}^{1}=-\frac{\gamma\gamma_{1}}{\beta^{2}}\\
-\Gamma_{00}^{2}=\frac{\alpha\alpha_{2}}{\beta^{2}}\\
-\Gamma_{11}^{2}=-\frac{\beta_{2}}{\beta}\\
-\Gamma_{12}^{2}=\frac{\beta_{1}}{\beta}\\ 
-\Gamma_{22}^{2}=\partial_{v}m\\
-\Gamma_{33}^{2}=-\frac{\gamma\gamma_{2}}{\beta^{2}}\\
-\Gamma_{13}^{3}=\frac{\gamma_{1}}{\gamma}\\
-\Gamma_{23}^{3}=\frac{\gamma_{2}}{\gamma}\\
+\begin{array}{l}
+\Gamma_{01}^{0}=\nicefrac{\alpha_{1}}{\alpha}\\
+\Gamma_{02}^{0}=\nicefrac{\alpha_{2}}{\alpha}\\
+\Gamma_{00}^{1}=\nicefrac{\alpha \alpha_{1}}{\beta^{2}}\\
+\Gamma_{11}^{1}=\nicefrac{\beta_{1}}{\beta}\\
+\Gamma_{12}^{1}=\nicefrac{\beta_{2}}{\beta}\\
+\Gamma_{22}^{1}=-\nicefrac{\beta_{1}}{\beta}\\
+\Gamma_{33}^{1}=-\nicefrac{\gamma\gamma_{1}}{\beta^{2}}\\
+\Gamma_{00}^{2}=\nicefrac{\alpha\alpha_{2}}{\beta^{2}}\\
+\Gamma_{11}^{2}=-\nicefrac{\beta_{2}}{\beta}\\
+\Gamma_{12}^{2}=\nicefrac{\beta_{1}}{\beta}\\ 
+\Gamma_{22}^{2}=\nicefrac{\beta_{2}}{\beta}\\
+\Gamma_{33}^{2}=-\nicefrac{\gamma\gamma_{2}}{\beta^{2}}\\
+\Gamma_{13}^{3}=\nicefrac{\gamma_{1}}{\gamma}\\
+\Gamma_{23}^{3}=\nicefrac{\gamma_{2}}{\gamma}\\
 \end{array}
 \end{equation}
 \end{center}
 
-Where the subscripts denote partial derivatives, i.e. $\alpha_{1}=\frac{\partial\alpha}{\partial x^{1}}$
+Where the subscripts denote partial derivatives, i.e. $\alpha_{1}=\nicefrac{\partial\alpha}{\partial x^{1}}$
 
 The components of the Riemann tensor are given by:
 \begin{equation}
@@ -182,21 +181,16 @@ R_{\rho[\sigma\mu\nu]}=0
 The non-zero components of the Riemann tensor are:
 \begin{center}
 \begin{equation}
-\begin{array}{c}
+\begin{array}{l}
 R_{11}\rightarrow R_{101}^{0}=-\left(\frac{\alpha_{1}}{\alpha}\right)_{1}+\frac{\alpha_{1}\beta_{1}}{\alpha\beta}-\frac{\alpha_{2}\beta_{2}}{\alpha\beta}-\left(\frac{\alpha_{1}}{\alpha}\right)^{2}\\
 R_{12}\rightarrow R_{102}^{0}=-\left(\frac{\alpha_{2}}{\alpha}\right)_{2}+\frac{\alpha_{2}\beta_{1}}{\alpha\beta}-\frac{\alpha_{2}\alpha_{1}}{\alpha^{2}}\\
 R_{22}\rightarrow R_{202}^{0}=-\left(\frac{\alpha_{2}}{\alpha}\right)_{2}-\frac{\alpha_{1}\beta_{1}}{\alpha\beta}+\frac{\alpha_{2}\beta_{2}}{\alpha\beta}-\left(\frac{\alpha_{2}}{\alpha}\right)^{2}\\
-\Gamma_{11}^{1}=\frac{\beta_{1}}{\beta}\\
-\Gamma_{12}^{1}=\frac{\beta_{2}}{\beta}\\
-\Gamma_{22}^{1}=-\frac{\beta_{1}}{\beta}\\
-\Gamma_{33}^{1}=-\frac{\gamma\gamma_{1}}{\beta^{2}}\\
-\Gamma_{00}^{2}=\frac{\alpha\alpha_{2}}{\beta^{2}}\\
-\Gamma_{11}^{2}=-\frac{\beta_{2}}{\beta}\\
-\Gamma_{12}^{2}=\frac{\beta_{1}}{\beta}\\ 
-\Gamma_{22}^{2}=\partial_{v}m\\
-\Gamma_{33}^{2}=-\frac{\gamma\gamma_{2}}{\beta^{2}}\\
-\Gamma_{13}^{3}=\frac{\gamma_{1}}{\gamma}\\
-\Gamma_{23}^{3}=\frac{\gamma_{2}}{\gamma}\\
+R_{33}\rightarrow R_{303}^{0}=-\frac{\gamma}{\alpha\beta^{2}}\left(\alpha_{1}\gamma_{1}+\alpha_{2}\gamma_{2}\right)\\
+R_{36}\rightarrow R_{331}^{0}=\frac{\gamma}{\alpha\beta^{2}}\left(\alpha_{1}\gamma_{1}\right)\\
+R_{44}\rightarrow R_{212}^{1}=-\left(\frac{\beta_{1}}{\beta}\right)_{1}-\left(\frac{\beta_{2}}{\beta}\right)_{2}\\
+R_{55}\rightarrow R_{323}^{2}=-\left(\frac{\gamma\gamma_{2}}{\beta^{2}}\right)_{2}-\frac{\gamma}{\beta^{2}}\left(\frac{\beta_{1}\gamma_{1}}{\beta}+\frac{\beta_{2}\gamma_{2}}{\beta}-\frac{\gamma_{2}^{2}}{\gamma}\right)\\
+R_{56}\rightarrow R_{331}^{2}=-\left(\frac{\gamma\gamma_{2}}{\beta^{2}}\right)_{1}-\frac{\gamma}{\beta^{2}}\left(\frac{\gamma_{1}\gamma_{2}}{\gamma}+\frac{\gamma_{1}\beta_{2}}{\beta}-\frac{\beta_{1}\gamma_{2}}{\beta}\right)\\
+R_{66}\rightarrow R_{131}^{3}=-\left(\frac{\gamma_{1}}{\gamma}\right)_{1}+\frac{\beta_{1}\gamma_{1}}{\beta\gamma}-\left(\frac{\gamma_{1}}{\gamma}\right)^{2}-\frac{\beta_{2}\gamma_{2}}{\beta\gamma}\\
 \end{array}
 \end{equation}
 \end{center}
@@ -204,24 +198,11 @@ The Ricci tensor is given by:
 \begin{equation}
 R_{\mu\nu}=R_{\mu\lambda\nu}^{\lambda}
 \end{equation}
-We get the Ricci tensor components as:
+We then get the Ricci tensor components as:
 \begin{center}
 \begin{equation}
-\begin{array}{c}
-\Gamma_{01}^{0}=\frac{\alpha_{1}}{\alpha}\\
-\Gamma_{02}^{0}=\frac{\alpha_{2}}{\alpha}\\
-\Gamma_{00}^{1}=\frac{\alpha \alpha_{1}}{\beta^{2}}\\
-\Gamma_{11}^{1}=\frac{\beta_{1}}{\beta}\\
-\Gamma_{12}^{1}=\frac{\beta_{2}}{\beta}\\
-\Gamma_{22}^{1}=-\frac{\beta_{1}}{\beta}\\
-\Gamma_{33}^{1}=-\frac{\gamma\gamma_{1}}{\beta^{2}}\\
-\Gamma_{00}^{2}=\frac{\alpha\alpha_{2}}{\beta^{2}}\\
-\Gamma_{11}^{2}=-\frac{\beta_{2}}{\beta}\\
-\Gamma_{12}^{2}=\frac{\beta_{1}}{\beta}\\ 
-\Gamma_{22}^{2}=\partial_{v}m\\
-\Gamma_{33}^{2}=-\frac{\gamma\gamma_{2}}{\beta^{2}}\\
-\Gamma_{13}^{3}=\frac{\gamma_{1}}{\gamma}\\
-\Gamma_{23}^{3}=\frac{\gamma_{2}}{\gamma}\\
+\begin{array}{l}
+R_{00}=\frac{\alpha}{\beta^{2}}\left(\alpha_{11}+\alpha_{22}+\frac{1}{\gamma}\left(\alpha_{1}\gamma_{1}+\alpha_{2}\gamma_{2}\right)\right)\\
 \end{array}
 \end{equation}
 \end{center}
