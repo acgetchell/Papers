@@ -54,7 +54,7 @@ Following previous work\cite{katz1967derivation}, the plan of attack is:
 
 \subsection{Newton's Law of Gravitation from General Relativity}
 
-We begin by deriving the general axisymmetric Weyl metric.
+We begin by deriving the general static axisymmetric (Weyl) metric.
 
 Following Synge\cite{synge_relativity}, we have a set of components $\{x^0,x^1,x^2,x^3\}$ 
 
@@ -63,7 +63,12 @@ plane containing the z-axis, and $x^{3}$ is the angular component about the z-ax
 
 Imposing the static condition implies that our metric is independent of $x^{0}$, and axisymmetry implies that $x^{3}\rightarrow x^{3}+2\pi$.
 
-However, this does not sufficiently restrict possible solutions. We also assume time and angular reversibility, i.e. $\phi = -\phi$ and $t = -t$. Then we have:
+However, this does not sufficiently restrict possible solutions. We also assume time and axis angle reversal invariance, i.e. $t = -t$ and $\phi = -\phi$. Consequently:
+\begin{equation}
+g_{\mu\nu}=f\left(x^{1},x^{2}\right)
+\end{equation}
+
+Then we must have:
 
 \begin{equation}
 ds^{2}=g_{00}\left(dx^{0}\right)^{2}-\Phi -g_{33}\left(dx^{3}\right)^{2}\label{eq:positive-definite-quadratic-differential}
@@ -73,8 +78,6 @@ where
 \begin{equation}
 \Phi=g_{11}\left(dx^{1}\right)^{2}+2g_{12}dx^{1}dx^{2}+g_{22}\left(dx^{2}\right)^{2}
 \end{equation}
-
-We furthermore assume that $g_{\mu\nu}=f\left(x^{1},x^{2}\right)$
 
 For positive definite quadratic differential forms of two variables
 such as explicit values of $g_{11}$,$g_{12}$, and $g_{22}$ from
@@ -110,13 +113,12 @@ g_{\mu\nu}=\left(\begin{array}{cccc}
 \end{array}\right)\label{eq:general-axisymmetric-static-matrix-metric}
 \end{equation}
 
-Using \cite{carroll2003spacetime}: 
+The definition of the Christoffel connection is: \cite{carroll2003spacetime} 
 \begin{equation}
 \Gamma_{\mu\nu}^{\lambda}=\frac{1}{2}g^{\lambda\sigma}\left(\partial_{\mu}g_{\nu\sigma}+\partial_{\nu}g_{\sigma\mu}-\partial_{\sigma}g_{\mu\nu}\right)
 \end{equation}
 
-We can get the non-zero Christoffel connections as:
-\begin{center}
+The non-zero Christoffel connections are:
 \begin{equation}
 \begin{array}{l}
 \Gamma_{01}^{0}=\nicefrac{\alpha_{1}}{\alpha}\\
@@ -135,9 +137,8 @@ We can get the non-zero Christoffel connections as:
 \Gamma_{23}^{3}=\nicefrac{\gamma_{2}}{\gamma}\\
 \end{array}
 \end{equation}
-\end{center}
 
-Where the subscripts denote partial derivatives, i.e. $\alpha_{1}=\nicefrac{\partial\alpha}{\partial x^{1}}$
+Where for convenience subscripts denote partial derivatives, i.e. $\alpha_{1}=\nicefrac{\partial\alpha}{\partial x^{1}}$
 
 The components of the Riemann tensor are given by:
 \begin{equation}
@@ -145,7 +146,6 @@ R_{\sigma\mu\nu}^{\rho}=\partial_{\mu}\Gamma_{\nu\sigma}^{\rho}-\partial_{\nu}\G
 \end{equation}
 
 Using Synge's substitutions:
-\begin{center}
 \begin{equation}
 \begin{array}{c}
 01\longleftrightarrow1\\
@@ -156,30 +156,22 @@ Using Synge's substitutions:
 31\longleftrightarrow6\\
 \end{array}
 \end{equation}
-\end{center}
 
 The 20 independent components of the 4D Rieman tensor are given by:
-\begin{center}
 \begin{equation}
 \begin{array}{cccccc}
 R_{11} & R_{12} & R_{13} & R_{14} & R_{15} & R_{16} \\ & R_{22} & R_{23} & R_{24} & R_{25} & R_{26} \\ & & R_{33} & R_{34} & R_{35} & R_{36} \\ & & & R_{44} & R_{45} & R_{46} \\ & & & & R_{55} & R_{56} \\ & & & & & R_{66}
 \end{array}
 \end{equation}
-\end{center}
 Subject to:
-\begin{center}
 \begin{equation}
 R_{15} + R_{26} + R_{34} = 0
 \end{equation}
-\end{center}
 Which is the equivalent of:
-\begin{center}
 \begin{equation}
 R_{\rho[\sigma\mu\nu]}=0
 \end{equation}
-\end{center}
 The non-zero components of the Riemann tensor are:
-\begin{center}
 \begin{equation}
 \begin{array}{l}
 R_{11}\rightarrow R_{101}^{0}=-\left(\frac{\alpha_{1}}{\alpha}\right)_{1}+\frac{\alpha_{1}\beta_{1}}{\alpha\beta}-\frac{\alpha_{2}\beta_{2}}{\alpha\beta}-\left(\frac{\alpha_{1}}{\alpha}\right)^{2}\\
@@ -193,19 +185,16 @@ R_{56}\rightarrow R_{331}^{2}=-\left(\frac{\gamma\gamma_{2}}{\beta^{2}}\right)_{
 R_{66}\rightarrow R_{131}^{3}=-\left(\frac{\gamma_{1}}{\gamma}\right)_{1}+\frac{\beta_{1}\gamma_{1}}{\beta\gamma}-\left(\frac{\gamma_{1}}{\gamma}\right)^{2}-\frac{\beta_{2}\gamma_{2}}{\beta\gamma}\\
 \end{array}
 \end{equation}
-\end{center}
 The Ricci tensor is given by:
 \begin{equation}
 R_{\mu\nu}=R_{\mu\lambda\nu}^{\lambda}
 \end{equation}
-We then get the Ricci tensor components as:
-\begin{center}
+The Ricci tensor components are:
 \begin{equation}
 \begin{array}{l}
 R_{00}=\frac{\alpha}{\beta^{2}}\left(\alpha_{11}+\alpha_{22}+\frac{1}{\gamma}\left(\alpha_{1}\gamma_{1}+\alpha_{2}\gamma_{2}\right)\right)\\
 \end{array}
 \end{equation}
-\end{center}
 And the Ricci scalar given by:
 \begin{equation}
 R=R_{\mu}^{\mu}=g^{\mu\nu}R_{\mu\nu}
