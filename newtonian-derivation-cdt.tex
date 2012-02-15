@@ -199,6 +199,57 @@ R_{22}=-\left(\frac{\beta_{1}}{\beta}\right)_{1}-\left(\frac{\beta_{2}}{\beta}\r
 R_{33}=-\frac{\gamma}{\beta^{2}}\left(\gamma_{11}+\gamma_{22}+\frac{1}{\alpha}\left(\alpha_{1}\gamma_{1}+\alpha_{2}\gamma_{2}\right)\right)
 \end{array}
 \end{equation}
+Now prior insight shows that:
+
+\begin{equation}
+R^{0}_{0}+R^{3}_{3}=g^{00}R_{00}+g^{33}R_{33}=\frac{1}{\alpha^{2}}R_{00}-\frac{1}{\gamma^{2}}R_{33}\label{eq:prior-insight}
+\end{equation}
+Letting
+\begin{equation}
+\Delta=\left(\partial_{1}+\partial_{2}\right)^{2}\label{eq:Delta}
+\end{equation}
+And substituting values into Equation (\ref{eq:prior-insight}) we get:
+\begin{equation}
+R^{0}_{0}+R^{3}_{3}=\frac{1}{\alpha\beta^{2}\gamma}\Delta\left(\alpha\gamma\right)\label{eq:prior-insight-2}
+\end{equation}
+Now in the case where there is no matter we have:
+\begin{equation}
+R_{\mu\nu}=0
+\end{equation}
+Which from Equation (\ref{eq:prior-insight-2}) implies that:
+\begin{equation}
+\Delta\left(\alpha\gamma\right)=0
+\end{equation}
+Recalling Equation (\ref{eq:Delta}) we have a harmonic function:
+\begin{equation}
+\alpha\gamma=r\left(x^{1},x^{2}\right)\label{eq:alpha-in-terms-of-gamma}
+\end{equation}
+To put this into standard form, we can make the transform:
+\begin{equation}
+\left(x^{1},x^{2}\right)\rightarrow\left(r,z\right)
+\end{equation}
+Then we can write:
+\begin{equation}
+\beta^{2}\left(\left(dx^{1}\right)^{2}+\left(dx^{2}\right)^{2}\right)=B\left(dr^{2}+dz^{2}\right)
+\end{equation} 
+Using Equation (\ref{eq:alpha-in-terms-of-gamma}) and the condition that:
+\begin{equation}
+R^{0}_{0}+R^{3}_{3}=0
+\end{equation}
+We can rewrite Equation (\ref{eq:generic-axisymmetric-static-metric}) as:
+\begin{equation}
+ds^{2}=\alpha^{2}dt^{2}-B\left(r,z\right)\left(dr^{2}+dz^{2}\right)-\frac{r^{2}}{\alpha^{2}}d\phi^{2}
+\end{equation}
+Letting
+\begin{equation}
+\begin{array}{ccc}
+\alpha=e^{\lambda} & B=e^{\nu-\lambda} & \gamma=re^{-\lambda}
+\end{array}
+\end{equation}
+We finally get the Weyl metric:
+\begin{equation}
+ds^{2}=e^{2\lambda}dt^{2}-e^{2\left(\nu-\lambda\right)}\left(dr^{2}+dz^{2}\right)-r^{2}e^{-2\lambda}d\phi^{2}
+\end{equation}
 And the Ricci scalar given by:
 \begin{equation}
 R=R_{\mu}^{\mu}=g^{\mu\nu}R_{\mu\nu}
@@ -207,7 +258,7 @@ Is:
 \begin{equation}
 R=R_{\mu}^{\mu}=g^{\mu\nu}R_{\mu\nu}
 \end{equation}
-Finally we have the Einstin tensor:
+Finally we have the Einstein tensor:
 \begin{equation}
 G_{\mu\nu}=R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}
 \end{equation}
