@@ -1,0 +1,308 @@
+\documentclass{article}
+% \usepackage{times}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{calc}
+\usepackage{units}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subdepth}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{notoccite}
+\usepackage{nag}
+\title{Newtonian approximation in Causal Dynamical Triangulations}
+\author{Adam Getchell}
+\date{}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Motivation}
+
+\subsection{Newton's Law of Gravitation from General Relativity}
+
+Starting from the most general cylindrically symmetric metric \cite{synge_relativity}, the Weyl metric:
+
+\begin{equation}
+ds^{2}=e^{2\lambda}dt^{2}-e^{2\left(\nu-\lambda\right)}\left(dr^{2}+dz^{2}\right)-r^{2}e^{-2\lambda}d\phi^{2}
+\end{equation}
+
+\begin{equation}
+g_{\mu\nu}=\left(\begin{array}{cccc}
+e^{2\lambda}dt^{2} & 0 & 0 & 0\\
+0 & -e^{2\left(\nu-\lambda\right)}dr^{2} & 0 & 0\\
+0 & 0 & -e^{2\left(\nu-\lambda\right)}dz^{2} & 0\\
+0 & 0 & 0 & -\frac{r^{2}}{e^{2\lambda}}d\phi^{2}
+\end{array}\right)\label{eq:general-axisymmetric-static-matrix-metric}
+\end{equation}
+
+The definition of the Christoffel connection is: \cite{carroll2003spacetime} 
+\begin{equation}
+\Gamma_{\mu\nu}^{\lambda}=\frac{1}{2}g^{\lambda\sigma}\left(\partial_{\mu}g_{\nu\sigma}+\partial_{\nu}g_{\sigma\mu}-\partial_{\sigma}g_{\mu\nu}\right)
+\end{equation}
+
+The non-zero Christoffel connections are:
+\begin{equation}
+\begin{array}{l}
+\Gamma_{tr}^{t}=\partial_{r}\lambda\\
+\Gamma_{tz}^{t}=\partial_{z}\lambda\\
+\Gamma_{tt}^{r}=e^{-2\left(\nu-2\lambda\right)}\partial_{r}\lambda\\
+\Gamma_{rr}^{r}=\partial_{r}\nu-\partial_{r}\lambda\\
+\Gamma_{rz}^{r}=\partial_{z}\nu-\partial_{z}\lambda\\
+\Gamma_{zz}^{r}=\partial_{z}\lambda-\partial_{z}\nu\\
+\Gamma_{\phi\phi}^{r}=\frac{1}{2}e^{-2\nu}\left(r^{2}\partial_{r}\lambda-2r\right)\\
+\Gamma_{tt}^{z}=e^{-2\left(\nu-2\lambda\right)}\partial_{z}\lambda\\
+\Gamma_{rr}^{z}=\partial_{z}\lambda-\partial_{z}\nu\\
+\Gamma_{rz}^{z}=\partial_{r}\nu-\partial_{r}\lambda\\ 
+\Gamma_{zz}^{z}=\partial_{r}\nu-\partial_{r}\lambda\\
+\Gamma_{\phi\phi}^{z}=r^{2}e^{-2\nu}\partial_{z}\lambda\\
+\Gamma_{r\phi}^{\phi}=\frac{1}{r}-\partial_{r}\lambda\\
+\Gamma_{z\phi}^{\phi}=-\partial_{z}\lambda\\
+\end{array}
+\end{equation}
+
+The components of the Riemann tensor are given by:
+\begin{equation}
+R_{\sigma\mu\nu}^{\rho}=\partial_{\mu}\Gamma_{\nu\sigma}^{\rho}-\partial_{\nu}\Gamma_{\mu\sigma}^{\rho}+\Gamma_{\mu\lambda}^{\rho}\Gamma_{\nu\sigma}^{\lambda}-\Gamma_{\nu\lambda}^{\rho}\Gamma_{\mu\sigma}^{\lambda}
+\end{equation}
+
+Using Synge's substitutions:
+\begin{equation}
+\begin{array}{c}
+01\longleftrightarrow1\\
+02\longleftrightarrow2\\
+03\longleftrightarrow3\\
+12\longleftrightarrow4\\
+23\longleftrightarrow5\\
+31\longleftrightarrow6\\
+\end{array}
+\end{equation}
+
+The 20 independent components of the 4D Rieman tensor are given by:
+\begin{equation}
+\begin{array}{cccccc}
+R_{11} & R_{12} & R_{13} & R_{14} & R_{15} & R_{16} \\ & R_{22} & R_{23} & R_{24} & R_{25} & R_{26} \\ & & R_{33} & R_{34} & R_{35} & R_{36} \\ & & & R_{44} & R_{45} & R_{46} \\ & & & & R_{55} & R_{56} \\ & & & & & R_{66}
+\end{array}
+\end{equation}
+Subject to:
+\begin{equation}
+R_{15} + R_{26} + R_{34} = 0
+\end{equation}
+Which is the equivalent of:
+\begin{equation}
+R_{\rho[\sigma\mu\nu]}=0
+\end{equation}
+The non-zero components of the Riemann tensor are:
+\begin{equation}
+\begin{array}{l}
+R_{11}\rightarrow R_{101}^{0}=-\left(\frac{\alpha_{1}}{\alpha}\right)_{1}+\frac{\alpha_{1}\beta_{1}}{\alpha\beta}-\frac{\alpha_{2}\beta_{2}}{\alpha\beta}-\left(\frac{\alpha_{1}}{\alpha}\right)^{2}\\
+R_{12}\rightarrow R_{102}^{0}=-\left(\frac{\alpha_{1}}{\alpha}\right)_{2}+\frac{\alpha_{1}\beta_{2}}{\alpha\beta}+\frac{\alpha_{2}\beta_{1}}{\alpha\beta}-\frac{\alpha_{2}\alpha_{1}}{\alpha^{2}}\\
+R_{22}\rightarrow R_{202}^{0}=-\left(\frac{\alpha_{2}}{\alpha}\right)_{2}-\frac{\alpha_{1}\beta_{1}}{\alpha\beta}+\frac{\alpha_{2}\beta_{2}}{\alpha\beta}-\left(\frac{\alpha_{2}}{\alpha}\right)^{2}\\
+R_{33}\rightarrow R_{303}^{0}=-\frac{\gamma}{\alpha\beta^{2}}\left(\alpha_{1}\gamma_{1}+\alpha_{2}\gamma_{2}\right)\\
+R_{36}\rightarrow R_{331}^{0}=\frac{\gamma}{\alpha\beta^{2}}\left(\alpha_{1}\gamma_{1}\right)\\
+R_{44}\rightarrow R_{212}^{1}=-\left(\frac{\beta_{1}}{\beta}\right)_{1}-\left(\frac{\beta_{2}}{\beta}\right)_{2}\\
+R_{55}\rightarrow R_{323}^{2}=-\frac{\gamma}{\beta^{2}}\left(\frac{\beta_{2}\gamma_{2}}{\beta}-\gamma_{22}-\frac{\beta_{1}\gamma_{1}}{\beta}\right)\\
+R_{56}\rightarrow R_{331}^{2}=-\left(\frac{\gamma\gamma_{2}}{\beta^{2}}\right)_{1}-\frac{\gamma}{\beta^{2}}\left(\frac{\gamma_{1}\gamma_{2}}{\gamma}+\frac{\gamma_{1}\beta_{2}}{\beta}-\frac{\beta_{1}\gamma_{2}}{\beta}\right)\\
+R_{66}\rightarrow R_{131}^{3}=-\frac{\gamma_{11}}{\gamma}+\frac{\beta_{1}\gamma_{1}}{\beta\gamma}-\frac{\beta_{2}\gamma_{2}}{\beta\gamma}\\
+\end{array}
+\end{equation}
+The Ricci tensor is given by:
+\begin{equation}
+R_{\mu\nu}=R_{\mu\lambda\nu}^{\lambda}
+\end{equation}
+The Ricci tensor components are:
+\begin{equation}
+\begin{array}{l}
+R_{00}=\frac{\alpha}{\beta^{2}}\left(\alpha_{11}+\alpha_{22}+\frac{1}{\gamma}\left(\alpha_{1}\gamma_{1}+\alpha_{2}\gamma_{2}\right)\right)\\
+R_{11}=-\frac{\alpha_{11}}{\alpha}-\frac{\gamma_{11}}{\gamma}-\left(\frac{\beta_{1}}{\beta}\right)_{1}-\left(\frac{\beta_{2}}{\beta}\right)_{2}-\frac{\beta_{2}}{\beta}\left(\frac{\alpha_{2}}{\alpha}+\frac{\gamma_{2}}{\gamma}\right)+\frac{\beta_{1}}{\beta}\left(\frac{\alpha_{1}}{\alpha}+\frac{\gamma_{1}}{\gamma}\right)\\
+R_{12}=-\frac{\alpha_{12}}{\alpha}-\frac{\gamma_{12}}{\gamma}+\frac{\beta_{1}}{\beta}\left(\frac{\alpha_{2}}{\alpha}+\frac{\gamma_{2}}{\gamma}\right)+\frac{\beta_{2}}{\beta}\left(\frac{\alpha_{1}}{\alpha}+\frac{\gamma_{1}}{\gamma}\right)\\
+R_{22}=-\left(\frac{\beta_{1}}{\beta}\right)_{1}-\left(\frac{\beta_{2}}{\beta}\right)_{2}-\frac{\alpha_{22}}{\alpha}-\frac{\gamma_{22}}{\gamma}-\frac{\beta_{1}}{\beta}\left(\frac{\alpha_{1}}{\alpha}+\frac{\gamma_{1}}{\gamma}\right)+\frac{\beta_{2}}{\beta}\left(\frac{\alpha_{2}}{\alpha}+\frac{\gamma_{2}}{\gamma}\right)\\
+R_{33}=-\frac{\gamma}{\beta^{2}}\left(\gamma_{11}+\gamma_{22}+\frac{1}{\alpha}\left(\alpha_{1}\gamma_{1}+\alpha_{2}\gamma_{2}\right)\right)
+\end{array}\label{eq:ricci-tensor-components}
+\end{equation}
+Now prior insight shows that:
+
+\begin{equation}
+R^{0}_{0}+R^{3}_{3}=g^{00}R_{00}+g^{33}R_{33}=\frac{1}{\alpha^{2}}R_{00}-\frac{1}{\gamma^{2}}R_{33}\label{eq:prior-insight}
+\end{equation}
+Letting
+\begin{equation}
+\Delta=\left(\partial_{1}+\partial_{2}\right)^{2}\label{eq:Delta}
+\end{equation}
+And substituting values into Equation (\ref{eq:prior-insight}) we get:
+\begin{equation}
+R^{0}_{0}+R^{3}_{3}=\frac{1}{\alpha\beta^{2}\gamma}\Delta\left(\alpha\gamma\right)\label{eq:prior-insight-2}
+\end{equation}
+Now in the case where there is no matter we have:
+\begin{equation}
+R_{\mu\nu}=0\label{eq:vacuum-solutions}
+\end{equation}
+Which from Equation (\ref{eq:prior-insight-2}) implies that:
+\begin{equation}
+\Delta\left(\alpha\gamma\right)=0
+\end{equation}
+Recalling Equation (\ref{eq:Delta}) we have a harmonic function:
+\begin{equation}
+\alpha\gamma=r\left(x^{1},x^{2}\right)\label{eq:alpha-in-terms-of-gamma}
+\end{equation}
+To put this into standard form, we can make the transform:
+\begin{equation}
+\left(x^{1},x^{2}\right)\rightarrow\left(r,z\right)
+\end{equation}
+Then we can write:
+\begin{equation}
+\beta^{2}\left(\left(dx^{1}\right)^{2}+\left(dx^{2}\right)^{2}\right)=B\left(dr^{2}+dz^{2}\right)
+\end{equation} 
+Using Equation (\ref{eq:alpha-in-terms-of-gamma}) and the condition that:
+\begin{equation}
+R^{0}_{0}+R^{3}_{3}=0
+\end{equation}
+We can rewrite Equation (\ref{eq:generic-axisymmetric-static-metric}) as:
+\begin{equation}
+ds^{2}=\alpha^{2}dt^{2}-B\left(r,z\right)\left(dr^{2}+dz^{2}\right)-\frac{r^{2}}{\alpha^{2}}d\phi^{2}
+\end{equation}
+Letting
+\begin{equation}
+\begin{array}{ccc}
+\alpha=e^{\lambda} & B=e^{\nu-\lambda} & \gamma=re^{-\lambda}
+\end{array}\label{eq:weyl-sustitutions}
+\end{equation}
+We finally get the Weyl metric:
+
+Using the results of Equation (\ref{eq:ricci-tensor-components}) and the substitutions from Equation (\ref{eq:weyl-sustitutions}) we get the following relations:
+\begin{equation}
+\begin{array}{l}
+\frac{1}{2}\left(R_{11}+R_{22}\right)=-\Delta\nu+\left(\Delta\lambda+\frac{\lambda_{1}}{r}\right)-\lambda^{2}_{1}-\lambda^{2}_{2} \\
+\frac{1}{2}\left(R_{11}-R_{22}\right)=-\lambda^{2}_{1}+\lambda^{2}_{2}+\frac{\nu_{1}}{r}\\
+R_{12}=-2\lambda_{1}\lambda_{2}+\frac{\nu_{2}}{r}\\
+R_{0}^{0}-R_{3}^{3}=\frac{2}{\beta^{2}}\left(\Delta\lambda+\frac{\lambda_{1}}{r}\right)\\
+R_{0}^{0}+R_{3}^{3}=0
+\end{array}
+\end{equation}
+Applying the vacuum solutions from Equation (\ref{eq:vacuum-solutions}) we have:
+\begin{equation}
+\Delta\lambda+\frac{\lambda_{1}}{r}=0
+\end{equation}
+Written explicitly, this is Laplace's equation in cylindrical coordinates:
+\begin{equation}
+\frac{\partial^{2}\lambda}{\partial r^{2}}+\frac{1}{r}\frac{\partial\lambda}{\partial r}+\frac{\partial^{2}\lambda}{\partial z^{2}}=0
+\end{equation}
+\subsection{Additional issues}
+
+
+
+\section{Applications to Causal Dynamical Triangulations}
+
+\subsection{Preliminaries}
+
+A simplex is a generalization of a triangle to arbitrary dimension. For example, a 2-simplex is a triangle, a 3-simplex is a tetrahedron, and a 4-simplex is a pentachoron. Topologically, an n-simplex is equivalent to an n-ball; that is, an n-dimensional manifold with boundary.
+
+An n-dimensional simplex has $n+1$ points or \emph{vertices}. A convex hull, or minimal convex set of these points is the \emph{m-face} of the \emph{n-simplex}. Thus, a vertex is a \emph{0-face}, and an edge between two vertices is the \emph{1-face}. We can extend this notation to \emph{2-faces} (triangles), \emph{3-faces} (tetrahedrons), \emph{4-faces} (pentachorons). We will not, at present, consider simplices of dimension higher than $n=4$, but this generalization gives us a useful way to reason about higher dimensional spaces.
+
+The number of \emph{m-faces} on our \emph{n-simplex} is given by the binomial coefficient as:
+
+\begin{equation}
+\left(\begin{array}{c}n+1\\m+1\end{array}\right)
+\end{equation}
+
+Thus, our pentachoron has 5 vertices, 10 edges, 10 faces (triangles), 5 cells (tetrahedrons), and 1 4-face, itself.
+
+A given face can be shared by another simplex. By requiring that \cite{weisstein1}:
+
+\begin{itemize}
+\item Every face of a simplex \emph{K} is in \emph{K}, and
+\item The intersection of any two simplices of K is a face of each of them
+\end{itemize}
+
+We build up a useful structure called a simplicial complex. Informally, this is a space with a triangulation. Formally, simplicial complexes have only been proven for spaces of dimension $d\le3$. A simplicial complex has a well-defined homology (simplicial homology) which is easy to compute.
+
+\subsection{Code Correctness}
+
+Implementing CDT in computer code is non-trivial. As a first significant step, an independent implementation of CDT has given similar results to the original work \cite{kommu2011}. We would like to build on Kommu's implementation using Literate Programming \cite{knuth_literate_1984} coupled with Test Driven Development specific to the programming language used \cite{rathore_clojure_2011}. This provides for the codebase to be better understood by researchers wishing to replicate results or expand the capabilities of the code, and provides inherent integrity checks apart from "it produced what we expected". Such methodology will be critical to expanding the performance of the code by using such techniques as parallel processing and highly optimized algorithms. The adage of "Make it work, make it right, make it fast" applies.
+
+The first building block of the code are the simplexes themselves. Using the known properties of simplicial complexes, we can provide for a series of checks that validate that simplices are being constructed correctly. Such checks will provide useful test cases when the underlying implementation of simplex data structures and moves are changed.
+
+\subsection{Data structures}
+
+\subsection{Issues}
+
+\begin{itemize}
+\item Extrinsic Curvature \emph{(To Do)}
+\item Imposing conditions of separation
+\item Checking that separation >\textcompwordmark{}> Schwarzschild radius
+\item Imposing cylindrical symmetry
+\end{itemize}
+
+\subsection{CDT Algorithm}
+
+\emph{(To Do: insert graphics)}
+
+\begin{itemize}
+\item {[}(2,8): (1,4) + (4,1) $\rightarrow$8 simplices{]} + inverse = +2
+moves
+\item {[}(4,6): ()+()+()+()$\rightarrow$6 simplices{]} + inverse = +2 moves
+\item {[}(2,4): two varieties of ()+()$\rightarrow$4 simplices{]}, self-inverse
+= +2 moves
+\item {[}(3,3): two varieties of ()+()+()$\rightarrow$3 simplices{]} +
+inverse = +4 moves\end{itemize}
+\begin{description}
+\item [{10}] moves in all (\emph{Check!)}
+\end{description}
+
+\includegraphics[scale=0.35]{Initialization}
+
+Dijkstra's Algorithm \cite{cormen2001introduction}
+
+
+Solves single-source shortest-path problems on weighted, directed
+graph G=(V,E) of non-negative edge lengths
+
+\begin{itemize}
+\item Greedy algorithm
+\item Proven to be correct
+\item Complexity
+
+\begin{itemize}
+\item $O(V^{2})$ naively using adjacency list
+\item $O(E\lg V)$ using priority queue iff all vertices reachable from
+source
+\item $O(V\lg V+E)$ using Fibonacci heap (more relaxation calls than extract-min
+calls)
+\end{itemize}
+\item Issue: confine edge length algorithm to particular time-slice
+\item Solution: Store Fibonacci heap of simplices per time-slice
+
+\begin{itemize}
+\item Each simplex has 5 neighbors, so more compact than adjacency matrix
+\end{itemize}
+
+\begin{itemize}
+\item How to deal with moves affecting original ``mass'' simplices
+\item How to create a 4d cylinder of height z=d
+\item Verify Markov chain for initialization is ergodic
+\item Calculate <d>
+\end{itemize}
+\end{itemize}
+
+\section{Summary}
+\begin{itemize}
+\item Insert mass equivalence via extrinsic curvature
+\item Insert strut by enforcing separation distance
+\item Filter moves which alter separation distance via Markov chain
+\item Outlook
+
+\begin{itemize}
+\item Write code!
+\item Check Extrinsic Curvature
+\item Compare results
+\end{itemize}
+\end{itemize}
+
+\bibliographystyle{ieeetr}
+\bibliography{cdt-newtonian-limit-biblio}
+
+
+\end{document}
