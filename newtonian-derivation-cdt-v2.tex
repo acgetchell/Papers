@@ -24,7 +24,7 @@
 
 \subsection{Newton's Law of Gravitation from General Relativity}
 
-Starting from the most general cylindrically symmetric metric \cite{synge_relativity}, the Weyl metric:
+Starting from the most general cylindrically symmetric (Weyl) metric \cite{synge_relativity}:
 
 \begin{equation}
 ds^{2}=e^{2\lambda}dt^{2}-e^{2\left(\nu-\lambda\right)}\left(dr^{2}+dz^{2}\right)-r^{2}e^{-2\lambda}d\phi^{2}
@@ -45,25 +45,27 @@ The definition of the Christoffel connection is: \cite{carroll2003spacetime}
 \end{equation}
 
 With the assumption of zero torsion:
-
+\begin{equation}
+\Gamma_{\mu\nu}^{\lambda}=\Gamma_{\nu\mu}^{\lambda}
+\end{equation}
 
 The non-zero Christoffel connections are:
 \begin{equation}
 \begin{array}{l}
-\Gamma_{tr}^{t}=\partial_{r}\lambda\\
-\Gamma_{tz}^{t}=\partial_{z}\lambda\\
-\Gamma_{tt}^{r}=e^{-2\left(\nu-2\lambda\right)}\partial_{r}\lambda\\
-\Gamma_{rr}^{r}=\partial_{r}\nu-\partial_{r}\lambda\\
-\Gamma_{rz}^{r}=\partial_{z}\nu-\partial_{z}\lambda\\
-\Gamma_{zz}^{r}=\partial_{z}\lambda-\partial_{z}\nu\\
-\Gamma_{\phi\phi}^{r}=\frac{1}{2}e^{-2\nu}\left(r^{2}\partial_{r}\lambda-2r\right)\\
-\Gamma_{tt}^{z}=e^{-2\left(\nu-2\lambda\right)}\partial_{z}\lambda\\
-\Gamma_{rr}^{z}=\partial_{z}\lambda-\partial_{z}\nu\\
-\Gamma_{rz}^{z}=\partial_{r}\nu-\partial_{r}\lambda\\ 
-\Gamma_{zz}^{z}=\partial_{r}\nu-\partial_{r}\lambda\\
-\Gamma_{\phi\phi}^{z}=r^{2}e^{-2\nu}\partial_{z}\lambda\\
-\Gamma_{r\phi}^{\phi}=\frac{1}{r}-\partial_{r}\lambda\\
-\Gamma_{z\phi}^{\phi}=-\partial_{z}\lambda\\
+\Gamma^{t}_{tr}=\partial_{r}\lambda\\
+\Gamma^{t}_{tz}=\partial_{z}\lambda\\
+\Gamma^{r}_{tt}=e^{4\lambda-2\nu}\partial_{r}\lambda\\
+\Gamma^{r}_{rr}=\partial_{r}\nu-\partial_{r}\lambda\\
+\Gamma^{r}_{rz}=\partial_{z}\nu-\partial_{z}\lambda\\
+\Gamma^{r}_{zz}=\partial_{z}\lambda-\partial_{z}\nu\\
+\Gamma^{r}_{\phi\phi}=re^{-2\nu}\left(r\partial_{r}\lambda-1\right)\\
+\Gamma^{z}_{tt}=e^{4\lambda-2\nu}\partial_{z}\lambda\\
+\Gamma^{z}_{rr}=\partial_{z}\lambda-\partial_{z}\nu\\
+\Gamma^{z}_{rz}=\partial_{r}\nu-\partial_{r}\lambda\\ 
+\Gamma^{z}_{zz}=\partial_{r}\nu-\partial_{r}\lambda\\
+\Gamma^{z}_{\phi\phi}=r^{2}e^{-2\nu}\partial_{z}\lambda\\
+\Gamma^{\phi}_{r\phi}=\frac{1}{r}-\partial_{r}\lambda\\
+\Gamma^{\phi}_{z\phi}=-\partial_{z}\lambda\\
 \end{array}
 \end{equation}
 
@@ -74,42 +76,25 @@ R_{\sigma\mu\nu}^{\rho}=\partial_{\mu}\Gamma_{\nu\sigma}^{\rho}-\partial_{\nu}\G
 
 Using the properties of the Riemann tensor:
 \begin{equation}
-\begin{array}{c}
-01\longleftrightarrow1\\
-02\longleftrightarrow2\\
-03\longleftrightarrow3\\
-12\longleftrightarrow4\\
-23\longleftrightarrow5\\
-31\longleftrightarrow6\\
+\begin{array}{l}
+R_{\rho\sigma\mu\nu}=-R_{\rho\sigma\nu\mu}\\
+R_{\rho\sigma\mu\nu}=-R_{\sigma\rho\mu\nu}\\
+R_{\rho\sigma\mu\nu}=R_{\mu\nu\rho\sigma}\\
+R_{\rho[\sigma\mu\nu]}=0\\
 \end{array}
 \end{equation}
 
-The 20 independent components of the 4D Rieman tensor are given by:
-\begin{equation}
-\begin{array}{cccccc}
-R_{11} & R_{12} & R_{13} & R_{14} & R_{15} & R_{16} \\ & R_{22} & R_{23} & R_{24} & R_{25} & R_{26} \\ & & R_{33} & R_{34} & R_{35} & R_{36} \\ & & & R_{44} & R_{45} & R_{46} \\ & & & & R_{55} & R_{56} \\ & & & & & R_{66}
-\end{array}
-\end{equation}
-Subject to:
-\begin{equation}
-R_{15} + R_{26} + R_{34} = 0
-\end{equation}
-Which is the equivalent of:
-\begin{equation}
-R_{\rho[\sigma\mu\nu]}=0
-\end{equation}
 The non-zero components of the Riemann tensor are:
 \begin{equation}
 \begin{array}{l}
-R_{11}\rightarrow R_{101}^{0}=-\left(\frac{\alpha_{1}}{\alpha}\right)_{1}+\frac{\alpha_{1}\beta_{1}}{\alpha\beta}-\frac{\alpha_{2}\beta_{2}}{\alpha\beta}-\left(\frac{\alpha_{1}}{\alpha}\right)^{2}\\
-R_{12}\rightarrow R_{102}^{0}=-\left(\frac{\alpha_{1}}{\alpha}\right)_{2}+\frac{\alpha_{1}\beta_{2}}{\alpha\beta}+\frac{\alpha_{2}\beta_{1}}{\alpha\beta}-\frac{\alpha_{2}\alpha_{1}}{\alpha^{2}}\\
-R_{22}\rightarrow R_{202}^{0}=-\left(\frac{\alpha_{2}}{\alpha}\right)_{2}-\frac{\alpha_{1}\beta_{1}}{\alpha\beta}+\frac{\alpha_{2}\beta_{2}}{\alpha\beta}-\left(\frac{\alpha_{2}}{\alpha}\right)^{2}\\
-R_{33}\rightarrow R_{303}^{0}=-\frac{\gamma}{\alpha\beta^{2}}\left(\alpha_{1}\gamma_{1}+\alpha_{2}\gamma_{2}\right)\\
-R_{36}\rightarrow R_{331}^{0}=\frac{\gamma}{\alpha\beta^{2}}\left(\alpha_{1}\gamma_{1}\right)\\
-R_{44}\rightarrow R_{212}^{1}=-\left(\frac{\beta_{1}}{\beta}\right)_{1}-\left(\frac{\beta_{2}}{\beta}\right)_{2}\\
-R_{55}\rightarrow R_{323}^{2}=-\frac{\gamma}{\beta^{2}}\left(\frac{\beta_{2}\gamma_{2}}{\beta}-\gamma_{22}-\frac{\beta_{1}\gamma_{1}}{\beta}\right)\\
-R_{56}\rightarrow R_{331}^{2}=-\left(\frac{\gamma\gamma_{2}}{\beta^{2}}\right)_{1}-\frac{\gamma}{\beta^{2}}\left(\frac{\gamma_{1}\gamma_{2}}{\gamma}+\frac{\gamma_{1}\beta_{2}}{\beta}-\frac{\beta_{1}\gamma_{2}}{\beta}\right)\\
-R_{66}\rightarrow R_{131}^{3}=-\frac{\gamma_{11}}{\gamma}+\frac{\beta_{1}\gamma_{1}}{\beta\gamma}-\frac{\beta_{2}\gamma_{2}}{\beta\gamma}\\
+R^{t}_{rtr}=-\partial^{2}_{r}\lambda+\left(\partial_{z}\lambda\right)^{2}-2\left(\partial_{r}\lambda\right)^{2}+\partial_{r}\lambda\partial_{r}\nu-\partial_{z}\lambda\partial_{z}\nu\\
+R^{t}_{rtz}=-\partial_{r}\partial_{z}\lambda-3\partial_{r}\lambda\partial_{z}\lambda+\partial_{r}\lambda\partial_{z}\nu+\partial_{r}\nu\partial_{z}\lambda\\
+R^{t}_{ztz}=-\partial^{2}_{z}\lambda-2\left(\partial_{z}\lambda\right)^{2}+\left(\partial_{r}\lambda\right)^{2}-\partial_{r}\lambda\partial_{r}\nu+\partial_{z}\lambda\partial_{z}\nu\\
+R^{t}_{\phi t\phi}=re^{-2\nu}\left(r\left(\partial_{r}\lambda\right)^{2}-\partial_{r}\lambda+r\left(\partial_{z}\lambda\right)^{2}\right)\\
+R^{r}_{zrz}=\partial^{2}_{r}\lambda-\partial^{2}_{r}\nu+\partial^{2}_{z}\lambda-\partial^{2}_{z}\nu\\
+R^{z}_{\phi z\phi}=re^{-2\nu}\left(r\partial^{2}_{z}\lambda-r\partial_{z}\lambda\partial_{z}\nu+r\partial_{r}\lambda\partial_{r}\nu-r\left(\partial_{r}\lambda\right)^{2}+\partial_{r}\lambda-\partial_{r}\nu\right)\\
+R^{z}_{\phi\phi r}=re^{-2\nu}\left(-r\partial_{r}\partial_{z}\lambda+r\partial_{r}\nu\partial_{z}\lambda-r\partial_{r}\lambda\partial_{z}\lambda+r\partial_{r}\lambda\partial_{z}\nu-\partial_{z}\nu\right)\\
+R^{\phi}_{r\phi r}=\partial^{2}_{r}\lambda+\frac{1}{r}\partial_{r}\nu-\partial_{r}\lambda\partial_{r}\nu-\left(\partial_{z}\lambda\right)^{2}+\partial_{z}\lambda\partial_{z}\nu+\frac{1}{r}\partial_{r}\lambda\\
 \end{array}
 \end{equation}
 The Ricci tensor is given by:
