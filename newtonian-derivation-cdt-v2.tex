@@ -38,17 +38,14 @@ e^{2\lambda}dt^{2} & 0 & 0 & 0\\
 0 & 0 & 0 & -\frac{r^{2}}{e^{2\lambda}}d\phi^{2}
 \end{array}\right)\label{eq:general-axisymmetric-static-matrix-metric}
 \end{equation}
-
 The definition of the Christoffel connection is: \cite{carroll2003spacetime} 
 \begin{equation}
 \Gamma_{\mu\nu}^{\lambda}=\frac{1}{2}g^{\lambda\sigma}\left(\partial_{\mu}g_{\nu\sigma}+\partial_{\nu}g_{\sigma\mu}-\partial_{\sigma}g_{\mu\nu}\right)
 \end{equation}
-
 With the assumption of zero torsion:
 \begin{equation}
 \Gamma_{\mu\nu}^{\lambda}=\Gamma_{\nu\mu}^{\lambda}
 \end{equation}
-
 The non-zero Christoffel connections are:
 \begin{equation}
 \begin{array}{l}
@@ -68,12 +65,10 @@ The non-zero Christoffel connections are:
 \Gamma^{\phi}_{z\phi}=-\partial_{z}\lambda\\
 \end{array}
 \end{equation}
-
 The components of the Riemann tensor are given by:
 \begin{equation}
 R_{\sigma\mu\nu}^{\rho}=\partial_{\mu}\Gamma_{\nu\sigma}^{\rho}-\partial_{\nu}\Gamma_{\mu\sigma}^{\rho}+\Gamma_{\mu\lambda}^{\rho}\Gamma_{\nu\sigma}^{\lambda}-\Gamma_{\nu\lambda}^{\rho}\Gamma_{\mu\sigma}^{\lambda}
 \end{equation}
-
 Using the properties of the Riemann tensor:
 \begin{equation}
 \begin{array}{l}
@@ -83,7 +78,6 @@ R_{\rho\sigma\mu\nu}=R_{\mu\nu\rho\sigma}\\
 R_{\rho[\sigma\mu\nu]}=0\\
 \end{array}
 \end{equation}
-
 The non-zero components of the Riemann tensor are:
 \begin{equation}
 \begin{array}{l}
@@ -101,80 +95,25 @@ The Ricci tensor is given by:
 \begin{equation}
 R_{\mu\nu}=R_{\mu\lambda\nu}^{\lambda}
 \end{equation}
-The Ricci tensor components are:
+The non-zero components of the Ricci tensor are:
 \begin{equation}
 \begin{array}{l}
-R_{00}=\frac{\alpha}{\beta^{2}}\left(\alpha_{11}+\alpha_{22}+\frac{1}{\gamma}\left(\alpha_{1}\gamma_{1}+\alpha_{2}\gamma_{2}\right)\right)\\
-R_{11}=-\frac{\alpha_{11}}{\alpha}-\frac{\gamma_{11}}{\gamma}-\left(\frac{\beta_{1}}{\beta}\right)_{1}-\left(\frac{\beta_{2}}{\beta}\right)_{2}-\frac{\beta_{2}}{\beta}\left(\frac{\alpha_{2}}{\alpha}+\frac{\gamma_{2}}{\gamma}\right)+\frac{\beta_{1}}{\beta}\left(\frac{\alpha_{1}}{\alpha}+\frac{\gamma_{1}}{\gamma}\right)\\
-R_{12}=-\frac{\alpha_{12}}{\alpha}-\frac{\gamma_{12}}{\gamma}+\frac{\beta_{1}}{\beta}\left(\frac{\alpha_{2}}{\alpha}+\frac{\gamma_{2}}{\gamma}\right)+\frac{\beta_{2}}{\beta}\left(\frac{\alpha_{1}}{\alpha}+\frac{\gamma_{1}}{\gamma}\right)\\
-R_{22}=-\left(\frac{\beta_{1}}{\beta}\right)_{1}-\left(\frac{\beta_{2}}{\beta}\right)_{2}-\frac{\alpha_{22}}{\alpha}-\frac{\gamma_{22}}{\gamma}-\frac{\beta_{1}}{\beta}\left(\frac{\alpha_{1}}{\alpha}+\frac{\gamma_{1}}{\gamma}\right)+\frac{\beta_{2}}{\beta}\left(\frac{\alpha_{2}}{\alpha}+\frac{\gamma_{2}}{\gamma}\right)\\
-R_{33}=-\frac{\gamma}{\beta^{2}}\left(\gamma_{11}+\gamma_{22}+\frac{1}{\alpha}\left(\alpha_{1}\gamma_{1}+\alpha_{2}\gamma_{2}\right)\right)
+R_{tt}=\frac{e^{4\lambda-2\nu}}{r}\left(r\partial^{2}_{r}\lambda+r\partial^{2}_{z}\lambda+\partial_{r}\lambda\right)\\
+R_{rr}=\partial^{2}_{r}\lambda-\partial^{2}_{r}\nu+\partial^{2}_{z}\lambda-\partial^{2}_{z}\nu-2\left(\partial_{r}\lambda\right)^{2}+\frac{1}{r}\partial_{r}\lambda+\frac{1}{r}\partial_{r}\nu\\
+R_{rz}=\frac{1}{r}\partial_{z}\nu-2\partial_{r}\lambda\partial_{z}\lambda\\
+R_{zz}=\partial^{2}_{r}\lambda-\partial^{2}_{r}\nu+\partial^{2}_{z}\lambda-\partial^{2}_{z}\nu-2\left(\partial_{z}\lambda\right)^{2}+\frac{1}{r}\partial_{r}\lambda-\frac{1}{r}\partial_{r}\nu\\
+R_{\phi\phi}=re^{-2\nu}\left(r\partial^{2}_{r}\lambda+r\partial^{2}_{z}\lambda+\partial_{r}\lambda\right)
 \end{array}\label{eq:ricci-tensor-components}
 \end{equation}
-Now prior insight shows that:
-
-\begin{equation}
-R^{0}_{0}+R^{3}_{3}=g^{00}R_{00}+g^{33}R_{33}=\frac{1}{\alpha^{2}}R_{00}-\frac{1}{\gamma^{2}}R_{33}\label{eq:prior-insight}
-\end{equation}
-Letting
-\begin{equation}
-\Delta=\left(\partial_{1}+\partial_{2}\right)^{2}\label{eq:Delta}
-\end{equation}
-And substituting values into Equation (\ref{eq:prior-insight}) we get:
-\begin{equation}
-R^{0}_{0}+R^{3}_{3}=\frac{1}{\alpha\beta^{2}\gamma}\Delta\left(\alpha\gamma\right)\label{eq:prior-insight-2}
-\end{equation}
-Now in the case where there is no matter we have:
+Einstein's equation in a vacuum is:
 \begin{equation}
 R_{\mu\nu}=0\label{eq:vacuum-solutions}
 \end{equation}
-Which from Equation (\ref{eq:prior-insight-2}) implies that:
+Which from Equation (\ref{eq:ricci-tensor-components}) gives the following relations:
 \begin{equation}
-\Delta\left(\alpha\gamma\right)=0
+\partial^{2}_{r}\lambda+\frac{1}{r}\partial_{r}\lambda+\partial^{2}_{z}\lambda=0\label{eq:partial-laplace}
 \end{equation}
-Recalling Equation (\ref{eq:Delta}) we have a harmonic function:
-\begin{equation}
-\alpha\gamma=r\left(x^{1},x^{2}\right)\label{eq:alpha-in-terms-of-gamma}
-\end{equation}
-To put this into standard form, we can make the transform:
-\begin{equation}
-\left(x^{1},x^{2}\right)\rightarrow\left(r,z\right)
-\end{equation}
-Then we can write:
-\begin{equation}
-\beta^{2}\left(\left(dx^{1}\right)^{2}+\left(dx^{2}\right)^{2}\right)=B\left(dr^{2}+dz^{2}\right)
-\end{equation} 
-Using Equation (\ref{eq:alpha-in-terms-of-gamma}) and the condition that:
-\begin{equation}
-R^{0}_{0}+R^{3}_{3}=0
-\end{equation}
-We can rewrite Equation (\ref{eq:generic-axisymmetric-static-metric}) as:
-\begin{equation}
-ds^{2}=\alpha^{2}dt^{2}-B\left(r,z\right)\left(dr^{2}+dz^{2}\right)-\frac{r^{2}}{\alpha^{2}}d\phi^{2}
-\end{equation}
-Letting
-\begin{equation}
-\begin{array}{ccc}
-\alpha=e^{\lambda} & B=e^{\nu-\lambda} & \gamma=re^{-\lambda}
-\end{array}\label{eq:weyl-sustitutions}
-\end{equation}
-We finally get the Weyl metric:
-
-Using the results of Equation (\ref{eq:ricci-tensor-components}) and the substitutions from Equation (\ref{eq:weyl-sustitutions}) we get the following relations:
-\begin{equation}
-\begin{array}{l}
-\frac{1}{2}\left(R_{11}+R_{22}\right)=-\Delta\nu+\left(\Delta\lambda+\frac{\lambda_{1}}{r}\right)-\lambda^{2}_{1}-\lambda^{2}_{2} \\
-\frac{1}{2}\left(R_{11}-R_{22}\right)=-\lambda^{2}_{1}+\lambda^{2}_{2}+\frac{\nu_{1}}{r}\\
-R_{12}=-2\lambda_{1}\lambda_{2}+\frac{\nu_{2}}{r}\\
-R_{0}^{0}-R_{3}^{3}=\frac{2}{\beta^{2}}\left(\Delta\lambda+\frac{\lambda_{1}}{r}\right)\\
-R_{0}^{0}+R_{3}^{3}=0
-\end{array}
-\end{equation}
-Applying the vacuum solutions from Equation (\ref{eq:vacuum-solutions}) we have:
-\begin{equation}
-\Delta\lambda+\frac{\lambda_{1}}{r}=0
-\end{equation}
-Written explicitly, this is Laplace's equation in cylindrical coordinates:
+Writing Equation (\ref{eq:partial-laplace}) explicitly gives Laplace's equation in cylindrical coordinates:
 \begin{equation}
 \frac{\partial^{2}\lambda}{\partial r^{2}}+\frac{1}{r}\frac{\partial\lambda}{\partial r}+\frac{\partial^{2}\lambda}{\partial z^{2}}=0
 \end{equation}
