@@ -38,14 +38,17 @@ e^{2\lambda}dt^{2} & 0 & 0 & 0\\
 0 & 0 & 0 & -\frac{r^{2}}{e^{2\lambda}}d\phi^{2}
 \end{array}\right)\label{eq:general-axisymmetric-static-matrix-metric}
 \end{equation}
+
 The definition of the Christoffel connection is: \cite{carroll2003spacetime} 
 \begin{equation}
 \Gamma_{\mu\nu}^{\lambda}=\frac{1}{2}g^{\lambda\sigma}\left(\partial_{\mu}g_{\nu\sigma}+\partial_{\nu}g_{\sigma\mu}-\partial_{\sigma}g_{\mu\nu}\right)
 \end{equation}
+
 With the assumption of zero torsion:
 \begin{equation}
 \Gamma_{\mu\nu}^{\lambda}=\Gamma_{\nu\mu}^{\lambda}
 \end{equation}
+
 The non-zero Christoffel connections are:
 \begin{equation}
 \begin{array}{l}
@@ -65,10 +68,12 @@ The non-zero Christoffel connections are:
 \Gamma^{\phi}_{z\phi}=-\partial_{z}\lambda\\
 \end{array}
 \end{equation}
+
 The components of the Riemann tensor are given by:
 \begin{equation}
 R_{\sigma\mu\nu}^{\rho}=\partial_{\mu}\Gamma_{\nu\sigma}^{\rho}-\partial_{\nu}\Gamma_{\mu\sigma}^{\rho}+\Gamma_{\mu\lambda}^{\rho}\Gamma_{\nu\sigma}^{\lambda}-\Gamma_{\nu\lambda}^{\rho}\Gamma_{\mu\sigma}^{\lambda}
 \end{equation}
+
 Using the properties of the Riemann tensor:
 \begin{equation}
 \begin{array}{l}
@@ -78,6 +83,7 @@ R_{\rho\sigma\mu\nu}=R_{\mu\nu\rho\sigma}\\
 R_{\rho[\sigma\mu\nu]}=0\\
 \end{array}
 \end{equation}
+
 The non-zero components of the Riemann tensor are:
 \begin{equation}
 \begin{array}{l}
@@ -91,10 +97,12 @@ R^{z}_{\phi\phi r}=re^{-2\nu}\left(-r\partial_{r}\partial_{z}\lambda+r\partial_{
 R^{\phi}_{r\phi r}=\partial^{2}_{r}\lambda+\frac{1}{r}\partial_{r}\nu-\partial_{r}\lambda\partial_{r}\nu-\left(\partial_{z}\lambda\right)^{2}+\partial_{z}\lambda\partial_{z}\nu+\frac{1}{r}\partial_{r}\lambda\\
 \end{array}
 \end{equation}
+
 The Ricci tensor is given by:
 \begin{equation}
 R_{\mu\nu}=R_{\mu\lambda\nu}^{\lambda}
 \end{equation}
+
 The non-zero components of the Ricci tensor are:
 \begin{equation}
 \begin{array}{l}
@@ -105,10 +113,12 @@ R_{zz}=\partial^{2}_{r}\lambda-\partial^{2}_{r}\nu+\partial^{2}_{z}\lambda-\part
 R_{\phi\phi}=re^{-2\nu}\left(r\partial^{2}_{r}\lambda+r\partial^{2}_{z}\lambda+\partial_{r}\lambda\right)
 \end{array}\label{eq:ricci-tensor-components}
 \end{equation}
+
 Einstein's equation in a vacuum is:
 \begin{equation}
 R_{\mu\nu}=0\label{eq:vacuum-solutions}
 \end{equation}
+
 Applying this complete set of relations to Equation (\ref{eq:ricci-tensor-components}) gives the following:
 \begin{equation}
 \partial^{2}_{r}\lambda+\frac{1}{r}\partial_{r}\lambda+\partial^{2}_{z}\lambda=0\label{eq:laplace}
@@ -122,24 +132,41 @@ Applying this complete set of relations to Equation (\ref{eq:ricci-tensor-compon
 \begin{equation}
 \partial^{2}_{r}\nu+\partial^{2}_{z}\nu+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}=0\label{eq:R_phiphi=0}
 \end{equation}
+
 Equation (\ref{eq:laplace}) is the two-dimensional Laplace equation in cylindrical coordinates, for which the known solutions are:
 \begin{equation}
-\lambda (r,z)=\sum^{\infty}_{m=0}[A_{m}J_{m}\left(kr\right)+B_{m}N_{m}\left(kr\right)][C_{m}\sinh(kr)+D_{m}\cosh(kr)]\label{eq:laplace_sol}
+\lambda (r,z)=\sum^{\infty}_{n=0}[A_{n}J_{n}\left(kr\right)+B_{n}Y_{n}\left(kr\right)][C_{n}\sinh(kz)+D_{n}\cosh(kz)]\label{eq:laplace_sol}
 \end{equation}
+
 Plugging Equation (\ref{eq:R_phiphi=0}) into Equation (\ref{eq:R_rr=0}) gives:
 \begin{equation}
 \partial_{r}\nu=r\left(\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}\right)\label{eq:nu_r}
 \end{equation}
+
 Using Equations (\ref{eq:nu_z}), (\ref{eq:laplace_sol}) and (\ref{eq:nu_r}) we find solutions for $\nu$ given by:
 \begin{equation}
-\nu=\int r[\left(\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}\right)dr+\left(2\partial_{r}\lambda\partial_{z}\lambda\right)dz]
+\nu=\int r[\left(\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}\right)dr+\left(2\partial_{r}\lambda\partial_{z}\lambda\right)dz]\label{eq:nu}
 \end{equation}
+
+In principle, we have solutions for axially symmetric static vacuum spacetimes. We now wish to add matter. If the object is also axially symmetric and static, then we can consider solutions in the form of an external metric $\emph{E}$ and an internal metric $\emph{I}$, where $\emph{E}$ is given by Equations (\ref{eq:weyl-metric}), (\ref{eq:laplace_sol}), and (\ref{eq:nu}).
+
 However, before we can consider this to be a complete solution we must consider elementary flatness. This condition requires that, for any infinitesimal spacelike circle, the ratio of circumference to radius is 2$\pi$. The most likely place to run into issues is along the z-axis, for which $r=0$. Looking back at Equation (\ref{eq:weyl-metric}) we see that the necessary condition is:
 \begin{equation}
 \begin{array}{rcl}
 \nu=0 & \mbox{for} & r=0
 \end{array}
 \end{equation}
+
+Consider the following diagram:
+
+Equation (\ref{eq:nu}) includes a constant, which we can set by choosing that $\nu=0$ at \emph{A}. So, $\nu=0$ along the z-axis from \emph{$\acute{A}$} to \emph{A}. The same applies from \emph{$\acute{B}$} to \emph{B}. Then our path \emph{ADB} may be deformed into an infinite semicircle.
+
+Now consider two bodies, as in the following diagram:
+
+In this case, we expect $\nu=0$ along \emph{$\acute{A}$A} and \emph{$\acute{C}$C}. But there is no $\emph{a priori}$ reason to think that $\nu=0$ along \emph{$\acute{B}$B}.
+This means that our vacuum solution fails along the z-axis. Therefore, there must be a strut of matter, i.e. a metric \emph{I} such that $R_{\mu\nu}\neq 0$, along the z-axis \emph{$\acute{B}$B} separating the two objects. This corresponds with the expectation that two masses will attract each other and not remain at rest.
+
+What is the form of \emph{I}?
 \bibliographystyle{ieeetr}
 \bibliography{cdt-newtonian-limit-biblio}
 
