@@ -111,122 +111,21 @@ R_{\mu\nu}=0\label{eq:vacuum-solutions}
 \end{equation}
 Applying this complete set of relations to Equation (\ref{eq:ricci-tensor-components}) gives the following:
 \begin{equation}
-\partial^{2}_{r}\lambda+\frac{1}{r}\partial_{r}\lambda+\partial^{2}_{z}\lambda=0\label{eq:partial-laplace}
+\partial^{2}_{r}\lambda+\frac{1}{r}\partial_{r}\lambda+\partial^{2}_{z}\lambda=0\label{eq:laplace}
 \end{equation}
-Writing Equation (\ref{eq:partial-laplace}) explicitly gives Laplace's equation in cylindrical coordinates:
 \begin{equation}
-\frac{\partial^{2}\lambda}{\partial r^{2}}+\frac{1}{r}\frac{\partial\lambda}{\partial r}+\frac{\partial^{2}\lambda}{\partial z^{2}}=0
+\partial_{r}\nu=r\left(\partial^{2}_{r}\nu+\partial^{2}_{z}\nu+2\left(\partial_{r}\lambda\right)^{2}\right)
 \end{equation}
-\subsection{Additional issues}
-
-
-
-\section{Applications to Causal Dynamical Triangulations}
-
-\subsection{Preliminaries}
-
-A simplex is a generalization of a triangle to arbitrary dimension. For example, a 2-simplex is a triangle, a 3-simplex is a tetrahedron, and a 4-simplex is a pentachoron. Topologically, an n-simplex is equivalent to an n-ball; that is, an n-dimensional manifold with boundary.
-
-An n-dimensional simplex has $n+1$ points or \emph{vertices}. A convex hull, or minimal convex set of these points is the \emph{m-face} of the \emph{n-simplex}. Thus, a vertex is a \emph{0-face}, and an edge between two vertices is the \emph{1-face}. We can extend this notation to \emph{2-faces} (triangles), \emph{3-faces} (tetrahedrons), \emph{4-faces} (pentachorons). We will not, at present, consider simplices of dimension higher than $n=4$, but this generalization gives us a useful way to reason about higher dimensional spaces.
-
-The number of \emph{m-faces} on our \emph{n-simplex} is given by the binomial coefficient as:
-
 \begin{equation}
-\left(\begin{array}{c}n+1\\m+1\end{array}\right)
+\partial_{z}\nu=2r\partial_{r}\lambda\partial_{z}\lambda
 \end{equation}
-
-Thus, our pentachoron has 5 vertices, 10 edges, 10 faces (triangles), 5 cells (tetrahedrons), and 1 4-face, itself.
-
-A given face can be shared by another simplex. By requiring that \cite{weisstein1}:
-
-\begin{itemize}
-\item Every face of a simplex \emph{K} is in \emph{K}, and
-\item The intersection of any two simplices of K is a face of each of them
-\end{itemize}
-
-We build up a useful structure called a simplicial complex. Informally, this is a space with a triangulation. Formally, simplicial complexes have only been proven for spaces of dimension $d\le3$. A simplicial complex has a well-defined homology (simplicial homology) which is easy to compute.
-
-\subsection{Code Correctness}
-
-Implementing CDT in computer code is non-trivial. As a first significant step, an independent implementation of CDT has given similar results to the original work \cite{kommu2011}. We would like to build on Kommu's implementation using Literate Programming \cite{knuth_literate_1984} coupled with Test Driven Development specific to the programming language used \cite{rathore_clojure_2011}. This provides for the codebase to be better understood by researchers wishing to replicate results or expand the capabilities of the code, and provides inherent integrity checks apart from "it produced what we expected". Such methodology will be critical to expanding the performance of the code by using such techniques as parallel processing and highly optimized algorithms. The adage of "Make it work, make it right, make it fast" applies.
-
-The first building block of the code are the simplexes themselves. Using the known properties of simplicial complexes, we can provide for a series of checks that validate that simplices are being constructed correctly. Such checks will provide useful test cases when the underlying implementation of simplex data structures and moves are changed.
-
-\subsection{Data structures}
-
-\subsection{Issues}
-
-\begin{itemize}
-\item Extrinsic Curvature \emph{(To Do)}
-\item Imposing conditions of separation
-\item Checking that separation >\textcompwordmark{}> Schwarzschild radius
-\item Imposing cylindrical symmetry
-\end{itemize}
-
-\subsection{CDT Algorithm}
-
-\emph{(To Do: insert graphics)}
-
-\begin{itemize}
-\item {[}(2,8): (1,4) + (4,1) $\rightarrow$8 simplices{]} + inverse = +2
-moves
-\item {[}(4,6): ()+()+()+()$\rightarrow$6 simplices{]} + inverse = +2 moves
-\item {[}(2,4): two varieties of ()+()$\rightarrow$4 simplices{]}, self-inverse
-= +2 moves
-\item {[}(3,3): two varieties of ()+()+()$\rightarrow$3 simplices{]} +
-inverse = +4 moves\end{itemize}
-\begin{description}
-\item [{10}] moves in all (\emph{Check!)}
-\end{description}
-
-\includegraphics[scale=0.35]{Initialization}
-
-Dijkstra's Algorithm \cite{cormen2001introduction}
-
-
-Solves single-source shortest-path problems on weighted, directed
-graph G=(V,E) of non-negative edge lengths
-
-\begin{itemize}
-\item Greedy algorithm
-\item Proven to be correct
-\item Complexity
-
-\begin{itemize}
-\item $O(V^{2})$ naively using adjacency list
-\item $O(E\lg V)$ using priority queue iff all vertices reachable from
-source
-\item $O(V\lg V+E)$ using Fibonacci heap (more relaxation calls than extract-min
-calls)
-\end{itemize}
-\item Issue: confine edge length algorithm to particular time-slice
-\item Solution: Store Fibonacci heap of simplices per time-slice
-
-\begin{itemize}
-\item Each simplex has 5 neighbors, so more compact than adjacency matrix
-\end{itemize}
-
-\begin{itemize}
-\item How to deal with moves affecting original ``mass'' simplices
-\item How to create a 4d cylinder of height z=d
-\item Verify Markov chain for initialization is ergodic
-\item Calculate <d>
-\end{itemize}
-\end{itemize}
-
-\section{Summary}
-\begin{itemize}
-\item Insert mass equivalence via extrinsic curvature
-\item Insert strut by enforcing separation distance
-\item Filter moves which alter separation distance via Markov chain
-\item Outlook
-
-\begin{itemize}
-\item Write code!
-\item Check Extrinsic Curvature
-\item Compare results
-\end{itemize}
-\end{itemize}
+\begin{equation}
+\partial^{2}_{r}\nu+\partial^{2}_{z}\nu+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}=0
+\end{equation}
+Equation (\ref{eq:laplace}) is the two-dimensional Laplace equation in cylindrical coordinates, for which the known solutions are:
+\begin{equation}
+\lambda (r,z)=\sum^{\infty}_{m=0}[A_{m}J_{m}\left(kr\right)+B_{m}N_{m}\left(kr\right)][C_{m}\sinh(kr)+D_{m}\cosh(kr)]
+\end{equation}
 
 \bibliographystyle{ieeetr}
 \bibliography{cdt-newtonian-limit-biblio}
