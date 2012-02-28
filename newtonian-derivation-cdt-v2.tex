@@ -27,7 +27,7 @@
 Starting from the most general cylindrically symmetric (Weyl) metric \cite{synge_relativity}:
 
 \begin{equation}
-ds^{2}=e^{2\lambda}dt^{2}-e^{2\left(\nu-\lambda\right)}\left(dr^{2}+dz^{2}\right)-r^{2}e^{-2\lambda}d\phi^{2}
+ds^{2}=e^{2\lambda}dt^{2}-e^{2\left(\nu-\lambda\right)}\left(dr^{2}+dz^{2}\right)-r^{2}e^{-2\lambda}d\phi^{2}\label{eq:weyl-metric}
 \end{equation}
 
 \begin{equation}
@@ -114,19 +114,32 @@ Applying this complete set of relations to Equation (\ref{eq:ricci-tensor-compon
 \partial^{2}_{r}\lambda+\frac{1}{r}\partial_{r}\lambda+\partial^{2}_{z}\lambda=0\label{eq:laplace}
 \end{equation}
 \begin{equation}
-\partial_{r}\nu=r\left(\partial^{2}_{r}\nu+\partial^{2}_{z}\nu+2\left(\partial_{r}\lambda\right)^{2}\right)
+\partial_{r}\nu=r\left(\partial^{2}_{r}\nu+\partial^{2}_{z}\nu+2\left(\partial_{r}\lambda\right)^{2}\right)\label{eq:R_rr=0}
 \end{equation}
 \begin{equation}
-\partial_{z}\nu=2r\partial_{r}\lambda\partial_{z}\lambda
+\partial_{z}\nu=2r\partial_{r}\lambda\partial_{z}\lambda\label{eq:nu_z}
 \end{equation}
 \begin{equation}
-\partial^{2}_{r}\nu+\partial^{2}_{z}\nu+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}=0
+\partial^{2}_{r}\nu+\partial^{2}_{z}\nu+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}=0\label{eq:R_phiphi=0}
 \end{equation}
 Equation (\ref{eq:laplace}) is the two-dimensional Laplace equation in cylindrical coordinates, for which the known solutions are:
 \begin{equation}
-\lambda (r,z)=\sum^{\infty}_{m=0}[A_{m}J_{m}\left(kr\right)+B_{m}N_{m}\left(kr\right)][C_{m}\sinh(kr)+D_{m}\cosh(kr)]
+\lambda (r,z)=\sum^{\infty}_{m=0}[A_{m}J_{m}\left(kr\right)+B_{m}N_{m}\left(kr\right)][C_{m}\sinh(kr)+D_{m}\cosh(kr)]\label{eq:laplace_sol}
 \end{equation}
-
+Plugging Equation (\ref{eq:R_phiphi=0}) into Equation (\ref{eq:R_rr=0}) gives:
+\begin{equation}
+\partial_{r}\nu=r\left(\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}\right)\label{eq:nu_r}
+\end{equation}
+Using Equations (\ref{eq:nu_z}), (\ref{eq:laplace_sol}) and (\ref{eq:nu_r}) we find solutions for $\nu$ given by:
+\begin{equation}
+\nu=\int r[\left(\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}\right)dr+\left(2\partial_{r}\lambda\partial_{z}\lambda\right)dz]
+\end{equation}
+However, before we can consider this to be a complete solution we must consider elementary flatness. This condition requires that, for any infinitesimal spacelike circle, the ratio of circumference to radius is 2$\pi$. The most likely place to run into issues is along the z-axis, for which $r=0$. Looking back at Equation (\ref{eq:weyl-metric}) we see that the necessary condition is:
+\begin{equation}
+\begin{array}{rcl}
+\nu=0 & \mbox{for} & r=0
+\end{array}
+\end{equation}
 \bibliographystyle{ieeetr}
 \bibliography{cdt-newtonian-limit-biblio}
 
