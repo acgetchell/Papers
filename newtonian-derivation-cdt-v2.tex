@@ -133,10 +133,12 @@ Applying this complete set of relations to Equation (\ref{eq:ricci-tensor-compon
 \partial^{2}_{r}\nu+\partial^{2}_{z}\nu+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}=0\label{eq:R_phiphi=0}
 \end{equation}
 
-Equation (\ref{eq:laplace}) is the two-dimensional Laplace equation in cylindrical coordinates, for which the known solutions are:
+Equation (\ref{eq:laplace}) is the two-dimensional Laplace equation in cylindrical coordinates, for which the known general solutions are:
 \begin{equation}
 \lambda (r,z)=\sum^{\infty}_{n=0}[A_{n}J_{n}\left(kr\right)+B_{n}Y_{n}\left(kr\right)][C_{n}\sinh(kz)+D_{n}\cosh(kz)]\label{eq:laplace_sol}
 \end{equation}
+
+
 
 Plugging Equation (\ref{eq:R_phiphi=0}) into Equation (\ref{eq:R_rr=0}) gives:
 \begin{equation}
@@ -148,13 +150,23 @@ Using Equations (\ref{eq:nu_z}), (\ref{eq:laplace_sol}) and (\ref{eq:nu_r}) we f
 \nu=\int r[\left(\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}\right)dr+\left(2\partial_{r}\lambda\partial_{z}\lambda\right)dz]\label{eq:nu}
 \end{equation}
 
+
 In principle, we have solutions for axially symmetric static vacuum spacetimes. We now wish to add matter. If the object is also axially symmetric and static, then we can consider solutions in the form of an external metric $\emph{E}$ and an internal metric $\emph{I}$, where $\emph{E}$ is given by Equations (\ref{eq:weyl-metric}), (\ref{eq:laplace_sol}), and (\ref{eq:nu}).
+
+The solution of Laplace's equation for a point particle of mass $m$ at $z=z_{0}$ is well known:
+
+\begin{equation}
+\lambda (r,z)=-\frac{m}{\sqrt{r^{2}+\left(z-z_{0}\right)^{2}}}\label{eq:1-m}
+\end{equation}
+
+Likewise, we can easily verify for a single particle that the solution for $\nu$ from Equations (\ref{eq:nu}) and (\ref{eq:1-m}) is (setting integration constants equal to zero):
+\begin{equation}
+\nu (r,z)=-\frac{m^{2}r^{2}}{\left(r^{2}+\left(z-z_{0}\right)^{2}\right)^{2}}
+\end{equation}
 
 However, before we can consider this to be a complete solution we must consider elementary flatness. This condition requires that, for any infinitesimal spacelike circle, the ratio of circumference to radius is 2$\pi$. The most likely place to run into issues is along the z-axis, for which $r=0$. Looking back at Equation (\ref{eq:weyl-metric}) we see that the necessary condition is:
 \begin{equation}
-\begin{array}{rcl}
-\nu=0 & \mbox{for} & r=0
-\end{array}
+\lim_{r\rightarrow 0}\nu=0\label{eq:elem-flat}
 \end{equation}
 
 Consider the following diagram\footnote{Adapted from Synge} :
@@ -171,10 +183,60 @@ Now consider two bodies, as in the following diagram:
 \includegraphics[scale=.75]{Figure2.png}
 \end{center}
 
-In this case, we expect $\nu=0$ along \emph{A'A} and \emph{C'C} as before. But there is no $\emph{a priori}$ reason to think that $\nu=0$ along \emph{B'B}.
-This means that our vacuum solution fails along the z-axis. Therefore, there must be a strut of matter, i.e. a metric \emph{I} such that $R_{\mu\nu}\neq 0$, along the z-axis \emph{$\acute{B}$B} separating the two objects. This corresponds with the expectation that two masses will attract each other and not remain at rest.
+Since solutions to Laplace's equation are linear, we have:
 
-What is the form of \emph{I}?
+\begin{equation}
+\lambda (r,z)=-\frac{m_{1}}{R_{1}}-\frac{m_{2}}{R_{2}}\label{eq:2-m}
+\end{equation}
+
+Plugging this into Equation (\ref{eq:nu}) yields:
+
+\begin{equation}
+\nu (r,z)=-\frac{m_{1}^{2}r^{2}}{R_{1}^{4}}-\frac{m_{2}^{2}r^{2}}{R_{2}^{4}}+\frac{4m_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}\frac{r^{2}+\left(z-z_{1}\right)\left(z-z_{2}\right)}{R_{1}R_{2}}
+\end{equation}
+
+\begin{equation}
+R_{i}=\sqrt{r^{2}+\left(z-z_{i}\right)^{2}}
+\end{equation}
+
+In this case, we expect $\nu=0$ along \emph{A'A} and \emph{C'C} as before. But there is no $\emph{a priori}$ reason to think that $\nu=0$ along \emph{B'B}.
+This means that our vacuum solution fails along the z-axis. Therefore, there must be a strut of matter, i.e. a metric \emph{I} such that $R_{\mu\nu}\neq 0$, along the z-axis \emph{B'B} separating the two objects. This corresponds with the expectation that two masses will attract each other and not remain at rest.
+
+Indeed, if we apply the condition that $r=0$ we get:
+
+\begin{equation}
+\nu (0,z)=\frac{4m_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}
+\end{equation}
+
+Which means that in order for Equation (\ref{eq:elem-flat}) to hold, our strut must have:
+
+\begin{equation}
+\nu=-\frac{4m_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}
+\end{equation}
+
+To get the force on the strut, we can integrate the z-component of the stress-energy tensor over the area:
+
+\begin{equation}
+F_{z}=\int T_{zz}d\sigma
+\end{equation}
+
+We can get the stress-energy tensor from Einstein's equation:
+
+\begin{equation}
+R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}=8\pi GT_{\mu\nu}
+\end{equation}
+
+We have all of the relevant components, except the Ricci scalar:
+
+\begin{equation}
+R=R_{\mu}^{\mu}=g^{\mu\nu}R_{\mu\nu}
+\end{equation}
+
+Which is:
+
+\begin{equation}
+R=e^{2\left(\lambda-\nu\right)}\left(\partial^{2}_{r}\nu+\partial^{2}_{z}\nu-\partial^{2}_{r}\lambda-\partial^{2}_{z}\lambda+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}-\frac{1}{r}\partial_{r}\lambda\right)
+\end{equation}
 \bibliographystyle{ieeetr}
 \bibliography{cdt-newtonian-limit-biblio}
 
