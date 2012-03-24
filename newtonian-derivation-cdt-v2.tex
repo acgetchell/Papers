@@ -218,7 +218,7 @@ F_{z}=\int T_{zz}d\sigma
 We can get the stress-energy tensor from Einstein's equation:
 
 \begin{equation}
-R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}=8\pi GT_{\mu\nu}
+G_{\mu\nu}\equiv R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}=8\pi GT_{\mu\nu}
 \end{equation}
 
 We have all of the relevant components, except the Ricci scalar:
@@ -230,16 +230,18 @@ R=R_{\mu}^{\mu}=g^{\mu\nu}R_{\mu\nu}
 Which is:
 
 \begin{equation}
-R=2e^{2\left(\lambda-\nu\right)}\left(\partial^{2}_{r}\nu+\partial^{2}_{z}\nu-\partial^{2}_{r}\lambda-\partial^{2}_{z}\lambda+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}-\frac{1}{r}\partial_{r}\lambda\right)
+R=2e^{2\left(\lambda-\nu\right)}\left(\partial^{2}_{r}\nu+\partial^{2}_{z}\nu-\partial^{2}_{r}\lambda-\partial^{2}_{z}\lambda+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}-\frac{1}{r}\partial_{r}\lambda\right)\label{eq:R}
 \end{equation}
 
-Since:
+Recall that earlier we asserted in Equation (\ref{eq:vacuum-solutions}) that we had a vacuum solution. In order for this to be true, our Ricci scalar better be equal to zero, since a vacuum solution actually corresponds to:
 
 \begin{equation}
-G_{\mu\nu}=R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}
+G_{\mu\nu}=0
 \end{equation}
 
-We get:
+Using Equations (\ref{eq:laplace}) and (\ref{eq:R_phiphi=0}) and plugging them into Equation (\ref{eq:R}) we see that this is indeed the case.
+
+Continuing, we get:
 
 \begin{equation}
 G_{zz}=\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}-\frac{1}{r}\partial_{r}\nu
