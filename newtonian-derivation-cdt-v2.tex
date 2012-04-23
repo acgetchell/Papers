@@ -167,7 +167,7 @@ However, before we can consider this to be a complete solution we must consider 
 Consider the following diagram\footnote{Adapted from Synge} :
 
 \begin{center}
-\includegraphics[scale=.75]{Figure1.png}
+\includegraphics[width=40mm]{Figure1.png}
 \end{center}
 
 Equation (\ref{eq:nu}) includes a constant, which we can set by choosing that $\nu=0$ at \emph{A}. So, $\nu=0$ along the z-axis from \emph{A'} to \emph{A}. The same applies from \emph{B} to \emph{B'}. Then our path \emph{ADB} may be deformed into an infinite semicircle.
@@ -175,7 +175,7 @@ Equation (\ref{eq:nu}) includes a constant, which we can set by choosing that $\
 Now consider two bodies, as in the following diagram:
 
 \begin{center}
-\includegraphics[scale=.75]{Figure2.png}
+\includegraphics[width=40mm]{Figure2.png}
 \end{center}
 
 Since solutions to Laplace's equation are linear, we have:
@@ -244,8 +244,10 @@ Using Equations (\ref{eq:laplace}) and (\ref{eq:R_phiphi=0}) and plugging them i
 Continuing, we get:
 
 \begin{equation}
-G_{zz}=\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}-\frac{1}{r}\partial_{r}\nu
+G_{zz}=\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}-\frac{1}{r}\partial_{r}\nu \label{eq:G_zz}
 \end{equation}
+
+Again, generally speaking $G_{zz}=0$, which we can see by plugging Equation (\ref{eq:nu_r}) into Equation (\ref{eq:G_zz}). So we have this object which is zero everywhere except along the z-axis. 
 
 Thus:
 
