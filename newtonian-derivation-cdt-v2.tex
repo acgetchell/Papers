@@ -247,8 +247,57 @@ Continuing, we get:
 G_{zz}=\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}-\frac{1}{r}\partial_{r}\nu \label{eq:G_zz}
 \end{equation}
 
-Again, generally speaking $G_{zz}=0$, which we can see by plugging Equation (\ref{eq:nu_r}) into Equation (\ref{eq:G_zz}). So we have this object which is zero everywhere except along the z-axis. 
+Again, generally speaking $G_{zz}=0$, which we can see by plugging Equation (\ref{eq:nu_r}) into Equation (\ref{eq:G_zz}). So we have this object which is zero everywhere except along the z-axis.
 
+That object is a conical singularity \cite{araujo_static_1995}.
+
+We can solve this problem by using the Gauss-Bonnet theorem: \cite{weisstein_gauss-bonnet}
+
+\begin{equation}
+\iint_{M} KdA=2\pi\chi (M)\label{eq:Gauss-Bonnet}
+\end{equation}
+
+Where $K$ is the Gaussian curvature and $\chi (M)$ is the Euler characteristic. As we are looking at $T_{zz}$, we are interested in the submanifold of constant t and z which has the metric:
+
+\begin{equation}
+ds^{2}=e^{2\left(\nu-\lambda\right)}dr^{2}+r^{2}e^{-2\lambda}d\phi^{2}\label{eq:disk-metric}
+\end{equation}
+
+By putting this in the first fundamental form\cite{first_fundamental-form}:
+
+\begin{equation}
+ds^{2}=Edu^{2}+2Fdudv+Gdv^{2}
+\end{equation}
+
+We can calculate K directly using the orthogonal parameterization\cite{schleifer_condition_1985}:
+
+\begin{equation}
+K=-\frac{1}{2\sqrt{EG}}\left(\frac{\partial}{\partial u}\frac{\partial_{u}G}{\sqrt{EG}}+\frac{\partial}{\partial v}\frac{\partial_{v}E}{\sqrt{EG}}\right)=-\frac{1}{2}\frac{1}{\sqrt{EG}}\frac{d}{dr}\left(\frac{1}{\sqrt{EG}}\frac{dG}{dr}\right)
+\end{equation}
+
+To solve the left side of Equation (\ref{eq:Gauss-Bonnet}), consider the following diagram:
+
+
+The top of the cylinder is given by:
+
+\begin{equation}
+\int KdA=-\frac{1}{2}\int^{R}_{0}\int^{2\pi}_{0}\frac{d}{dr}\left(\frac{1}{\sqrt{EG}}\frac{dG}{dr}\right)drd\phi
+\end{equation}
+
+
+It has been shown that:
+
+\begin{equation}
+K=2\pi\left(1-e^{-\nu (r,z)}\right)\delta(r)
+\end{equation}
+
+Where the delta-function $\delta(r)$ is given by:
+
+\begin{equation}
+\delta(r)=\int^{\infty}_{0} \int^{2\pi}_{0} \delta (r)e^{2\left(\lambda-\nu\right)}rdrd\phi =1
+\end{equation} 
+
+The two-dimensional sub-manifold in $\left(r,\phi\right)$ is diagonal, 
 Thus:
 
 \begin{equation}

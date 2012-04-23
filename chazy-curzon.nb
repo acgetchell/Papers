@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     37765,       1372]
-NotebookOptionsPosition[     34850,       1264]
-NotebookOutlinePosition[     35197,       1279]
-CellTagsIndexPosition[     35154,       1276]
+NotebookDataLength[     39996,       1451]
+NotebookOptionsPosition[     36927,       1338]
+NotebookOutlinePosition[     37272,       1353]
+CellTagsIndexPosition[     37229,       1350]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1260,10 +1260,84 @@ Cell[BoxData[
    SuperscriptBox["z1", "2"], " ", 
    SuperscriptBox["z2", "2"]}]}]], "Output",
  CellChangeTimes->{{3.5401455847078767`*^9, 3.5401455981582212`*^9}}]
-}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"G", 
+    StyleBox["zz",
+     FontSize->10]}]], "=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", 
+      RowBox[{"(", 
+       RowBox[{"\[Rho]", "*", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"Derivative", "[", 
+            RowBox[{"0", ",", " ", "1"}], "]"}], "[", "\[Lambda]", "]"}], "[", 
+          RowBox[{"\[Rho]", ",", " ", "z"}], "]"}], "^", "2"}]}], ")"}]}], 
+     " ", "+", " ", 
+     RowBox[{"\[Rho]", "*", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"Derivative", "[", 
+          RowBox[{"1", ",", " ", "0"}], "]"}], "[", "\[Lambda]", "]"}], "[", 
+        RowBox[{"\[Rho]", ",", " ", "z"}], "]"}], "^", "2"}]}], " ", "-", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Derivative", "[", 
+        RowBox[{"1", ",", " ", "0"}], "]"}], "[", "\[Nu]", "]"}], "[", 
+      RowBox[{"\[Rho]", ",", " ", "z"}], "]"}]}], ")"}], "/", 
+   "\[Rho]"}]}]], "Input",
+ CellChangeTimes->{{3.5441334992995906`*^9, 3.544133569363598*^9}}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", "\[Rho]"}], " ", 
+    SuperscriptBox[
+     RowBox[{
+      SuperscriptBox["\[Lambda]", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "1"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"\[Rho]", ",", "z"}], "]"}], "2"]}], "+", 
+   RowBox[{"\[Rho]", " ", 
+    SuperscriptBox[
+     RowBox[{
+      SuperscriptBox["\[Lambda]", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"1", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"\[Rho]", ",", "z"}], "]"}], "2"]}], "-", 
+   RowBox[{
+    SuperscriptBox["\[Nu]", 
+     TagBox[
+      RowBox[{"(", 
+       RowBox[{"1", ",", "0"}], ")"}],
+      Derivative],
+     MultilineFunction->None], "[", 
+    RowBox[{"\[Rho]", ",", "z"}], "]"}]}], "\[Rho]"]], "Output",
+ CellChangeTimes->{3.544133572319767*^9}]
+}, Open  ]],
+
+Cell[BoxData[" "], "Input",
+ CellChangeTimes->{3.5441335235099754`*^9}]
 },
 WindowSize->{707, 1034},
-WindowMargins->{{Automatic, -943}, {Automatic, -51}},
+WindowMargins->{{Automatic, 349}, {Automatic, 26}},
 FrontEndVersion->"8.0 for Microsoft Windows (64-bit) (October 6, 2011)",
 StyleDefinitions->"Default.nb"
 ]
@@ -1344,7 +1418,7 @@ Cell[18813, 696, 3356, 118, 170, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[22206, 819, 303, 9, 33, "Input"],
-Cell[22512, 830, 5294, 173, 235, "Output"]
+Cell[22512, 830, 5294, 173, 282, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[27843, 1008, 492, 12, 33, "Input"],
@@ -1373,7 +1447,12 @@ Cell[32996, 1198, 732, 25, 57, "Output"]
 Cell[CellGroupData[{
 Cell[33765, 1228, 301, 9, 33, "Input"],
 Cell[34069, 1239, 765, 22, 30, "Output"]
-}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[34871, 1266, 1047, 32, 72, "Input"],
+Cell[35921, 1300, 916, 32, 52, "Output"]
+}, Open  ]],
+Cell[36852, 1335, 71, 1, 31, "Input"]
 }
 ]
 *)
