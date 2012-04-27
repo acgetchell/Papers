@@ -200,7 +200,7 @@ This means that our vacuum solution fails along the z-axis. Therefore, there mus
 Indeed, if we apply the condition that $r=0$ we get:
 
 \begin{equation}
-\nu (0,z)=\frac{4m_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}
+\nu (0,z)=\frac{4m_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}\label{eq:nu_r=0}
 \end{equation}
 
 Which means that in order for Equation (\ref{eq:elem-flat}) to hold, our strut must have:
@@ -218,7 +218,7 @@ F_{z}=\int T_{zz}d\sigma
 We can get the stress-energy tensor from Einstein's equation:
 
 \begin{equation}
-G_{\mu\nu}\equiv R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}=8\pi GT_{\mu\nu}
+G_{\mu\nu}\equiv R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}=8\pi GT_{\mu\nu}\label{eq:einstein}
 \end{equation}
 
 We have all of the relevant components, except the Ricci scalar:
@@ -287,40 +287,58 @@ The top of the cylinder is given by:
 \int KdA=-\frac{1}{2}\int^{R}_{0}\int^{2\pi}_{0}\frac{d}{dr}\left(\frac{1}{\sqrt{EG}}\frac{dG}{dr}\right)drd\phi
 \end{equation}
 
-Thus, the Gauss-Bonnet theorem gives us:
+And:
 
 \begin{equation}
-K_{top}=K_{bottom}=2\pi\left(1-e^{-\nu (0,z)}\right)
+\left(\frac{1}{\sqrt{EG}}\frac{dG}{dr}\right)=2e^{-\nu}\left(1-r\partial_{r}\lambda\right)
 \end{equation}
 
-The "edge" of the top disk contributes nothing to $K$, since as $R\rightarrow\infty$ this surface approaches that of a plane, for which $K=0$.
-
-The Gaussian curvature of the cylinder wall can also be calculated by letting $R\rightarrow\infty$. For this case, the metric of the top and bottom are Minkowski spaces, thus flat planes ($K=0$). Then the entire cylinder is homeomorphic to the 2-sphere, for which the Euler characteristic $\chi=2$ and thus by the Gauss-Bonnet theorem $K=4\pi$. Since the other components (disks and disk edges) have $K=0$ the cylnder wall must contain all of the curvature, that is, $K_{cylinder wall}=K=4\pi$.
-
-Thus,
+Then:
 
 \begin{equation}
-\int KdA=K_{top}+K_{bottom}+K_{cylinder wall}=4\pi\left(1-e^{-\nu (r,z)}\right)+4\pi=2\pi*(2)
+\int KdA=2\pi[e^{-\nu}\left(r\partial_{r}\lambda-1\right)]^{R}_{0}
 \end{equation}
 
-It has been shown that:
+Taking the limit as $R\rightarrow\infty$ and recalling elementary flatness (Equation (\ref{eq:elem-flat}), the Gauss-Bonnet theorem gives:
 
 \begin{equation}
 K=2\pi\left(1-e^{-\nu (r,z)}\right)\delta(r)
 \end{equation}
 
-Where the delta-function $\delta(r)$ is given by:
+Where the delta-function $\delta(r)$ is given by \cite{araujo_static_1995}:
 
 \begin{equation}
 \delta(r)=\int^{\infty}_{0} \int^{2\pi}_{0} \delta (r)e^{2\left(\lambda-\nu\right)}rdrd\phi =1
 \end{equation} 
 
-The two-dimensional sub-manifold in $\left(r,\phi\right)$ is diagonal, 
+The two-dimensional sub-manifold in $\left(r,\phi\right)$ is diagonal, so that the only non-vanishing components of the Ricci tensor are $R_{rr}=R_{\phi\phi}=K$. Then applying Einstein's equation (Equation (\ref{eq:einstein})) we have:
+
+\begin{equation}
+T_{zz}=\frac{1}{8\pi G}2\pi\left(1-e^{-\nu (r,z)}\right)\delta(r)
+\end{equation} 
+
 Thus:
 
 \begin{equation}
-T_{zz}=\frac{1}{8\pi G}(stuff hopefully \nu)
+F=\int T_{zz}dA=\frac{1}{4G}\left(1-e^{-\nu (r,z)}\right)
 \end{equation}
+
+Where G is Newton's constant. Looking over our Newtonian potentials ($\lambda$) from Equation (\ref{eq:2-m}) (which suppressed factors of G) and expanding the exponential:
+
+\begin{equation}
+e^{-\nu\left(0,z\right)}=1+\left(-\nu\left(0,z\right)\right)+\left(-\nu\left(0,z\right)\right)^{2}+...
+\end{equation}
+
+After applying the solution for $\nu(0,z)$ from Equation (\ref{eq:nu_r=0}), the first order approximation is:
+
+\begin{equation}
+F=\frac{Gm_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}
+\end{equation}
+
+Where higher order terms of $\nu\left(0,z\right)$ are corrections to Newton's law.
+
+\subsection{Application to Causal Dynamical Triangulations}
+
 \bibliographystyle{ieeetr}
 \bibliography{cdt-newtonian-limit-biblio}
 
