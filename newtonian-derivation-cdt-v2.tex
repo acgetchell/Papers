@@ -269,7 +269,7 @@ By putting this in the first fundamental form\cite{first_fundamental-form}:
 ds^{2}=Edu^{2}+2Fdudv+Gdv^{2}
 \end{equation}
 
-We can calculate K directly using the orthogonal parameterization\cite{schleifer_condition_1985}:
+We can calculate K using the orthogonal parameterization\cite{schleifer_condition_1985} (since $F=0$):
 
 \begin{equation}
 K=-\frac{1}{2\sqrt{EG}}\left(\frac{\partial}{\partial u}\frac{\partial_{u}G}{\sqrt{EG}}+\frac{\partial}{\partial v}\frac{\partial_{v}E}{\sqrt{EG}}\right)=-\frac{1}{2}\frac{1}{\sqrt{EG}}\frac{d}{dr}\left(\frac{1}{\sqrt{EG}}\frac{dG}{dr}\right)
@@ -277,6 +277,9 @@ K=-\frac{1}{2\sqrt{EG}}\left(\frac{\partial}{\partial u}\frac{\partial_{u}G}{\sq
 
 To solve the left side of Equation (\ref{eq:Gauss-Bonnet}), consider the following diagram:
 
+\begin{center}
+\includegraphics[width=60mm]{Figure3.png}
+\end{center}
 
 The top of the cylinder is given by:
 
@@ -284,6 +287,21 @@ The top of the cylinder is given by:
 \int KdA=-\frac{1}{2}\int^{R}_{0}\int^{2\pi}_{0}\frac{d}{dr}\left(\frac{1}{\sqrt{EG}}\frac{dG}{dr}\right)drd\phi
 \end{equation}
 
+Thus, the Gauss-Bonnet theorem gives us:
+
+\begin{equation}
+K_{top}=K_{bottom}=2\pi\left(1-e^{-\nu (0,z)}\right)
+\end{equation}
+
+The "edge" of the top disk contributes nothing to $K$, since as $R\rightarrow\infty$ this surface approaches that of a plane, for which $K=0$.
+
+The Gaussian curvature of the cylinder wall can also be calculated by letting $R\rightarrow\infty$. For this case, the metric of the top and bottom are Minkowski spaces, thus flat planes ($K=0$). Then the entire cylinder is homeomorphic to the 2-sphere, for which the Euler characteristic $\chi=2$ and thus by the Gauss-Bonnet theorem $K=4\pi$. Since the other components (disks and disk edges) have $K=0$ the cylnder wall must contain all of the curvature, that is, $K_{cylinder wall}=K=4\pi$.
+
+Thus,
+
+\begin{equation}
+\int KdA=K_{top}+K_{bottom}+K_{cylinder wall}=4\pi\left(1-e^{-\nu (r,z)}\right)+4\pi=2\pi*(2)
+\end{equation}
 
 It has been shown that:
 
