@@ -1,0 +1,129 @@
+\documentclass{article}
+% \usepackage{times}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{calc}
+\usepackage{units}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{subdepth}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{notoccite}
+\usepackage{nag}
+\title{Local and Global Flatness}
+\author{Adam Getchell}
+\date{}
+\begin{document}
+\maketitle
+
+
+Given the metric on a cone "induced from the plane":
+
+\begin{equation}
+\begin{array}{rcl} ds^{2}=dr^{2}+r^{2}d\theta^{2} & \mbox{with} &  \begin{array}{cc}0\leqslant r\leqslant\infty, & \beta\leqslant\theta < 2\pi
+
+\end{array}
+\end{array}
+\end{equation}
+
+Using the Christoffel connections:
+\begin{equation}
+\Gamma_{\mu\nu}^{\lambda}=\frac{1}{2}g^{\lambda\sigma}\left(\partial_{\mu}g_{\nu\sigma}+\partial_{\nu}g_{\sigma\mu}-\partial_{\sigma}g_{\mu\nu}\right)
+\end{equation}
+
+We find:
+\begin{equation}
+\begin{array}{l}
+\Gamma^{r}_{\theta\theta}=-r\\
+\Gamma^{\theta}_{r\theta}=\Gamma^{\theta}_{\theta r}=\frac{1}{r}\\
+\end{array}
+\end{equation}
+
+To parallel transport around the curve from $\theta=\beta$ to $\theta=2\pi$ we set the directional covariant derivative equal to zero along the curve:
+\begin{equation}
+\begin{array}{rcl} \frac{D}{d\lambda}=\frac{dx^{\mu}}{d\lambda}\nabla_{\mu}=0 & \mbox{along} & x^{\mu}\left(\lambda\right)
+\end{array}
+\end{equation}
+
+Since we are parallel transporting a vector, this reduces to:
+\begin{equation}
+\nabla_{\alpha}V^{\beta}=0
+\end{equation}
+
+We are going around the $\theta$ axis at $r=r_{0}$, so we have:
+\begin{equation}
+\begin{array}{l}
+\partial_{\theta}V^{r}+\Gamma^{r}_{\theta\theta}V^{\theta}=0 \\
+\partial_{\theta}V^{\theta}+\Gamma^{\theta}_{\theta r}V^{r}=0
+\end{array}
+\end{equation}
+
+Plugging in our connections we have:
+\begin{equation}
+\partial_{\theta}V^{r}-rV^{\theta}=0 \label{eq:v-theta}
+\end{equation}
+\begin{equation}
+\partial_{\theta}V^{\theta}+\frac{1}{r}V^{r}=0 \label{eq:v-r}
+\end{equation}
+
+Differentiating Equation (\ref{eq:v-theta}) with respect to $\theta$ we get:
+
+\begin{equation}
+\partial_{\theta}V^{\theta}=\frac{1}{r}\partial^{2}_{\theta}V^{r} \label{eq:d-theta-v-theta}
+\end{equation}
+We can plug Equation (\ref{eq:d-theta-v-theta}) into Equation (\ref{eq:v-r}) to get:
+
+\begin{equation}
+\partial^{2}_{\theta}V^{r}+V^{r}=0
+\end{equation}
+
+For which the solution is:
+
+\begin{equation}
+V^{r}=A\cos(\theta)+B\sin(\theta)
+\end{equation}
+
+Likewise,
+
+\begin{equation}
+V^{\theta}=\frac{1}{r}\left(-A\cos(\theta)+B\sin(\theta)\right)
+\end{equation}
+
+Now, at $\theta=\beta$ then $V=0\hat{e_{r}}+1\hat{e_{\theta}}$ so we have:
+
+\begin{equation}
+V^{r}=0=A\cos(\beta)+B\sin(\beta)\rightarrow A=-B\tan(\beta)
+\end{equation}
+
+\begin{equation}
+V^{\theta}=\frac{1}{r_{0}}\left(-A\cos(\beta)+B\sin(\beta)\right)\rightarrow B=\frac{r_{0}}{\tan(\beta)\sin(\beta)+\cos(\beta)}
+\end{equation}
+
+Which gives us (after simplifying trigonometry):
+
+\begin{equation}
+\begin{array}{l}
+A=-r_{0}\sin(\beta) \\
+B=r_{0}\cos(\beta)
+\end{array}
+\end{equation}
+
+And the expression for $V^{\theta}$ is:
+
+\begin{equation}
+V^{\theta}=\left(\sin(\theta)\sin(\beta)+\cos(\theta)\cos(\beta)\right)\hat{e}_{\theta}
+\end{equation}
+
+Which gives, finally, that:
+
+\begin{equation}
+V^{\theta}\left(\theta=2\pi\right)=\cos(\beta)\hat{e}_{\theta}
+\end{equation}
+
+As the first sanity check, we note that if $\beta=0$ then $V^{\theta}=\hat{e}_{\theta}$ as expected.
+
+For the second sanity check, we note that $V_{\theta}V^{\theta}=1$ for any value of $\beta$ or $\theta$, that is, the length of the vector after being parallel transported is unchanged.
+\end{document}
