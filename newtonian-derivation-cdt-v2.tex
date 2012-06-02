@@ -20,9 +20,9 @@
 \maketitle
 \tableofcontents
 
-\section{Motivation}
+\section{Newton's Law of Gravitation from General Relativity}
 
-\subsection{Newton's Law of Gravitation from General Relativity}
+\subsection{Vacuum solution to the Weyl metric}
 
 Starting from the most general cylindrically symmetric (Weyl) metric \cite{synge_relativity}:
 
@@ -61,7 +61,7 @@ The non-zero Christoffel connections are:
 \Gamma^{z}_{\phi\phi}=r^{2}e^{-2\nu}\partial_{z}\lambda\\
 \Gamma^{\phi}_{r\phi}=\frac{1}{r}-\partial_{r}\lambda\\
 \Gamma^{\phi}_{z\phi}=-\partial_{z}\lambda\\
-\end{array}
+\end{array}\label{eq:christoffel-connections}
 \end{equation}
 
 The components of the Riemann tensor are given by:
@@ -128,25 +128,159 @@ Applying this complete set of relations to Equation (\ref{eq:ricci-tensor-compon
 \partial^{2}_{r}\nu+\partial^{2}_{z}\nu+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}=0\label{eq:R_phiphi=0}
 \end{equation}
 
-Equation (\ref{eq:laplace}) is the two-dimensional Laplace equation in cylindrical coordinates, for which the known general solutions are:
-\begin{equation}
-\lambda (r,z)=\sum^{\infty}_{n=0}[A_{n}J_{n}\left(kr\right)+B_{n}Y_{n}\left(kr\right)][C_{n}\sinh(kz)+D_{n}\cosh(kz)]\label{eq:laplace_sol}
-\end{equation}
+Equation (\ref{eq:laplace}) is the two-dimensional Laplace equation in cylindrical coordinates. Plugging Equation (\ref{eq:R_phiphi=0}) into Equation (\ref{eq:R_rr=0}) gives:
 
-
-
-Plugging Equation (\ref{eq:R_phiphi=0}) into Equation (\ref{eq:R_rr=0}) gives:
 \begin{equation}
 \partial_{r}\nu=r\left(\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}\right)\label{eq:nu_r}
 \end{equation}
 
-Using Equations (\ref{eq:nu_z}), (\ref{eq:laplace_sol}) and (\ref{eq:nu_r}) we find solutions for $\nu$ given by:
+Using Equations (\ref{eq:nu_z}) and (\ref{eq:nu_r}) we find solutions for $\nu$ given by:
 \begin{equation}
 \nu=\int r[\left(\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}\right)dr+\left(2\partial_{r}\lambda\partial_{z}\lambda\right)dz]\label{eq:nu}
 \end{equation}
 
+\subsection{Elementary Flatness}
 
-In principle, we have solutions for axially symmetric static vacuum spacetimes. We now wish to add matter. If the object is also axially symmetric and static, then we can consider solutions in the form of an external metric $\emph{E}$ and an internal metric $\emph{I}$, where $\emph{E}$ is given by Equations (\ref{eq:weyl-metric}), (\ref{eq:laplace_sol}), and (\ref{eq:nu}).
+In order to be certain that our spacetime is truly flat, we want to check for elementary flatness, that is, that the ratio of the circumference and radius is equal to $2\pi$. To do this we will parallel transport a vector $W$ about the $\phi$-axis, and parallel transport a vector $V$ along the $r$-axis for $r\rightarrow R$, and check that their ratio is $2\pi$. This will give us restrictions on our solutions for $\lambda\left(r,z\right)$ and $\nu\left(r,z\right)$.
+
+The equation for parallel transport is generally given by:
+
+\begin{equation}
+\begin{array}{rcl} \frac{D}{d\lambda}=\frac{dx^{\mu}}{d\lambda}\nabla_{\mu}=0 & \mbox{along} & x^{\mu}\left(\lambda\right)
+\end{array}
+\end{equation}
+
+That is, the directional covariant derivative is equal to zero along the curve $x^{\mu}$ parameterized by $\lambda$. For a vector this can be simply written as:
+
+\begin{equation}
+\nabla_{\alpha}X^{\beta}=0\label{eq:x-par-xport}
+\end{equation}
+
+Starting with parallel transport along $\hat{e}_{r}$ for $r\rightarrow R$, Equation (\ref{eq:x-par-xport}) along with the non-zero Christoffel connections yields:
+
+\begin{equation}
+\begin{array}{r}
+\partial_{r}V^{t}+\Gamma^{t}_{rt}V^{t}=0\\
+\partial_{r}V^{r}+\Gamma^{r}_{rr}V^{r}=0\\
+\partial_{r}V^{r}+\Gamma^{r}_{rz}V^{z}=0\\
+\partial_{r}V^{z}+\Gamma^{z}_{rr}V^{r}=0\\
+\partial_{r}V^{z}+\Gamma^{z}_{rz}V^{z}=0\\
+\partial_{r}V^{\phi}+\Gamma^{\phi}_{r\phi}V^{\phi}=0\\
+\end{array}
+\end{equation}
+
+Plugging in the values from Equation (\ref{eq:christoffel-connections}) gives:
+
+\begin{equation}
+\partial_{r}V^{t}+\partial_{r}\lambda V^{t}=0\label{eq:V^t}
+\end{equation}
+
+\begin{equation}
+\partial_{r}V^{r}+\left(\partial_{r}\nu-\partial_{r}\lambda\right)V^{r}=0\label{eq:V^r}
+\end{equation}
+
+\begin{equation}
+\partial_{r}V^{r}+\left(\partial_{z}\nu-\partial_{z}\lambda\right)V^{z}=0\label{eq:V^z}
+\end{equation}
+
+\begin{equation}
+\partial_{r}V^{z}+\left(\partial_{z}\lambda-\partial_{z}\nu\right)V^{r}=0
+\end{equation}
+
+\begin{equation}
+\partial_{r}V^{z}+\left(\partial_{r}\nu-\partial_{r}\lambda\right)V^{z}=0
+\end{equation}
+
+\begin{equation}
+\partial_{r}V^{\phi}+\left(\frac{1}{r}-\partial_{r}\lambda\right)V^{\phi}=0\label{eq:V^phi}
+\end{equation}
+
+These six equations aren't really too forbidding, however, and can be solved by inspection and what we already know.
+
+The solution for Equation (\ref{eq:V^t}) is:
+
+\begin{equation}
+V^{t}=C_{1}e^{-\lambda}
+\end{equation}
+
+The solution for Equation (\ref{eq:V^r}) is:
+
+\begin{equation}
+V^{r}=C_{2}e^{\lambda-\nu}
+\end{equation}
+
+
+The solution for Equation (\ref{eq:V^z}) also:
+
+\begin{equation}
+V^{z}=C_{3}e^{\lambda-\nu}
+\end{equation}
+
+The solution for Equation (\ref{eq:V^phi}) can be easily guessed:
+
+\begin{equation}
+V^{\phi}=C_{4}\frac{e^{\lambda}}{r^{2}}
+\end{equation}
+
+In fact, with a convenient choice of constants we have:
+
+\begin{equation}
+V=e^{-2\lambda}\hat{e}_{t}-e^{2(\lambda-\nu)}\hat{e}_{r}-e^{2(\lambda-\nu)}\hat{e}_{z}-\frac{e^{2\lambda}}{r^{2}}\hat{e}_{\phi}
+\end{equation}
+
+Now onto $W$ which is to be parallel transported along the $\phi$-axis. The relevant Christoffel symbols are $\Gamma^{r}_{\phi\phi}$, $\Gamma^{z}_{\phi\phi}$, $\Gamma^{\phi}_{\phi r}$, and $\Gamma^{\phi}_{\phi z}$, so that our equations are:
+
+\begin{equation}
+\partial_{\phi}W^{r}+\left(re^{-2\nu}\left(r\partial_{r}\lambda-1\right)\right)W^{\phi}=0\label{eq:W-r-phi}
+\end{equation}
+
+\begin{equation}
+\partial_{\phi}W^{z}+\left(r^{2}e^{-2\nu}\partial_{z}\lambda\right)W^{\phi}=0
+\end{equation}
+
+\begin{equation}
+\partial_{\phi}W^{\phi}+\left(\frac{1}{r}-\partial_{r}\lambda\right)W^{r}=0\label{eq:W-phi-r}
+\end{equation}
+
+\begin{equation}
+\partial_{\phi}W^{\phi}-\partial_{z}\lambda W^{z}=0\label{eq:W-phi-z}
+\end{equation}
+
+Differentiating Equation (\ref{eq:W-phi-r}) with respect to $\phi$ and plugging it into Equation (\ref{eq:W-r-phi}) gives:
+
+\begin{equation}
+\partial^{2}_{\phi}W^{\phi}=r^{2}e^{-2\nu}W^{\phi}
+\end{equation}
+
+For which the solution is:
+
+\begin{equation}
+W^{\phi}=A\cos(\phi re^{-\nu})+B\sin(\phi re^{-\nu})
+\end{equation}
+
+Therefore:
+
+\begin{equation}
+W^{r}=\frac{re^{-\nu}}{\partial_{r}\lambda-\frac{1}{r}}\{B\cos(\phi re^{-\nu})-A\sin(\phi re^{-\nu})\}
+\end{equation}
+
+And from Equation (\ref{eq:W-phi-z}):
+
+\begin{equation}
+W^{z}=\frac{re^{-\nu}}{\partial_{z}\lambda}\{B\cos(\phi re^{-\nu})-A\sin(\phi re^{-\nu})\}
+\end{equation}
+
+Now, at $\phi=0$ we have $W=0\hat{e}_{t}+0\hat{e}_{r}+0\hat{e}_{z}+1\hat{e}_{\phi}$ which gives us $A=1$ and $B=0$. Therefore,
+
+\begin{equation}
+W=\frac{re^{-\nu}}{\partial_{r}\lambda-\frac{1}{r}}\{\cos(\phi re^{-\nu})\}\hat{e}_{r}-\frac{re^{-\nu}}{\partial_{z}\lambda}\{\sin(\phi re^{-\nu})\}\hat{e}_{z}+\cos(\phi re^{-\nu})\hat{e}_{\phi}
+\end{equation}
+
+
+
+\subsection{Matter solution to the Weyl metric}
+
+In principle, we have solutions for axially symmetric static vacuum spacetimes. We now wish to add matter. If the object is also axially symmetric and static, then we can consider solutions in the form of an external metric $\emph{E}$ and an internal metric $\emph{I}$, where $\emph{E}$ is given by Equations (\ref{eq:weyl-metric}) and (\ref{eq:nu}).
 
 The solution of Laplace's equation for a point particle of mass $m$ at $z=z_{0}$ is well known \cite{letelier1997superposition}:
 
@@ -337,7 +471,7 @@ F=\frac{Gm_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}
 
 Where higher order terms of $\nu\left(0,z\right)$ are corrections to Newton's law.
 
-\subsection{Application to Causal Dynamical Triangulations}
+\section{Application to Causal Dynamical Triangulations}
 
 \bibliographystyle{ieeetr}
 \bibliography{cdt-newtonian-limit-biblio}
