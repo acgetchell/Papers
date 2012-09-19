@@ -13,9 +13,10 @@
 \usepackage{url}
 \usepackage{notoccite}
 \usepackage{nag}
+\usepackage{hyperref}
 \title{Newtonian approximation in Causal Dynamical Triangulations}
 \author{Adam Getchell}
-\date{}
+\date{\today}
 \begin{document}
 \maketitle
 \tableofcontents
@@ -46,22 +47,23 @@ The definition of the Christoffel connection is: \cite{carroll2003spacetime}
 
 The non-zero Christoffel connections are:
 \begin{equation}
-\begin{array}{l}
-\Gamma^{t}_{tr}=\partial_{r}\lambda\\
-\Gamma^{t}_{tz}=\partial_{z}\lambda\\
-\Gamma^{r}_{tt}=e^{4\lambda-2\nu}\partial_{r}\lambda\\
-\Gamma^{r}_{rr}=\partial_{r}\nu-\partial_{r}\lambda\\
-\Gamma^{r}_{rz}=\partial_{z}\nu-\partial_{z}\lambda\\
-\Gamma^{r}_{zz}=\partial_{z}\lambda-\partial_{z}\nu\\
-\Gamma^{r}_{\phi\phi}=re^{-2\nu}\left(r\partial_{r}\lambda-1\right)\\
-\Gamma^{z}_{tt}=e^{4\lambda-2\nu}\partial_{z}\lambda\\
-\Gamma^{z}_{rr}=\partial_{z}\lambda-\partial_{z}\nu\\
-\Gamma^{z}_{rz}=\partial_{r}\nu-\partial_{r}\lambda\\ 
-\Gamma^{z}_{zz}=\partial_{r}\nu-\partial_{r}\lambda\\
-\Gamma^{z}_{\phi\phi}=r^{2}e^{-2\nu}\partial_{z}\lambda\\
-\Gamma^{\phi}_{r\phi}=\frac{1}{r}-\partial_{r}\lambda\\
-\Gamma^{\phi}_{z\phi}=-\partial_{z}\lambda\\
-\end{array}\label{eq:christoffel-connections}
+\begin{aligned}
+\Gamma^{t}_{tr}&=\partial_{r}\lambda\\
+\Gamma^{t}_{tz}&=\partial_{z}\lambda\\
+\Gamma^{r}_{tt}&=e^{4\lambda-2\nu}\partial_{r}\lambda\\
+\Gamma^{r}_{rr}&=\partial_{r}\nu-\partial_{r}\lambda\\
+\Gamma^{r}_{rz}&=\partial_{z}\nu-\partial_{z}\lambda\\
+\Gamma^{r}_{zz}&=\partial_{z}\lambda-\partial_{z}\nu\\
+\Gamma^{r}_{\phi\phi}&=re^{-2\nu}\left(r\partial_{r}\lambda-1\right)\\
+\Gamma^{z}_{tt}&=e^{4\lambda-2\nu}\partial_{z}\lambda\\
+\Gamma^{z}_{rr}&=\partial_{z}\lambda-\partial_{z}\nu\\
+\Gamma^{z}_{rz}&=\partial_{r}\nu-\partial_{r}\lambda\\ 
+\Gamma^{z}_{zz}&=\partial_{r}\nu-\partial_{r}\lambda\\
+\Gamma^{z}_{\phi\phi}&=r^{2}e^{-2\nu}\partial_{z}\lambda\\
+\Gamma^{\phi}_{r\phi}&=\frac{1}{r}-\partial_{r}\lambda\\
+\Gamma^{\phi}_{z\phi}&=-\partial_{z}\lambda\\
+\end{aligned}
+\label{eq:christoffel-connections}
 \end{equation}
 
 The components of the Riemann tensor are given by:
@@ -71,26 +73,26 @@ R_{\sigma\mu\nu}^{\rho}=\partial_{\mu}\Gamma_{\nu\sigma}^{\rho}-\partial_{\nu}\G
 
 Using the properties of the Riemann tensor:
 \begin{equation}
-\begin{array}{l}
-R_{\rho\sigma\mu\nu}=-R_{\rho\sigma\nu\mu}\\
-R_{\rho\sigma\mu\nu}=-R_{\sigma\rho\mu\nu}\\
-R_{\rho\sigma\mu\nu}=R_{\mu\nu\rho\sigma}\\
-R_{\rho[\sigma\mu\nu]}=0\\
-\end{array}
+\begin{aligned}
+R_{\rho\sigma\mu\nu}&=-R_{\rho\sigma\nu\mu}\\
+R_{\rho\sigma\mu\nu}&=-R_{\sigma\rho\mu\nu}\\
+R_{\rho\sigma\mu\nu}&=R_{\mu\nu\rho\sigma}\\
+R_{\rho[\sigma\mu\nu]}&=0\\
+\end{aligned}
 \end{equation}
 
 The non-zero components of the Riemann tensor are:
 \begin{equation}
-\begin{array}{l}
-R^{t}_{rtr}=-\partial^{2}_{r}\lambda+\left(\partial_{z}\lambda\right)^{2}-2\left(\partial_{r}\lambda\right)^{2}+\partial_{r}\lambda\partial_{r}\nu-\partial_{z}\lambda\partial_{z}\nu\\
-R^{t}_{rtz}=-\partial_{r}\partial_{z}\lambda-3\partial_{r}\lambda\partial_{z}\lambda+\partial_{r}\lambda\partial_{z}\nu+\partial_{r}\nu\partial_{z}\lambda\\
-R^{t}_{ztz}=-\partial^{2}_{z}\lambda-2\left(\partial_{z}\lambda\right)^{2}+\left(\partial_{r}\lambda\right)^{2}-\partial_{r}\lambda\partial_{r}\nu+\partial_{z}\lambda\partial_{z}\nu\\
-R^{t}_{\phi t\phi}=re^{-2\nu}\left(r\left(\partial_{r}\lambda\right)^{2}-\partial_{r}\lambda+r\left(\partial_{z}\lambda\right)^{2}\right)\\
-R^{r}_{zrz}=\partial^{2}_{r}\lambda-\partial^{2}_{r}\nu+\partial^{2}_{z}\lambda-\partial^{2}_{z}\nu\\
-R^{z}_{\phi z\phi}=re^{-2\nu}\left(r\partial^{2}_{z}\lambda-r\partial_{z}\lambda\partial_{z}\nu+r\partial_{r}\lambda\partial_{r}\nu-r\left(\partial_{r}\lambda\right)^{2}+\partial_{r}\lambda-\partial_{r}\nu\right)\\
-R^{z}_{\phi\phi r}=re^{-2\nu}\left(-r\partial_{r}\partial_{z}\lambda+r\partial_{r}\nu\partial_{z}\lambda-r\partial_{r}\lambda\partial_{z}\lambda+r\partial_{r}\lambda\partial_{z}\nu-\partial_{z}\nu\right)\\
-R^{\phi}_{r\phi r}=\partial^{2}_{r}\lambda+\frac{1}{r}\partial_{r}\nu-\partial_{r}\lambda\partial_{r}\nu-\left(\partial_{z}\lambda\right)^{2}+\partial_{z}\lambda\partial_{z}\nu+\frac{1}{r}\partial_{r}\lambda\\
-\end{array}
+\begin{aligned}
+R^{t}_{rtr}&=-\partial^{2}_{r}\lambda+\left(\partial_{z}\lambda\right)^{2}-2\left(\partial_{r}\lambda\right)^{2}+\partial_{r}\lambda\partial_{r}\nu-\partial_{z}\lambda\partial_{z}\nu\\
+R^{t}_{rtz}&=-\partial_{r}\partial_{z}\lambda-3\partial_{r}\lambda\partial_{z}\lambda+\partial_{r}\lambda\partial_{z}\nu+\partial_{r}\nu\partial_{z}\lambda\\
+R^{t}_{ztz}&=-\partial^{2}_{z}\lambda-2\left(\partial_{z}\lambda\right)^{2}+\left(\partial_{r}\lambda\right)^{2}-\partial_{r}\lambda\partial_{r}\nu+\partial_{z}\lambda\partial_{z}\nu\\
+R^{t}_{\phi t\phi}&=re^{-2\nu}\left(r\left(\partial_{r}\lambda\right)^{2}-\partial_{r}\lambda+r\left(\partial_{z}\lambda\right)^{2}\right)\\
+R^{r}_{zrz}&=\partial^{2}_{r}\lambda-\partial^{2}_{r}\nu+\partial^{2}_{z}\lambda-\partial^{2}_{z}\nu\\
+R^{z}_{\phi z\phi}&=re^{-2\nu}\left(r\partial^{2}_{z}\lambda-r\partial_{z}\lambda\partial_{z}\nu+r\partial_{r}\lambda\partial_{r}\nu-r\left(\partial_{r}\lambda\right)^{2}+\partial_{r}\lambda-\partial_{r}\nu\right)\\
+R^{z}_{\phi\phi r}&=re^{-2\nu}\left(-r\partial_{r}\partial_{z}\lambda+r\partial_{r}\nu\partial_{z}\lambda-r\partial_{r}\lambda\partial_{z}\lambda+r\partial_{r}\lambda\partial_{z}\nu-\partial_{z}\nu\right)\\
+R^{\phi}_{r\phi r}&=\partial^{2}_{r}\lambda+\frac{1}{r}\partial_{r}\nu-\partial_{r}\lambda\partial_{r}\nu-\left(\partial_{z}\lambda\right)^{2}+\partial_{z}\lambda\partial_{z}\nu+\frac{1}{r}\partial_{r}\lambda\\
+\end{aligned}
 \end{equation}
 
 The Ricci tensor is given by:
@@ -100,13 +102,14 @@ R_{\mu\nu}=R_{\mu\lambda\nu}^{\lambda}
 
 The non-zero components of the Ricci tensor are:
 \begin{equation}
-\begin{array}{l}
-R_{tt}=\frac{e^{4\lambda-2\nu}}{r}\left(r\partial^{2}_{r}\lambda+r\partial^{2}_{z}\lambda+\partial_{r}\lambda\right)\\
-R_{rr}=\partial^{2}_{r}\lambda-\partial^{2}_{r}\nu+\partial^{2}_{z}\lambda-\partial^{2}_{z}\nu-2\left(\partial_{r}\lambda\right)^{2}+\frac{1}{r}\partial_{r}\lambda+\frac{1}{r}\partial_{r}\nu\\
-R_{rz}=\frac{1}{r}\partial_{z}\nu-2\partial_{r}\lambda\partial_{z}\lambda\\
-R_{zz}=\partial^{2}_{r}\lambda-\partial^{2}_{r}\nu+\partial^{2}_{z}\lambda-\partial^{2}_{z}\nu-2\left(\partial_{z}\lambda\right)^{2}+\frac{1}{r}\partial_{r}\lambda-\frac{1}{r}\partial_{r}\nu\\
-R_{\phi\phi}=re^{-2\nu}\left(r\partial^{2}_{r}\lambda+r\partial^{2}_{z}\lambda+\partial_{r}\lambda\right)
-\end{array}\label{eq:ricci-tensor-components}
+\begin{aligned}
+R_{tt}&=\frac{e^{4\lambda-2\nu}}{r}\left(r\partial^{2}_{r}\lambda+r\partial^{2}_{z}\lambda+\partial_{r}\lambda\right)\\
+R_{rr}&=\partial^{2}_{r}\lambda-\partial^{2}_{r}\nu+\partial^{2}_{z}\lambda-\partial^{2}_{z}\nu-2\left(\partial_{r}\lambda\right)^{2}+\frac{1}{r}\partial_{r}\lambda+\frac{1}{r}\partial_{r}\nu\\
+R_{rz}&=\frac{1}{r}\partial_{z}\nu-2\partial_{r}\lambda\partial_{z}\lambda\\
+R_{zz}&=\partial^{2}_{r}\lambda-\partial^{2}_{r}\nu+\partial^{2}_{z}\lambda-\partial^{2}_{z}\nu-2\left(\partial_{z}\lambda\right)^{2}+\frac{1}{r}\partial_{r}\lambda-\frac{1}{r}\partial_{r}\nu\\
+R_{\phi\phi}&=re^{-2\nu}\left(r\partial^{2}_{r}\lambda+r\partial^{2}_{z}\lambda+\partial_{r}\lambda\right)
+\end{aligned}
+\label{eq:ricci-tensor-components}
 \end{equation}
 
 Einstein's equation in a vacuum is:
@@ -114,7 +117,7 @@ Einstein's equation in a vacuum is:
 R_{\mu\nu}=0\label{eq:vacuum-solutions}
 \end{equation}
 
-Applying this complete set of relations to Equation (\ref{eq:ricci-tensor-components}) gives the following:
+Applying this complete set of relations to Equation \eqref{eq:ricci-tensor-components} gives the following:
 \begin{equation}
 \partial^{2}_{r}\lambda+\frac{1}{r}\partial_{r}\lambda+\partial^{2}_{z}\lambda=0\label{eq:laplace}
 \end{equation}
@@ -128,107 +131,23 @@ Applying this complete set of relations to Equation (\ref{eq:ricci-tensor-compon
 \partial^{2}_{r}\nu+\partial^{2}_{z}\nu+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}=0\label{eq:R_phiphi=0}
 \end{equation}
 
-Equation (\ref{eq:laplace}) is the two-dimensional Laplace equation in cylindrical coordinates. Plugging Equation (\ref{eq:R_phiphi=0}) into Equation (\ref{eq:R_rr=0}) gives:
+Equation \eqref{eq:laplace} is the two-dimensional Laplace equation in cylindrical coordinates. Plugging Equation \eqref{eq:R_phiphi=0} into Equation \eqref{eq:R_rr=0} gives:
 
 \begin{equation}
 \partial_{r}\nu=r\left(\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}\right)\label{eq:nu_r}
 \end{equation}
 
-Using Equations (\ref{eq:nu_z}) and (\ref{eq:nu_r}) we find solutions for $\nu$ given by:
+Using Equations \eqref{eq:nu_z} and \eqref{eq:nu_r} we find solutions for $\nu$ are given by:
 \begin{equation}
 \nu=\int r[\left(\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}\right)dr+\left(2\partial_{r}\lambda\partial_{z}\lambda\right)dz]\label{eq:nu}
 \end{equation}
 
 \subsection{Elementary Flatness}
 
-In order to be certain that our spacetime is truly flat, we want to check for elementary flatness, that is, that the ratio of the circumference and radius is equal to $2\pi$. To do this we will parallel transport a vector $W$ about the $\phi$-axis, and parallel transport a vector $V$ along the $r$-axis for $r\rightarrow R$, and check that their ratio is $2\pi$. This will give us restrictions on our solutions for $\lambda\left(r,z\right)$ and $\nu\left(r,z\right)$.
-
-The equation for parallel transport is generally given by:
-
-\begin{equation}
-\begin{array}{rcl} \frac{D}{d\lambda}=\frac{dx^{\mu}}{d\lambda}\nabla_{\mu}=0 & \mbox{along} & x^{\mu}\left(\lambda\right)
-\end{array}
-\end{equation}
-
-That is, the directional covariant derivative is equal to zero along the curve $x^{\mu}$ parameterized by $\lambda$. For a vector this can be simply written as:
-
-\begin{equation}
-\nabla_{\alpha}X^{\beta}=0\label{eq:x-par-xport}
-\end{equation}
-
-Starting with parallel transport along $\hat{e}_{r}$ for $r\rightarrow R$, Equation (\ref{eq:x-par-xport}) along with the non-zero Christoffel connections yields:
-
-\begin{equation}
-\begin{array}{r}
-\partial_{r}V^{t}+\Gamma^{t}_{rt}V^{t}=0\\
-\partial_{r}V^{r}+\Gamma^{r}_{rr}V^{r}=0\\
-\partial_{r}V^{r}+\Gamma^{r}_{rz}V^{z}=0\\
-\partial_{r}V^{z}+\Gamma^{z}_{rr}V^{r}=0\\
-\partial_{r}V^{z}+\Gamma^{z}_{rz}V^{z}=0\\
-\partial_{r}V^{\phi}+\Gamma^{\phi}_{r\phi}V^{\phi}=0\\
-\end{array}
-\end{equation}
-
-Plugging in the values from Equation (\ref{eq:christoffel-connections}) gives:
-
-\begin{equation}
-\partial_{r}V^{t}+\partial_{r}\lambda V^{t}=0\label{eq:V^t}
-\end{equation}
-
-\begin{equation}
-\partial_{r}V^{r}+\left(\partial_{r}\nu-\partial_{r}\lambda\right)V^{r}=0\label{eq:V^r}
-\end{equation}
-
-\begin{equation}
-\partial_{r}V^{r}+\left(\partial_{z}\nu-\partial_{z}\lambda\right)V^{z}=0\label{eq:V^z}
-\end{equation}
-
-\begin{equation}
-\partial_{r}V^{z}+\left(\partial_{z}\lambda-\partial_{z}\nu\right)V^{r}=0
-\end{equation}
-
-\begin{equation}
-\partial_{r}V^{z}+\left(\partial_{r}\nu-\partial_{r}\lambda\right)V^{z}=0
-\end{equation}
-
-\begin{equation}
-\partial_{r}V^{\phi}+\left(\frac{1}{r}-\partial_{r}\lambda\right)V^{\phi}=0\label{eq:V^phi}
-\end{equation}
-
-These six equations aren't really too forbidding, however, and can be solved by inspection and what we already know.
-
-The solution for Equation (\ref{eq:V^t}) is:
-
-\begin{equation}
-V^{t}=C_{1}e^{-\lambda}
-\end{equation}
-
-The solution for Equation (\ref{eq:V^r}) is:
-
-\begin{equation}
-V^{r}=C_{2}e^{\lambda-\nu}
-\end{equation}
+In order to be certain that our spacetime is truly flat, we want to check for elementary flatness, that is, that the ratio of the circumference and radius is equal to $2\pi$. To do this we will parallel transport a vector $W$ about the $\phi$-axis, find the values for $\phi=0$ and $\phi=2\pi$, and check that their ratio is $2\pi$. This will give us restrictions on our solutions for $\lambda\left(r,z\right)$ and $\nu\left(r,z\right)$.
 
 
-The solution for Equation (\ref{eq:V^z}) also:
-
-\begin{equation}
-V^{z}=C_{3}e^{\lambda-\nu}
-\end{equation}
-
-The solution for Equation (\ref{eq:V^phi}) can be easily guessed:
-
-\begin{equation}
-V^{\phi}=C_{4}\frac{e^{\lambda}}{r^{2}}
-\end{equation}
-
-In fact, with a convenient choice of constants we have:
-
-\begin{equation}
-V=e^{-2\lambda}\hat{e}_{t}-e^{2(\lambda-\nu)}\hat{e}_{r}-e^{2(\lambda-\nu)}\hat{e}_{z}-\frac{e^{2\lambda}}{r^{2}}\hat{e}_{\phi}
-\end{equation}
-
-Now onto $W$ which is to be parallel transported along the $\phi$-axis. The relevant Christoffel symbols are $\Gamma^{r}_{\phi\phi}$, $\Gamma^{z}_{\phi\phi}$, $\Gamma^{\phi}_{\phi r}$, and $\Gamma^{\phi}_{\phi z}$, so that our equations are:
+The relevant Christoffel symbols are $\Gamma^{r}_{\phi\phi}$, $\Gamma^{z}_{\phi\phi}$, $\Gamma^{\phi}_{\phi r}$, and $\Gamma^{\phi}_{\phi z}$, so that our equations are:
 
 \begin{equation}
 \partial_{\phi}W^{r}+\left(re^{-2\nu}\left(r\partial_{r}\lambda-1\right)\right)W^{\phi}=0\label{eq:W-r-phi}
@@ -246,7 +165,7 @@ Now onto $W$ which is to be parallel transported along the $\phi$-axis. The rele
 \partial_{\phi}W^{\phi}-\partial_{z}\lambda W^{z}=0\label{eq:W-phi-z}
 \end{equation}
 
-Differentiating Equation (\ref{eq:W-phi-r}) with respect to $\phi$ and plugging it into Equation (\ref{eq:W-r-phi}) gives:
+Differentiating Equation \eqref{eq:W-phi-r} with respect to $\phi$ and plugging it into Equation \eqref{eq:W-r-phi} gives:
 
 \begin{equation}
 \partial^{2}_{\phi}W^{\phi}=r^{2}e^{-2\nu}W^{\phi}
@@ -264,7 +183,7 @@ Therefore:
 W^{r}=\frac{re^{-\nu}}{\partial_{r}\lambda-\frac{1}{r}}\{B\cos(\phi re^{-\nu})-A\sin(\phi re^{-\nu})\}
 \end{equation}
 
-And from Equation (\ref{eq:W-phi-z}):
+And from Equation \eqref{eq:W-phi-z}:
 
 \begin{equation}
 W^{z}=\frac{re^{-\nu}}{\partial_{z}\lambda}\{B\cos(\phi re^{-\nu})-A\sin(\phi re^{-\nu})\}
@@ -280,7 +199,7 @@ W=\frac{re^{-\nu}}{\partial_{r}\lambda-\frac{1}{r}}\{\cos(\phi re^{-\nu})\}\hat{
 
 \subsection{Matter solution to the Weyl metric}
 
-In principle, we have solutions for axially symmetric static vacuum spacetimes. We now wish to add matter. If the object is also axially symmetric and static, then we can consider solutions in the form of an external metric $\emph{E}$ and an internal metric $\emph{I}$, where $\emph{E}$ is given by Equations (\ref{eq:weyl-metric}) and (\ref{eq:nu}).
+In principle, we have solutions for axially symmetric static vacuum spacetimes. We now wish to add matter. If the object is also axially symmetric and static, then we can consider solutions in the form of an external metric $\emph{E}$ and an internal metric $\emph{I}$, where $\emph{E}$ is given by Equations \eqref{eq:weyl-metric} and \eqref{eq:nu}.
 
 The solution of Laplace's equation for a point particle of mass $m$ at $z=z_{0}$ is well known \cite{letelier1997superposition}:
 
@@ -288,7 +207,7 @@ The solution of Laplace's equation for a point particle of mass $m$ at $z=z_{0}$
 \lambda (r,z)=-\frac{m}{\sqrt{r^{2}+\left(z-z_{0}\right)^{2}}}\label{eq:1-m}
 \end{equation}
 
-Likewise, we can easily verify for a single particle that the solution for $\nu$ from Equations (\ref{eq:nu}) and (\ref{eq:1-m}) is (setting integration constants equal to zero):
+Likewise, we can easily verify for a single particle that the solution for $\nu$ from Equations \eqref{eq:nu} and \eqref{eq:1-m} is (setting integration constants equal to zero):
 \begin{equation}
 \nu (r,z)=-\frac{m^{2}r^{2}}{\left(r^{2}+\left(z-z_{0}\right)^{2}\right)^{2}}
 \end{equation}
@@ -298,27 +217,36 @@ However, before we can consider this to be a complete solution we must consider 
 \lim_{r\rightarrow 0}\nu=0\label{eq:elem-flat}
 \end{equation}
 
-Consider the following diagram\footnote{Adapted from Synge} :
+Consider Figure \ref{fig:single-mass}, consisting of a single cylindrically symmetric mass.
 
-\begin{center}
+\begin{figure}
+\centering
+\caption[A single cylindrically symmetric mass]
+{A single cylindrically symmetric mass, adapted from \cite{synge_relativity} Fig. 10.1}
 \includegraphics[width=40mm]{Figure1.png}
-\end{center}
+\label{fig:single-mass}
+\end{figure}
 
-Equation (\ref{eq:nu}) includes a constant, which we can set by choosing that $\nu=0$ at \emph{A}. So, $\nu=0$ along the z-axis from \emph{A'} to \emph{A}. The same applies from \emph{B} to \emph{B'}. Then our path \emph{ADB} may be deformed into an infinite semicircle.
+Equation \eqref{eq:nu} includes a constant, which we can set by choosing that $\nu=0$ at \emph{A}. So, $\nu=0$ along the z-axis from \emph{A'} to \emph{A}. The same applies from \emph{B} to \emph{B'}. Then our path \emph{ADB} may be deformed into an infinite semicircle.
 
-Now consider two bodies, as in the following diagram:
 
-\begin{center}
+
+\begin{figure}
+\centering
+\caption[Two cylindrically symmetric masses]
+{Two cylindrically symmetric masses, adapted from \cite{synge_relativity} Figure 10.2}
 \includegraphics[width=40mm]{Figure2.png}
-\end{center}
+\label{fig:two-masses}
+\end{figure}
 
-Since solutions to Laplace's equation are linear, we have:
+
+Now consider two bodies, as in Figure \ref{fig:two-masses}. Since solutions to Laplace's equation are linear, we have:
 
 \begin{equation}
 \lambda (r,z)=-\frac{m_{1}}{R_{1}}-\frac{m_{2}}{R_{2}}\label{eq:2-m}
 \end{equation}
 
-Plugging this into Equation (\ref{eq:nu}) yields:
+Plugging this into Equation \eqref{eq:nu} yields:
 
 \begin{equation}
 \nu (r,z)=-\frac{m_{1}^{2}r^{2}}{R_{1}^{4}}-\frac{m_{2}^{2}r^{2}}{R_{2}^{4}}+\frac{4m_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}\frac{r^{2}+\left(z-z_{1}\right)\left(z-z_{2}\right)}{R_{1}R_{2}}
@@ -337,7 +265,7 @@ Indeed, if we apply the condition that $r=0$ we get:
 \nu (0,z)=\frac{4m_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}\label{eq:nu_r=0}
 \end{equation}
 
-Which means that in order for Equation (\ref{eq:elem-flat}) to hold, our strut must have:
+Which means that in order for Equation \eqref{eq:elem-flat} to hold, our strut must have:
 
 \begin{equation}
 \nu=-\frac{4m_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}
@@ -367,13 +295,13 @@ Which is:
 R=2e^{2\left(\lambda-\nu\right)}\left(\partial^{2}_{r}\nu+\partial^{2}_{z}\nu-\partial^{2}_{r}\lambda-\partial^{2}_{z}\lambda+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}-\frac{1}{r}\partial_{r}\lambda\right)\label{eq:R}
 \end{equation}
 
-Recall that earlier we asserted in Equation (\ref{eq:vacuum-solutions}) that we had a vacuum solution. In order for this to be true, our Ricci scalar better be equal to zero, since a vacuum solution actually corresponds to:
+Recall that earlier we asserted in Equation \eqref{eq:vacuum-solutions} that we had a vacuum solution. In order for this to be true, our Ricci scalar better be equal to zero, since a vacuum solution actually corresponds to:
 
 \begin{equation}
 G_{\mu\nu}=0
 \end{equation}
 
-Using Equations (\ref{eq:laplace}) and (\ref{eq:R_phiphi=0}) and plugging them into Equation (\ref{eq:R}) we see that this is indeed the case.
+Using Equations \eqref{eq:laplace} and \eqref{eq:R_phiphi=0} and plugging them into Equation (\ref{eq:R}) we see that this is indeed the case.
 
 Continuing, we get:
 
@@ -381,7 +309,7 @@ Continuing, we get:
 G_{zz}=\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}-\frac{1}{r}\partial_{r}\nu \label{eq:G_zz}
 \end{equation}
 
-Again, generally speaking $G_{zz}=0$, which we can see by plugging Equation (\ref{eq:nu_r}) into Equation (\ref{eq:G_zz}). So we have this object which is zero everywhere except along the z-axis.
+Again, generally speaking $G_{zz}=0$, which we can see by plugging Equation (\ref{eq:nu_r}) into Equation \eqref{eq:G_zz}. So we have this object which is zero everywhere except along the z-axis.
 
 That object is a conical singularity \cite{araujo_static_1995}.
 
@@ -396,6 +324,8 @@ Where $K$ is the Gaussian curvature and $\chi (M)$ is the Euler characteristic. 
 \begin{equation}
 ds^{2}=e^{2\left(\nu-\lambda\right)}dr^{2}+r^{2}e^{-2\lambda}d\phi^{2}\label{eq:disk-metric}
 \end{equation}
+
+\emph{TODO: Redo using standard terminology, without Gauss-Bonnet}
 
 By putting this in the first fundamental form\cite{first_fundamental-form}:
 
@@ -445,7 +375,7 @@ Where the delta-function $\delta(r)$ is given by \cite{araujo_static_1995}:
 \delta(r)=\int^{\infty}_{0} \int^{2\pi}_{0} \delta (r)e^{2\left(\lambda-\nu\right)}rdrd\phi =1
 \end{equation} 
 
-The two-dimensional sub-manifold in $\left(r,\phi\right)$ is diagonal, so that the only non-vanishing components of the Ricci tensor are $R_{rr}=R_{\phi\phi}=K$. Then applying Einstein's equation (Equation (\ref{eq:einstein})) we have:
+The two-dimensional sub-manifold in $\left(r,\phi\right)$ is diagonal, so that the only non vanishing components of the Ricci tensor are $R_{rr}=R_{\phi\phi}=K$. Applying Einstein's equation (Equation (\ref{eq:einstein})) we have:
 
 \begin{equation}
 T_{zz}=\frac{1}{8\pi G}2\pi\left(1-e^{-\nu (r,z)}\right)\delta(r)
@@ -463,7 +393,7 @@ Where G is Newton's constant. Looking over our Newtonian potentials ($\lambda$) 
 e^{-\nu\left(0,z\right)}=1+\left(-\nu\left(0,z\right)\right)+\left(-\nu\left(0,z\right)\right)^{2}+...
 \end{equation}
 
-After applying the solution for $\nu(0,z)$ from Equation (\ref{eq:nu_r=0}), the first order approximation is:
+After applying the solution for $\nu(0,z)$ from Equation (\ref{eq:nu_r=0}), the first order approximation is (recalling that $\mu_{1}=Gm_{1}$ and $\mu_{2}=Gm_{2}$):
 
 \begin{equation}
 F=\frac{Gm_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}
@@ -472,6 +402,8 @@ F=\frac{Gm_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}
 Where higher order terms of $\nu\left(0,z\right)$ are corrections to Newton's law.
 
 \section{Application to Causal Dynamical Triangulations}
+
+\subsection{Regge Calculus}
 
 \bibliographystyle{ieeetr}
 \bibliography{cdt-newtonian-limit-biblio}
