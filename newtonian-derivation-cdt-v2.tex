@@ -1,10 +1,11 @@
+\RequirePackage[l2tabu, orthodox]{nag}
 \documentclass{article}
-% \usepackage{times}
 \usepackage{mathptmx}
 \usepackage[T1]{fontenc}
 \usepackage[latin9]{inputenc}
+\usepackage{microtype}
 \usepackage{calc}
-\usepackage{units}
+\usepackage{siunitx}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{graphicx}
@@ -12,8 +13,11 @@
 \usepackage{cite}
 \usepackage{url}
 \usepackage{notoccite}
-\usepackage{nag}
+%\usepackage{nag}
+\usepackage[letterpaper]{geometry}
 \usepackage{hyperref}
+\usepackage{cleveref}
+\crefname{equation}{equation}{equations}
 \title{Newtonian approximation in Causal Dynamical Triangulations}
 \author{Adam Getchell}
 \date{\today}
@@ -117,7 +121,7 @@ Einstein's equation in a vacuum is:
 R_{\mu\nu}=0\label{eq:vacuum-solutions}
 \end{equation}
 
-Applying this complete set of relations to Equation \eqref{eq:ricci-tensor-components} gives the following:
+Applying this complete set of relations to \Cref{eq:ricci-tensor-components} gives the following:
 \begin{equation}
 \partial^{2}_{r}\lambda+\frac{1}{r}\partial_{r}\lambda+\partial^{2}_{z}\lambda=0\label{eq:laplace}
 \end{equation}
@@ -131,68 +135,94 @@ Applying this complete set of relations to Equation \eqref{eq:ricci-tensor-compo
 \partial^{2}_{r}\nu+\partial^{2}_{z}\nu+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}=0\label{eq:R_phiphi=0}
 \end{equation}
 
-Equation \eqref{eq:laplace} is the two-dimensional Laplace equation in cylindrical coordinates. Plugging Equation \eqref{eq:R_phiphi=0} into Equation \eqref{eq:R_rr=0} gives:
+\Cref{eq:laplace} is the two-dimensional Laplace equation in cylindrical coordinates. Plugging \Cref{eq:R_phiphi=0} into \Cref{eq:R_rr=0} gives:
 
 \begin{equation}
 \partial_{r}\nu=r\left(\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}\right)\label{eq:nu_r}
 \end{equation}
 
-Using Equations \eqref{eq:nu_z} and \eqref{eq:nu_r} we find solutions for $\nu$ are given by:
+Using \Cref{eq:nu_z,eq:nu_r} we find solutions for $\nu$ are given by:
 \begin{equation}
 \nu=\int r[\left(\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}\right)dr+\left(2\partial_{r}\lambda\partial_{z}\lambda\right)dz]\label{eq:nu}
 \end{equation}
 
 \subsection{Elementary Flatness}
 
-In order to be certain that our spacetime is truly flat, we want to check for elementary flatness, that is, that the ratio of the circumference and radius is equal to $2\pi$. To do this we will parallel transport a vector $W$ about the $\phi$-axis, find the values for $\phi=0$ and $\phi=2\pi$, and check that their ratio is $2\pi$. This will give us restrictions on our solutions for $\lambda\left(r,z\right)$ and $\nu\left(r,z\right)$.
+In order to be certain that our spacetime is truly flat, we want to check for elementary flatness, that is, that the ratio of the circumference and radius is equal to $2\pi$. To do this we will parallel transport a vector $V$ about the $\phi$-axis, find the values for $\phi=0$ and $\phi=2\pi$, and check that their ratio is $2\pi$. This will give us restrictions on our solutions for $\lambda\left(r,z\right)$ and $\nu\left(r,z\right)$.
 
-
-The relevant Christoffel symbols are $\Gamma^{r}_{\phi\phi}$, $\Gamma^{z}_{\phi\phi}$, $\Gamma^{\phi}_{\phi r}$, and $\Gamma^{\phi}_{\phi z}$, so that our equations are:
+The equation for parallel transport is generally given by:
+  	
+\begin{equation}
+\begin{array}{rcl} \frac{D}{d\lambda}=\frac{dx^{\mu}}{d\lambda}\nabla_{\mu}=0 & \mbox{along} & x^{\mu}\left(\lambda\right)	  	
+\end{array}
+\end{equation}	  	
+That is, the directional covariant derivative is equal to zero along the curve $x^{\mu}$ parameterized by $\lambda$. For a vector this can be simply written as:
+	  	
+\begin{equation}
+\nabla_{\alpha}X^{\beta}=0\label{eq:x-par-xport}
+\end{equation}
+Likewise, the covariant derivative of a vector is just:
 
 \begin{equation}
-\partial_{\phi}W^{r}+\left(re^{-2\nu}\left(r\partial_{r}\lambda-1\right)\right)W^{\phi}=0\label{eq:W-r-phi}
+\nabla_\mu V^{\nu}=\partial_\mu V^\nu+\Gamma^\nu_{\mu\lambda}
+\end{equation}	  	
+Starting with parallel transport along $\hat{e}_{\phi}$, \Cref{eq:x-par-xport} along with the relevant Christoffel symbols $\Gamma^{r}_{\phi\phi}$, $\Gamma^{z}_{\phi\phi}$, $\Gamma^{\phi}_{\phi r}$, and $\Gamma^{\phi}_{\phi z}$ gives:
+	  	
+\begin{equation}
+\begin{aligned}
+\partial_{\phi}V^{r}+\Gamma^{r}_{\phi\phi}V^{\phi}&=0\\
+\partial_{\phi}V^{z}+\Gamma^{z}_{\phi\phi}V^{\phi}&=0\\
+\partial_{\phi}V^{\phi}+\Gamma^{\phi}_{\phi r}V^{r}&=0\\
+\partial_{\phi}V^{\phi}+\Gamma^{\phi}_{\phi z}V^{z}&=0\\
+\end{aligned}
+\end{equation}
+
+Plugging in the values from \Cref{eq:christoffel-connections}, our equations are: 
+
+\begin{equation}
+\partial_{\phi}V^{r}+\left(re^{-2\nu}\left(r\partial_{r}\lambda-1\right)\right)V^{\phi}=0\label{eq:V-r-phi}
 \end{equation}
 
 \begin{equation}
-\partial_{\phi}W^{z}+\left(r^{2}e^{-2\nu}\partial_{z}\lambda\right)W^{\phi}=0
+\partial_{\phi}V^{z}+\left(r^{2}e^{-2\nu}\partial_{z}\lambda\right)V^{\phi}=0
 \end{equation}
 
 \begin{equation}
-\partial_{\phi}W^{\phi}+\left(\frac{1}{r}-\partial_{r}\lambda\right)W^{r}=0\label{eq:W-phi-r}
+\partial_{\phi}V^{\phi}+\left(\frac{1}{r}-\partial_{r}\lambda\right)V^{r}=0\label{eq:V-phi-r}
 \end{equation}
 
 \begin{equation}
-\partial_{\phi}W^{\phi}-\partial_{z}\lambda W^{z}=0\label{eq:W-phi-z}
+\partial_{\phi}V^{\phi}-\partial_{z}\lambda V^{z}=0\label{eq:V-phi-z}
 \end{equation}
 
-Differentiating Equation \eqref{eq:W-phi-r} with respect to $\phi$ and plugging it into Equation \eqref{eq:W-r-phi} gives:
+Differentiating \Cref{eq:V-phi-r} with respect to $\phi$ and plugging it into \Cref{eq:V-r-phi} gives:
 
 \begin{equation}
-\partial^{2}_{\phi}W^{\phi}=r^{2}e^{-2\nu}W^{\phi}
+\partial^{2}_{\phi}V^{\phi}=r^{2}e^{-2\nu}V^{\phi}
 \end{equation}
 
 For which the solution is:
 
 \begin{equation}
-W^{\phi}=A\cos(\phi re^{-\nu})+B\sin(\phi re^{-\nu})
+V^{\phi}=A\cos(\phi re^{-\nu})+B\sin(\phi re^{-\nu})
 \end{equation}
 
 Therefore:
 
 \begin{equation}
-W^{r}=\frac{re^{-\nu}}{\partial_{r}\lambda-\frac{1}{r}}\{B\cos(\phi re^{-\nu})-A\sin(\phi re^{-\nu})\}
+V^{r}=\frac{re^{-\nu}}{\partial_{r}\lambda-\frac{1}{r}}\{B\cos(\phi re^{-\nu})-A\sin(\phi re^{-\nu})\}
 \end{equation}
 
-And from Equation \eqref{eq:W-phi-z}:
+And from \Cref{eq:V-phi-z}:
 
 \begin{equation}
-W^{z}=\frac{re^{-\nu}}{\partial_{z}\lambda}\{B\cos(\phi re^{-\nu})-A\sin(\phi re^{-\nu})\}
+V^{z}=\frac{re^{-\nu}}{\partial_{z}\lambda}\{B\cos(\phi re^{-\nu})-A\sin(\phi re^{-\nu})\}
 \end{equation}
 
-Now, at $\phi=0$ we have $W=0\hat{e}_{t}+0\hat{e}_{r}+0\hat{e}_{z}+1\hat{e}_{\phi}$ which gives us $A=1$ and $B=0$. Therefore,
+Now, at $\phi=0$ we have $V=0\hat{e}_{t}+0\hat{e}_{r}+0\hat{e}_{z}+1\hat{e}_{\phi}$ which gives us $A=1$ and $B=0$. Therefore,
 
 \begin{equation}
-W=\frac{re^{-\nu}}{\partial_{r}\lambda-\frac{1}{r}}\{\cos(\phi re^{-\nu})\}\hat{e}_{r}-\frac{re^{-\nu}}{\partial_{z}\lambda}\{\sin(\phi re^{-\nu})\}\hat{e}_{z}+\cos(\phi re^{-\nu})\hat{e}_{\phi}
+V=\frac{re^{-\nu}}{\partial_{r}\lambda-\frac{1}{r}}\{\cos(\phi re^{-\nu})\}\hat{e}_{r}-\frac{re^{-\nu}}{\partial_{z}\lambda}\{\sin(\phi re^{-\nu})\}\hat{e}_{z}+\cos(\phi re^{-\nu})\hat{e}_{\phi}
 \end{equation}
 
 
