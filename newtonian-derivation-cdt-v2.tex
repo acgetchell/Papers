@@ -176,7 +176,6 @@ Starting with parallel transport along $\hat{e}_{\phi}$, \Cref{eq:x-par-xport} a
 \partial_{\phi}V^{\phi}+\Gamma^{\phi}_{\phi z}V^{z}&=0\\
 \end{aligned}
 \end{equation}
-
 Plugging in the values from \Cref{eq:christoffel-connections}, our equations are: 
 
 \begin{equation}
@@ -194,35 +193,43 @@ Plugging in the values from \Cref{eq:christoffel-connections}, our equations are
 \begin{equation}
 \partial_{\phi}V^{\phi}-\partial_{z}\lambda V^{z}=0\label{eq:V-phi-z}
 \end{equation}
-
 Differentiating \Cref{eq:V-phi-r} with respect to $\phi$ and plugging it into \Cref{eq:V-r-phi} gives:
 
 \begin{equation}
-\partial^{2}_{\phi}V^{\phi}=r^{2}e^{-2\nu}V^{\phi}
+\partial^{2}_{\phi}V^{\phi}=r^{2}e^{-2\nu}\left(\partial_r\lambda-\frac{1}{r}\right)^2V^{\phi}
 \end{equation}
+Letting 
 
+\begin{equation}
+\chi=re^{-\nu}(\partial_r\lambda-\frac{1}{r})
+\label{eq:def-chi}
+\end{equation}
+We have the simple differential equation:
+
+\begin{equation}
+\partial^2_\phi V^\phi=\chi^2 V^\phi
+\end{equation}
 For which the solution is:
 
 \begin{equation}
-V^{\phi}=A\cos(\phi re^{-\nu})+B\sin(\phi re^{-\nu})
+V^{\phi}=Ae^{\chi\phi}+Be^{-\chi\phi}
 \end{equation}
-
 Therefore:
 
 \begin{equation}
-V^{r}=\frac{re^{-\nu}}{\partial_{r}\lambda-\frac{1}{r}}\{B\cos(\phi re^{-\nu})-A\sin(\phi re^{-\nu})\}
+V^{r}=re^{-\nu}\left(-Ae^{\chi\phi}+Be^{-\chi\phi}\right)
 \end{equation}
 
 And from \Cref{eq:V-phi-z}:
 
 \begin{equation}
-V^{z}=\frac{re^{-\nu}}{\partial_{z}\lambda}\{B\cos(\phi re^{-\nu})-A\sin(\phi re^{-\nu})\}
+V^{z}=\frac{1}{\partial_{z}\lambda}\left(-Ae^{\chi\phi}+Be^{-\chi\phi}\right)
 \end{equation}
 
-Now, at $\phi=0$ we have $V=0\hat{e}_{t}+0\hat{e}_{r}+0\hat{e}_{z}+1\hat{e}_{\phi}$ which gives us $A=1$ and $B=0$. Therefore,
+Now, at $\phi=0$ we have $V=0\hat{e}_{r}+0\hat{e}_{z}+1\hat{e}_{\phi}$ which gives us $A=B=\frac{1}{2}$. Therefore:
 
 \begin{equation}
-V=\frac{re^{-\nu}}{\partial_{r}\lambda-\frac{1}{r}}\{\cos(\phi re^{-\nu})\}\hat{e}_{r}-\frac{re^{-\nu}}{\partial_{z}\lambda}\{\sin(\phi re^{-\nu})\}\hat{e}_{z}+\cos(\phi re^{-\nu})\hat{e}_{\phi}
+V|_{\phi=0}=-re^{-\nu}\sinh(\chi\phi)\hat{e}_{r}-\frac{1}{\partial_{z}\lambda}\sinh(\chi\phi)\hat{e}_{z}+\cosh(\chi\phi)\hat{e}_{\phi}
 \end{equation}
 
 
