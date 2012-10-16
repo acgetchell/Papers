@@ -11,3 +11,5 @@ Thumbs.db
 *.dvi
 *.~vsd
 *.DS_Store
+#ignore EMACS region previews
+_region_*
