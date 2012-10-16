@@ -10,3 +10,4 @@ Thumbs.db
 *.toc
 *.dvi
 *.~vsd
+*.DS_Store
