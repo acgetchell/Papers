@@ -13,3 +13,4 @@ Thumbs.db
 *.DS_Store
 #ignore EMACS region previews
 _region_*
+*.fmt
