@@ -237,7 +237,8 @@ V|_{\phi=0}=-re^{-\nu}\sinh(\chi\phi)\hat{e}_{r}-\frac{1}{\partial_{z}\lambda}\s
 
 In principle, we have solutions for axially symmetric static vacuum spacetimes. We now wish to add matter. If the object is also axially symmetric and static, then we can consider solutions in the form of an external metric $\emph{E}$ and an internal metric $\emph{I}$, where $\emph{E}$ is given by Equations \eqref{eq:weyl-metric} and \eqref{eq:nu}.
 
-The solution of Laplace's equation for a point particle of mass $m$ at $z=z_{0}$ is well known \cite{letelier1997superposition}:
+The solution of Laplace's equation for a point particle of mass $m$ at
+$z=z_{0}$ is well known \cite{letelier1997superposition}:
 
 \begin{equation}
 \lambda (r,z)=-\frac{m}{\sqrt{r^{2}+\left(z-z_{0}\right)^{2}}}\label{eq:1-m}
@@ -253,7 +254,7 @@ However, before we can consider this to be a complete solution we must consider 
 \lim_{r\rightarrow 0}\nu=0\label{eq:elem-flat}
 \end{equation}
 
-Consider Figure \ref{fig:single-mass}, consisting of a single cylindrically symmetric mass.
+Consider Figure \ref{fig:single-mass}, consisting of a single cylindrically sy11mmetric mass.
 
 \begin{figure}
 \centering
@@ -439,7 +440,27 @@ Where higher order terms of $\nu\left(0,z\right)$ are corrections to Newton's la
 
 \section{Application to Causal Dynamical Triangulations}
 
+Causal Dynamical Triangulations uses a path integral over all possible
+configurations between boundary conditions. The path integral is given
+by:
+
+\begin{equation}
+  \label{eq:path-integral}
+Z=\int \mathcal{D}[g]e^{iS_ {EH}}
+\end{equation}
+
+Where:
+
+\begin{equation}
+  \label{eq:einstein-hilbert-action}
+  S_{EH}=\frac{1}{16\pi G}\int_{M}d^4 x\sqrt{-g}\left(R-2\Lambda\right)
+\end{equation}
+
+Given \eqref{eq:path-integral} and \cite{kommu2011} 
+
 \subsection{Regge Calculus}
+
+
 
 \bibliographystyle{ieeetr}
 \bibliography{cdt-newtonian-limit-biblio}
