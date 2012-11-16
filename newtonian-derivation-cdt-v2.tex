@@ -147,7 +147,11 @@ Using \Cref{eq:nu_z,eq:nu_r} we find solutions for $\nu$ are given by:
 
 \subsection{Elementary Flatness}
 
-In order to be certain that our spacetime is truly flat, we want to check for elementary flatness, that is, that the ratio of the circumference and radius is equal to $2\pi$. To do this we will parallel transport a vector $V$ about the $\phi$-axis, find the values for $\phi=0$ and $\phi=2\pi$, and check that their ratio is $2\pi$. This will give us restrictions on our solutions for $\lambda\left(r,z\right)$ and $\nu\left(r,z\right)$.
+In order to be certain that our spacetime is truly flat, we want to
+check for elementary flatness, that is, that the ratio of the
+circumference and radius is equal to $2\pi$. To do this we will
+parallel transport a vector $V$ about the $\phi$-axis find the values
+for $\phi=0$ and $\phi=2\pi$. This will give us restrictions on our solutions for $\lambda\left(r,z\right)$ and $\nu\left(r,z\right)$.
 
 The equation for parallel transport is generally given by:
   	
@@ -163,7 +167,7 @@ That is, the directional covariant derivative is equal to zero along the curve $
 Likewise, the covariant derivative of a vector is just:
 
 \begin{equation}
-\nabla_\mu V^{\nu}=\partial_\mu V^\nu+\Gamma^\nu_{\mu\lambda}
+\nabla_\mu V^{\nu}=\partial_\mu V^\nu+\Gamma^\nu_{\mu\lambda} V^\lambda
 \end{equation}	  	
 Starting with parallel transport along $\hat{e}_{\phi}$, \Cref{eq:x-par-xport} along with the relevant Christoffel symbols $\Gamma^{r}_{\phi\phi}$, $\Gamma^{z}_{\phi\phi}$, $\Gamma^{\phi}_{\phi r}$, and $\Gamma^{\phi}_{\phi z}$ gives:
 	  	
@@ -182,6 +186,7 @@ Plugging in the values from \Cref{eq:christoffel-connections}, our equations are
 \end{equation}
 
 \begin{equation}
+\label{eq:V_z-V_phi}
 \partial_{\phi}V^{z}+\left(r^{2}e^{-2\nu}\partial_{z}\lambda\right)V^{\phi}=0
 \end{equation}
 
@@ -195,66 +200,91 @@ Plugging in the values from \Cref{eq:christoffel-connections}, our equations are
 Differentiating \Cref{eq:V-phi-r} with respect to $\phi$ and plugging it into \Cref{eq:V-r-phi} gives:
 
 \begin{equation}
-\partial^{2}_{\phi}V^{\phi}=r^{2}e^{-2\nu}\left(\partial_r\lambda-\frac{1}{r}\right)^2V^{\phi}
+\partial^{2}_{\phi}V^{\phi}+r^{2}e^{-2\nu}\left(\partial_r\lambda-\frac{1}{r}\right)^2V^{\phi}=0
 \end{equation}
 Letting 
 
 \begin{equation}
-\chi=re^{-\nu}(\partial_r\lambda-\frac{1}{r})
 \label{eq:def-chi}
+\chi=re^{-\nu}(\partial_r\lambda-\frac{1}{r})
 \end{equation}
 We have the simple differential equation:
 
 \begin{equation}
-\partial^2_\phi V^\phi=\chi^2 V^\phi
+\partial^2_\phi V^\phi+\chi^2 V^\phi=0
 \end{equation}
 For which the solution is:
 
 \begin{equation}
-V^{\phi}=Ae^{\chi\phi}+Be^{-\chi\phi}
+V^{\phi}=A\sin\chi\phi+B\cos\chi\phi
 \end{equation}
 Therefore:
 
 \begin{equation}
-V^{r}=re^{-\nu}\left(-Ae^{\chi\phi}+Be^{-\chi\phi}\right)
+V^{r}=re^{-\nu}\left(A\cos\chi\phi-B\sin\chi\phi\right)
 \end{equation}
 
-And from \Cref{eq:V-phi-z}:
+From \Cref{eq:V-phi-z}:
 
 \begin{equation}
-V^{z}=\frac{1}{\partial_{z}\lambda}\left(-Ae^{\chi\phi}+Be^{-\chi\phi}\right)
+V^{z}=\frac{\chi}{\partial_{z}\lambda}\left(A\cos\chi\phi-B\sin\chi\phi\right)
 \end{equation}
 
-Now, at $\phi=0$ we have $V=0\hat{e}_{r}+0\hat{e}_{z}+1\hat{e}_{\phi}$ which gives us $A=B=\frac{1}{2}$. Therefore:
+And finally, from \Cref{eq:V_z-V_phi} we get:
 
 \begin{equation}
-V|_{\phi=0}=-re^{-\nu}\sinh(\chi\phi)\hat{e}_{r}-\frac{1}{\partial_{z}\lambda}\sinh(\chi\phi)\hat{e}_{z}+\cosh(\chi\phi)\hat{e}_{\phi}
+  \label{eq:partial_z-partial_r}
+  \partial_z\lambda = \pm\left(\partial_r\lambda-\frac{1}{r}\right)
 \end{equation}
 
+At $\phi=0$ we have $V^\phi=1$ and $V^r=r_0$ (leaving aside for the
+moment $V^z$, since we are free to parallel transport about $\phi$
+anywhere along the z-axis). Then the condition that $V^\phi=1$ leads to
+$B=1$. Likewise, setting $V^r=r_0$ leads to $Ar_0e^{-\nu}=r_0$. To not
+have a trivial solution, we require that $A$ be some value; we set
+$A=1$ for convenience. We then have the condition that
+$e^{-\nu}\rightarrow 1$, which means that $\nu(r_0,z)\rightarrow
+0$. But $r_0$ is completely arbitrary so we can characterize this as:
+
+\begin{equation}
+  \label{eq:nu-elem-flat}
+  \lim_{r\rightarrow 0}\nu=0
+\end{equation}
+
+The general expression for the vector is then:
+
+\begin{equation}
+\label{eq:v-par-transport}
+V=re^{-\nu}\left(\cos(\chi\phi)-\sin(\chi\phi)\right)\hat{e}_{r}\mp re^{-\nu}\left(\cos(\chi\phi)-\sin(\chi\phi)\right)\hat{e}_{z}+\left(\sin(\chi\phi)+\cos(\chi\phi)\right)\hat{e}_{\phi}
+\end{equation}
+
+At $\phi=2\pi$, after transport around the circle at an arbitrary
+distance $r_0$, the vector is:
+
+\begin{equation}
+  \label{eq:v-par-transport-2pi}
+  V=r_0 e^{-\nu}
+\end{equation}
 
 
 \subsection{Matter solution to the Weyl metric}
 
-In principle, we have solutions for axially symmetric static vacuum spacetimes. We now wish to add matter. If the object is also axially symmetric and static, then we can consider solutions in the form of an external metric $\emph{E}$ and an internal metric $\emph{I}$, where $\emph{E}$ is given by Equations \eqref{eq:weyl-metric} and \eqref{eq:nu}.
+In principle, we have solutions for axially symmetric static vacuum spacetimes. We now wish to add matter. If the object is also axially symmetric and static, then we can consider solutions in the form of an external metric $\emph{E}$ and an internal metric $\emph{I}$, where $\emph{E}$ is given by \Cref{eq:weyl-metric,eq:nu}.
 
-The solution of Laplace's equation for a point particle of mass $m$ at
+The solution of Laplace's equation for a point particle of mass $\mu$ at
 $z=z_{0}$ is well known \cite{letelier1997superposition}:
 
 \begin{equation}
-\lambda (r,z)=-\frac{m}{\sqrt{r^{2}+\left(z-z_{0}\right)^{2}}}\label{eq:1-m}
+\lambda (r,z)=-\frac{\mu}{\sqrt{r^{2}+\left(z-z_{0}\right)^{2}}}\label{eq:1-m}
 \end{equation}
 
-Likewise, we can easily verify for a single particle that the solution for $\nu$ from Equations \eqref{eq:nu} and \eqref{eq:1-m} is (setting integration constants equal to zero):
+Likewise, we can easily verify for a single particle that the solution
+for $\nu$ from \Cref{eq:nu,eq:1-m} is (setting integration constants equal to zero):
 \begin{equation}
-\nu (r,z)=-\frac{m^{2}r^{2}}{\left(r^{2}+\left(z-z_{0}\right)^{2}\right)^{2}}
+\nu (r,z)=-\frac{\mu^{2}r^{2}}{\left(r^{2}+\left(z-z_{0}\right)^{2}\right)^{2}}
 \end{equation}
 
-However, before we can consider this to be a complete solution we must consider elementary flatness. This condition requires that, for any infinitesimal spacelike circle, the ratio of circumference to radius is 2$\pi$. The most likely place to run into issues is along the z-axis, for which $r=0$. Looking back at Equation (\ref{eq:weyl-metric}) we see that the necessary condition is:
-\begin{equation}
-\lim_{r\rightarrow 0}\nu=0\label{eq:elem-flat}
-\end{equation}
-
-Consider Figure \ref{fig:single-mass}, consisting of a single cylindrically sy11mmetric mass.
+Consider \Cref{fig:single-mass}, consisting of a single cylindrically symmetric mass.
 
 \begin{figure}
 \centering
@@ -280,13 +310,13 @@ Equation \eqref{eq:nu} includes a constant, which we can set by choosing that $\
 Now consider two bodies, as in Figure \ref{fig:two-masses}. Since solutions to Laplace's equation are linear, we have:
 
 \begin{equation}
-\lambda (r,z)=-\frac{m_{1}}{R_{1}}-\frac{m_{2}}{R_{2}}\label{eq:2-m}
+\lambda (r,z)=-\frac{\mu_{1}}{R_{1}}-\frac{\mu_{2}}{R_{2}}\label{eq:2-m}
 \end{equation}
 
 Plugging this into Equation \eqref{eq:nu} yields:
 
 \begin{equation}
-\nu (r,z)=-\frac{m_{1}^{2}r^{2}}{R_{1}^{4}}-\frac{m_{2}^{2}r^{2}}{R_{2}^{4}}+\frac{4m_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}\frac{r^{2}+\left(z-z_{1}\right)\left(z-z_{2}\right)}{R_{1}R_{2}}
+\nu (r,z)=-\frac{\mu_{1}^{2}r^{2}}{R_{1}^{4}}-\frac{\mu_{2}^{2}r^{2}}{R_{2}^{4}}+\frac{4\mu_{1}\mu_{2}}{\left(z_{1}-z_{2}\right)^{2}}\frac{r^{2}+\left(z-z_{1}\right)\left(z-z_{2}\right)}{R_{1}R_{2}}
 \end{equation}
 
 \begin{equation}
@@ -299,13 +329,13 @@ This means that our vacuum solution fails along the z-axis. Therefore, there mus
 Indeed, if we apply the condition that $r=0$ we get:
 
 \begin{equation}
-\nu (0,z)=\frac{4m_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}\label{eq:nu_r=0}
+\nu (0,z)=\frac{4\mu_{1}\mu_{2}}{\left(z_{1}-z_{2}\right)^{2}}\label{eq:nu_r=0}
 \end{equation}
 
 Which means that in order for Equation \eqref{eq:elem-flat} to hold, our strut must have:
 
 \begin{equation}
-\nu=-\frac{4m_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}
+\nu=-\frac{4\mu_{1}\mu_{2}}{\left(z_{1}-z_{2}\right)^{2}}
 \end{equation}
 
 To get the force on the strut, we can integrate the z-component of the stress-energy tensor over the area:
@@ -467,3 +497,5 @@ Given \eqref{eq:path-integral} and \cite{kommu2011}
 
 
 \end{document}
+
+% LocalWords:  xport
