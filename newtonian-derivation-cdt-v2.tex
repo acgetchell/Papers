@@ -217,7 +217,7 @@ Plugging in the expression for $\partial_{\phi}V^z$ from
 
 \begin{equation}
 \label{eq:def-chi}
-\chi=re^{-\nu}(\partial_r\lambda+\partial_z\lambda-\frac{1}{r})
+\chi=re^{-\nu}\sqrt{\left(\partial_z\lambda\right)^2+\left(\partial_r\lambda-\frac{1}{r}\right)^2}
 \end{equation}
 We have the simple differential equation:
 
@@ -232,13 +232,13 @@ V^{\phi}=A\sin\chi\phi+B\cos\chi\phi
 Therefore, integrating \Cref{eq:V-r-phi} with respect to $\phi$ we get:
 
 \begin{equation}
-V^{r}=\frac{re^{-\nu}(\partial_r\lambda-\frac{1}{r})}{\partial_r\lambda+\partial_z\lambda-\frac{1}{r}}\left(A\cos\chi\phi-B\sin\chi\phi\right)
+V^{r}=\frac{r^2e^{-2\nu}(\partial_r\lambda-\frac{1}{r})}{\chi}\left(A\cos\chi\phi-B\sin\chi\phi\right)
 \end{equation}
 
-And from \Cref{eq:V-phi-r-z}:
+And from \Cref{eq:V_z-V_phi}:
 
 \begin{equation}
-V^{z}=\frac{\partial_z\lambda e^{-\nu}}{\partial_r\lambda+\partial_{z}\lambda-\frac{1}{r}}\left(A\cos\chi\phi-B\sin\chi\phi\right)
+V^{z}=\frac{r^2 e^{-2\nu}\partial_z\lambda}{\chi}\left(A\cos\chi\phi-B\sin\chi\phi\right)
 \end{equation}
 
 At $\phi=0$ we have $V^\phi=1$ and $V^r=r_0$ (leaving aside for the
@@ -248,24 +248,28 @@ $B=1$. Likewise, setting $V^r=r_0$ leads to:
 
 \begin{equation}
   \label{eq:conditions}
-  \frac{Ar_0 e^{-\nu}(\partial_r\lambda-\frac{1}{r_0})}{\partial_r\lambda+\partial_z\lambda-\frac{1}{r_0}}=r_0
+  \frac{A e^{-\nu}(\partial_r\lambda-\frac{1}{r_0})}{\sqrt{\left(\partial_z\lambda\right)^2+\left(\partial_r\lambda-\frac{1}{r}\right)^2}}=1
 \end{equation}
 
-We set $A=1$ for convenience. Then from \Cref{eq:conditions}, provided
-that $\frac{1}{r_0}\gg\partial_r\lambda+\partial_z\lambda$ for small
-$r_0$ one finds that $e^{-\nu}\rightarrow 1$, or $\nu(r_0,z)\rightarrow
-0$. As $r_0$ is completely arbitrary so we can characterize this as:
+We set $A=1$ for convenience. Then from \Cref{eq:conditions} taking
+the limit as $r_0\rightarrow 0$ we find:
+
+\begin{equation}
+  \label{eq:limit-r->0}
+  \lim_{r_0\rightarrow 0} \frac{e^{-\nu(r_0,z)}(\partial_r\lambda-\frac{1}{r_0})}{\sqrt{\left(\partial_z\lambda\right)^2+\left(\partial_r\lambda-\frac{1}{r}\right)^2}}=e^{-\nu(r_0,z)}=1
+\end{equation}
+As $r_0$ is completely arbitrary we can characterize this as:
 
 \begin{equation}
   \label{eq:nu-elem-flat}
-  \lim_{r\rightarrow 0}\nu=0
+  \lim_{r\rightarrow 0}\nu(0,z)=0
 \end{equation}
 
 The general expression for the vector is then:
 
 \begin{equation}
 \label{eq:v-from-par-transport}
-V=\left(\cos\chi\phi-\sin\chi\phi\right)\left(\frac{re^{-\nu}(\partial_r\lambda-\frac{1}{r})}{\partial_r\lambda+\partial_z\lambda-\frac{1}{r}}\hat{e}_{r}+\frac{\partial_z\lambda e^{-\nu}}{\partial_r\lambda+\partial_{z}\lambda-\frac{1}{r}}\hat{e}_{z}\right)+\left(\sin(\chi\phi)+\cos(\chi\phi)\right)\hat{e}_{\phi}
+V=\left(\frac{r e^{-\nu}}{\sqrt{\left(\partial_z\lambda\right)^2+\left(\partial_r\lambda-\frac{1}{r}\right)^2}}\right)\left(\cos\chi\phi-\sin\chi\phi\right)\left(\left(\partial_r\lambda-\frac{1}{r}\right)\hat{e}_{r}+\partial_z\lambda\hat{e}_{z}\right)+\left(\sin(\chi\phi)+\cos(\chi\phi)\right)\hat{e}_{\phi}
 \end{equation}
 
 Thus, the requirement that the vector is identical at $\phi=2\pi$
