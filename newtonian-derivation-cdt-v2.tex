@@ -272,15 +272,29 @@ The general expression for the vector is then:
 V=\left(\frac{r e^{-\nu}}{\sqrt{\left(\partial_z\lambda\right)^2+\left(\partial_r\lambda-\frac{1}{r}\right)^2}}\right)\left(\cos\chi\phi-\sin\chi\phi\right)\left(\left(\partial_r\lambda-\frac{1}{r}\right)\hat{e}_{r}+\partial_z\lambda\hat{e}_{z}\right)+\left(\sin(\chi\phi)+\cos(\chi\phi)\right)\hat{e}_{\phi}
 \end{equation}
 
-Thus, the requirement that the vector is identical at $\phi=2\pi$
-after being transported around the circle starting at $\phi=0$ at an arbitrary
-distance $r_0$ is:
+Then,
 
 \begin{equation}
-  \label{eq:v-par-transport-2pi}
-  V=r_0 e^{-\nu}\left(\cos(2\pi\chi)-\sin(2\pi\chi)\right)\left(\hat{e}_{r}\mp\hat{e}_{z}\right)+\left(\sin(2\pi\chi+\cos(2\pi\chi)\right)\hat{e}_{\phi}
+  \label{eq:lim-0}
+  \lim_{{r_0}\rightarrow 0} V\left(\phi=0\right)=\hat{e_{\phi}}
 \end{equation}
 
+Thus, the requirement that the vector is identical at $\phi=2\pi$
+after being transported around the circle starting at $\phi=0$ as
+$r_0\rightarrow 0$ is, from \Cref{eq:v-from-par-transport}:
+
+\begin{equation}
+  \label{eq:lim-2-pi}
+  \sin 2\pi\chi + \cos 2\pi\chi = 1
+\end{equation}
+
+In general, this has a number of solutions: all the integers
+$n=1,2,\ldots$ and $n=\frac{1}{4}, \frac{9}{4}, \frac{17}{4},
+\ldots$. The equivalent expressions \Cref{eq:lim-0,eq:lim-2-pi} for
+arbitrary $r_0$ from \Cref{eq:v-from-par-transport} are much more
+complex.
+
+\subsection{The Schwarszchild solution in cylindrical coordinates}
 
 \subsection{Matter solution to the Weyl metric}
 
