@@ -13,7 +13,7 @@
 \usepackage{cite}
 \usepackage{url}
 \usepackage{notoccite}
-%\usepackage{nag}
+\usepackage{nag}
 \usepackage[letterpaper]{geometry}
 \usepackage{hyperref}
 \usepackage{cleveref}
@@ -134,7 +134,14 @@ Applying this complete set of relations to \Cref{eq:ricci-tensor-components} giv
 \partial^{2}_{r}\nu+\partial^{2}_{z}\nu+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}=0\label{eq:R_phiphi=0}
 \end{equation}
 
-\Cref{eq:laplace} is the two-dimensional Laplace equation in cylindrical coordinates. Plugging \Cref{eq:R_phiphi=0} into \Cref{eq:R_rr=0} gives:
+\Cref{eq:laplace} is the two-dimensional Laplace equation in cylindrical coordinates. Thus, we have:
+
+\begin{equation}
+\nabla^2\lambda(r,z)=0
+\label{eq:laplace-r-z}
+\end{equation}
+
+Plugging \Cref{eq:R_phiphi=0} into \Cref{eq:R_rr=0} gives:
 
 \begin{equation}
 \partial_{r}\nu=r\left(\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}\right)\label{eq:nu_r}
@@ -144,6 +151,29 @@ Using \Cref{eq:nu_z,eq:nu_r} we find solutions for $\nu$ are given by:
 \begin{equation}
 \nu=\int r[\left(\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}\right)dr+\left(2\partial_{r}\lambda\partial_{z}\lambda\right)dz]\label{eq:nu}
 \end{equation}
+
+So, our solutions must satisfy \Cref{eq:laplace-r-z,eq:nu}. A particular solution corresponding to two objects is:
+
+\begin{equation}
+\lambda_0=-\frac{\mu'}{r'}-\frac{\mu''}{r''}
+\label{eq:lambda-0}
+\end{equation}
+
+\begin{equation}
+\nu_0=\frac{1}{2}\frac{\mu'^{2}r^2}{r'^{4}}-\frac{1}{2}\frac{\mu''^{2}r^2}{r''^{4}}+\frac{2\mu'\mu''}{(z-z'')^2}\left[\frac{r^2+(z-z')(z-z'')}{r'r''}-1\right]
+\end{equation}
+Where $z'$ and $z''$ correspond to the positions on the z-axis for the two objects, $\mu'$ and $\mu''$ are length parameters, and:
+
+\begin{equation}
+r'=\sqrt{r^2+(z-z')^2}
+\label{eq:r-prime}
+\end{equation}
+
+\begin{equation}
+r''=\sqrt{r^2+(z-z'')^2}
+\label{eq:r-double-prime}
+\end{equation}
+
 
 \subsection{Elementary Flatness}
 
@@ -285,12 +315,11 @@ $r_0\rightarrow 0$ is, from \Cref{eq:v-from-par-transport}:
 
 \begin{equation}
   \label{eq:lim-2-pi}
-  \sin 2\pi\chi + \cos 2\pi\chi = 1
+  \sin 2\pi\chi + \cos 2\pi\chi = 1\leftarrow WRONG!
 \end{equation}
 
 In general, this has a number of solutions: all the integers
-$n=1,2,\ldots$ and $n=\frac{1}{4}, \frac{9}{4}, \frac{17}{4},
-\ldots$. The equivalent to \Cref{eq:lim-0,eq:lim-2-pi} for
+$\chi=n=1,2,\ldots$ and $n=\frac{1}{4}, \frac{9}{4}, \frac{17}{4}$. The equivalent to \Cref{eq:lim-0,eq:lim-2-pi} for
 arbitrary $r_0$ from \Cref{eq:v-from-par-transport} are much more
 complex.
 
@@ -361,7 +390,7 @@ Indeed, if we apply the condition that $r=0$ we get:
 \nu (0,z)=\frac{4\mu_{1}\mu_{2}}{\left(z_{1}-z_{2}\right)^{2}}\label{eq:nu_r=0}
 \end{equation}
 
-Which means that in order for Equation \eqref{eq:elem-flat} to hold, our strut must have:
+Which means that in order for Equation  to hold, our strut must have:
 
 \begin{equation}
 \nu=-\frac{4\mu_{1}\mu_{2}}{\left(z_{1}-z_{2}\right)^{2}}
@@ -459,7 +488,7 @@ Then:
 \int KdA=2\pi[e^{-\nu}\left(r\partial_{r}\lambda-1\right)]^{R}_{0}
 \end{equation}
 
-Taking the limit as $R\rightarrow\infty$ and recalling elementary flatness (Equation (\ref{eq:elem-flat}), the Gauss-Bonnet theorem gives:
+Taking the limit as $R\rightarrow\infty$ and recalling elementary flatness (Equation , the Gauss-Bonnet theorem gives:
 
 \begin{equation}
 K=2\pi\left(1-e^{-\nu (r,z)}\right)\delta(r)
