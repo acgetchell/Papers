@@ -373,15 +373,6 @@ Where $\lambda$, $\nu$, and $\sigma$ are functions of $r$ and $z$. Comparing thi
 	\lambda=\lambda_0 + f(r,z)
 \end{equation}
 
-\begin{equation}
-	\sigma=\lambda_0 + g(r,z)
-\end{equation}
-
-\begin{equation}
-	\nu=\nu_0 + h(r,z)
-\end{equation}
-
-
 Indeed, if we apply the condition that $r=0$ we get:
 
 \begin{equation}
