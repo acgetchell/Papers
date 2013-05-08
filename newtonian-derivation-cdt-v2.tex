@@ -159,7 +159,7 @@ Applying this complete set of relations to \Cref{eq:ricci-tensor-components} giv
 \partial^{2}_{r}\nu+\partial^{2}_{z}\nu+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}=0\label{eq:R_phiphi=0}
 \end{equation}
 
-\Cref{eq:laplace} is the two-dimensional Laplace equation in cylindrical coordinates. Thus, we have:
+\Cref{eq:laplace} is the two-dimensional Laplace equation in cylindrical coordinates. That is:
 
 \begin{equation}
 \nabla^2\lambda(r,z)=0
@@ -177,37 +177,37 @@ Using \Cref{eq:nu_z,eq:nu_r} we find solutions for $\nu$ are given by:
 \nu=\int r[\left(\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}\right)dr+\left(2\partial_{r}\lambda\partial_{z}\lambda\right)dz]\label{eq:nu}
 \end{equation}
 
-The solutions must satisfy \Cref{eq:laplace-r-z,eq:nu}. A particular solution corresponding to two objects is (given by Curzon in 1924 \cite{curzon1924} ) is:
+The solutions must satisfy \Cref{eq:laplace-r-z,eq:nu}. A particular solution corresponding to two objects (given by Curzon in 1924 \cite{curzon1924} ) is:
 
 \begin{equation}
-\lambda_0=-\frac{\mu'}{r'}-\frac{\mu''}{r''}
+\lambda_0=-\frac{\mu_1}{r_1}-\frac{\mu_2}{r_2}
 \label{eq:lambda-0}
 \end{equation}
 
 \begin{equation}
 	\label{eq:nu-0}
-	\nu_0=\frac{1}{2}\frac{\mu'^{2}r^2}{r'^{4}}-\frac{1}{2}\frac{\mu''^{2}r^2}{r''^{4}}+\frac{2\mu'\mu''}{(z-z'')^2}\left[\frac{r^2+(z-z')(z-z'')}{r'r''}-1\right]
+	\nu_0=\frac{1}{2}\frac{\mu_{1}^{2}r^2}{r_{1}^{4}}-\frac{1}{2}\frac{\mu_{2}^{2}r^2}{r_{2}^{4}}+\frac{2\mu_1\mu_2}{(z-z_2)^2}\left[\frac{r^2+(z-z_1)(z-z_2)}{r_{1}r_{2}}-1\right]
 \end{equation}
-Where $z'$ and $z''$ correspond to the positions on the z-axis for the two objects, $\mu'$ and $\mu''$ are length parameters, and:
+Where $z_1$ and $z_2$ correspond to the positions on the z-axis for the two objects, $\mu_1$ and $\mu_2$ are length parameters, and:
 
 \begin{equation}
-r'=\sqrt{r^2+(z-z')^2}
-\label{eq:r-prime}
+r_1=\sqrt{r^2+(z-z_1)^2}
+\label{eq:r_1}
 \end{equation}
 
 \begin{equation}
-r''=\sqrt{r^2+(z-z'')^2}
-\label{eq:r-double-prime}
+r_2=\sqrt{r^2+(z-z_2)^2}
+\label{eq:r_2}
 \end{equation}
 
-These solutions, however, only apply to empty space (recall the use of \Cref{eq:vacuum-solutions}. In addition, as noted by Synge \cite{synge_relativity}, the z axis between $z'$ and $z''$ must also be excluded due to violation of elementary flatness. We will examine this in the next section.
+These solutions, however, only apply to empty space (recall the use of \Cref{eq:vacuum-solutions}). In addition, as noted by Synge \cite{synge_relativity}, the z axis between $z_1$ and $z_2$ must also be excluded due to violation of elementary flatness. We will examine this in the next section.
 
 \subsection{Elementary Flatness}
 
 In order to be certain that our spacetime is truly flat, we impose the condition of elementary flatness: the ratio of the circumference to the radius is equal to $2\pi$. This gives restrictions on solutions for $\lambda\left(r,z\right)$ and $\nu\left(r,z\right)$.
 
 To do this we will first integrate in the $\hat{\phi}$ direction at
-some $r$ and then divide by $r$. Doing this gives:
+some $r$ and then divide by $r$. This gives:
 
 \begin{equation}
   \label{eq:phi-hat-length}
@@ -381,11 +381,22 @@ Where $\lambda$, $\nu$, and $\sigma$ are functions of $r$ and $z$. Comparing thi
 	\nu=\nu_0 + h(r,z)
 \end{equation}
 
+Outside the strut, we should get the vacuum solutions, which implies $f(r,z)=g(r,z)$.
 
-Indeed, if we apply the condition that $r=0$ we get:
+From far away, our configuration should have spherical symmetry (i.e. the masses and strut become pointlike). This implies:
 
 \begin{equation}
-\nu (0,z)=\frac{4\mu_{1}\mu_{2}}{\left(z_{1}-z_{2}\right)^{2}}\label{eq:nu_r=0}
+	\label{eq:h-limit}
+	\lim_{r\rightarrow \infty} h(r,z)\rightarrow 0
+\end{equation}
+
+This reasoning will be addressed in the next section.
+
+Continuing on, and using \Cref{eq:nu-elem-flat,eq:h-limit} we obtain:
+
+\begin{equation}
+\label{eq:nu_r=0}
+\nu_0 (0,z) = \left\{  \begin{array}{cl}-\frac{4\mu_{1}\mu_{2}}{\left(z_{1}-z_{2}\right)^{2}} & \mbox{for}\quad  z_{1}<z<z_{2} \\ 0 & \mbox{otherwise}\end{array}\right. 
 \end{equation}
 
 Which means that in order for \Cref{}  to hold, our strut must have:
@@ -472,6 +483,8 @@ Where higher order terms of $\nu\left(0,z\right)$ are corrections to
 Newton's law.
 
 \subsection{The Schwarszchild solution in cylindrical coordinates}
+
+To address if we are justified in applying \Cref{eq:h-limit}, we should check to see if our solution reduces to the Schwarszchild solution for $r\rightarrow\infty$.
 
 \subsection{Extrinsic Curvature}
 
