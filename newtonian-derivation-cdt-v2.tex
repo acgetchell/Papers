@@ -381,13 +381,14 @@ Where $\lambda$, $\nu$, and $\sigma$ are functions of $r$ and $z$. Comparing thi
 	\nu=\nu_0 + h(r,z)
 \end{equation}
 
-<<<<<<< HEAD
-Outside the strut, we should get the vacuum solutions, which implies $f(r,z)=g(r,z)$.
-=======
 In empty space outside the strut \Cref{eq:weyl-metric} reduces to \Cref{eq:weyl-vacuum-metric} which implies $f(r,z)=g(r,z)$.
 
-Recall from \Cref{eq:nu-elem-flat}
->>>>>>> Editing \S1.3
+Evaluating \Cref{eq:nu-0} for $r\rightarrow 0$ and taking into account the condition of \Cref{eq:nu-elem-flat} we obtain:
+
+\begin{equation}
+\label{eq:nu_r=0}
+\nu_0 (0,z) = \left\{  \begin{array}{cl}\frac{\mu_{1}\mu_{2}}{\left(z_{1}-z_{2}\right)^{2}} & \mbox{for}\quad  z_{1}<z<z_{2} \\ 0 & \mbox{otherwise}\end{array}\right. 
+\end{equation}
 
 From far away, our configuration should have spherical symmetry (i.e. the masses and strut become pointlike). This implies:
 
@@ -398,17 +399,11 @@ From far away, our configuration should have spherical symmetry (i.e. the masses
 
 This reasoning will be addressed in the next section.
 
-Continuing on, and using \Cref{eq:nu-elem-flat,eq:h-limit} we obtain:
+This in turn implies that:
 
 \begin{equation}
-\label{eq:nu_r=0}
-\nu_0 (0,z) = \left\{  \begin{array}{cl}-\frac{4\mu_{1}\mu_{2}}{\left(z_{1}-z_{2}\right)^{2}} & \mbox{for}\quad  z_{1}<z<z_{2} \\ 0 & \mbox{otherwise}\end{array}\right. 
-\end{equation}
-
-Which means that in order for \Cref{}  to hold, our strut must have:
-
-\begin{equation}
-\nu=-\frac{4\mu_{1}\mu_{2}}{\left(z_{1}-z_{2}\right)^{2}}
+\label{eq:h_r=0}
+h_0 (0,z) = \left\{  \begin{array}{cl}-\frac{\mu_{1}\mu_{2}}{\left(z_{1}-z_{2}\right)^{2}} & \mbox{for}\quad  z_{1}<z<z_{2} \\ 0 & \mbox{otherwise}\end{array}\right. 
 \end{equation}
 
 To get the force on the strut, we can integrate the z-component of the stress-energy tensor over the area:
