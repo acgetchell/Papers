@@ -200,7 +200,34 @@ r_2=\sqrt{r^2+(z-z_2)^2}
 \label{eq:r_2}
 \end{equation}
 
-These solutions, however, only apply to empty space (recall the use of \Cref{eq:vacuum-solutions}). In addition, as noted by Synge \cite{synge_relativity}, the z axis between $z_1$ and $z_2$ must also be excluded due to violation of elementary flatness. We will examine this in the next section.
+Recall that earlier we asserted in \Cref{eq:vacuum-solutions} that we had a vacuum solution. In order for this to be true, our Ricci scalar better be equal to zero, since a vacuum solution actually corresponds to:
+
+\begin{equation}
+G_{\mu\nu}=0
+\end{equation}
+
+Whence Einstein's equation:
+
+\begin{equation}
+G_{\mu\nu}\equiv R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}=8\pi GT_{\mu\nu}
+\label{eq:einstein}
+\end{equation}
+
+We have all of the relevant components, except the Ricci scalar:
+
+\begin{equation}
+R=R_{\mu}^{\mu}=g^{\mu\nu}R_{\mu\nu}
+\end{equation}
+
+Which is:
+
+\begin{equation}
+R=2e^{2\left(\lambda-\nu\right)}\left(\partial^{2}_{r}\nu+\partial^{2}_{z}\nu-\partial^{2}_{r}\lambda-\partial^{2}_{z}\lambda+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}-\frac{1}{r}\partial_{r}\lambda\right)\label{eq:R}
+\end{equation}
+
+Using \Cref{eq:laplace,eq:R_phiphi=0} and plugging them into \Cref{eq:R} we see that this is indeed the case.
+
+Thus by construction, these solutions only apply to empty space (recall \Cref{eq:vacuum-solutions}). In addition, as noted by Synge \cite{synge_relativity}, the z axis between $z_1$ and $z_2$ must also be excluded due to violation of elementary flatness. We will examine this in the next section.
 
 \subsection{Elementary Flatness}
 
@@ -370,24 +397,32 @@ ds^{2}=e^{2\lambda}dt^{2}-e^{2\left(\nu-\sigma\right)}\left(dr^{2}+dz^{2}\right)
 Where $\lambda$, $\nu$, and $\sigma$ are functions of $r$ and $z$. Comparing this to the solutions of the empty-space metric \Cref{eq:weyl-vacuum-metric}, and allowing for deviations from these values due to the strut, we make the identifications:
 
 \begin{equation}
+	\label{eq:lambda-matter}
 	\lambda=\lambda_0 + f(r,z)
 \end{equation}
 
 \begin{equation}
+	\label{eq:sigma-matter}
 	\sigma=\lambda_0 + g(r,z)
 \end{equation}
 
 \begin{equation}
+	\label{eq:nu-matter}
 	\nu=\nu_0 + h(r,z)
 \end{equation}
 
-In empty space outside the strut \Cref{eq:weyl-metric} reduces to \Cref{eq:weyl-vacuum-metric} which implies $f(r,z)=g(r,z)$.
+In empty space outside the strut the metric of \Cref{eq:weyl-metric} reduces to that of  \Cref{eq:weyl-vacuum-metric}, which implies:
 
-Evaluating \Cref{eq:nu-0} for $r\rightarrow 0$ and taking into account the condition of \Cref{eq:nu-elem-flat} we obtain:
+\begin{equation}
+	\label{eq:f=g}
+	f(r,z)=g(r,z)
+\end{equation}
+
+Evaluating \Cref{eq:nu-0} for $r\rightarrow 0$ (n.b. you must take the one negative and one positive root of the two square root terms to get a non-zero answer) and taking into account the condition of \Cref{eq:nu-elem-flat} we obtain:
 
 \begin{equation}
 \label{eq:nu_r=0}
-\nu_0 (0,z) = \left\{  \begin{array}{cl}\frac{\mu_{1}\mu_{2}}{\left(z_{1}-z_{2}\right)^{2}} & \mbox{for}\quad  z_{1}<z<z_{2} \\ 0 & \mbox{otherwise}\end{array}\right. 
+\nu_0 (0,z) = \left\{  \begin{array}{cl}\frac{-4\mu_{1}\mu_{2}}{\left(z_{1}-z_{2}\right)^{2}} & \mbox{for}\quad  z_{1}<z<z_{2} \\ 0 & \mbox{otherwise}\end{array}\right. 
 \end{equation}
 
 From far away, our configuration should have spherical symmetry (i.e. the masses and strut become pointlike). This implies:
@@ -399,93 +434,62 @@ From far away, our configuration should have spherical symmetry (i.e. the masses
 
 This reasoning will be addressed in the next section.
 
-This in turn implies that:
+Combining \Cref{eq:nu-matter} with \Cref{eq:nu_r=0} and the condition of \Cref{eq:nu-elem-flat} yields:
 
 \begin{equation}
 \label{eq:h_r=0}
-h_0 (0,z) = \left\{  \begin{array}{cl}-\frac{\mu_{1}\mu_{2}}{\left(z_{1}-z_{2}\right)^{2}} & \mbox{for}\quad  z_{1}<z<z_{2} \\ 0 & \mbox{otherwise}\end{array}\right. 
+h_0 (0,z) = \left\{  \begin{array}{cl}\frac{4\mu_{1}\mu_{2}}{\left(z_{1}-z_{2}\right)^{2}} & \mbox{for}\quad  z_{1}<z<z_{2} \\ 0 & \mbox{otherwise}\end{array}\right. 
 \end{equation}
 
 To get the force on the strut, we can integrate the z-component of the stress-energy tensor over the area:
 
 \begin{equation}
-F_{z}=\int T_{zz}d\sigma
+	\label{eq:F_z}
+	F_{z}=\int T_{zz}d\sigma
 \end{equation}
 
-We can get the stress-energy tensor from Einstein's equation:
+We can get this by processing the metric of \Cref{eq:weyl-metric} through Einstein's equation (\ref{eq:einstein}) resulting in:
 
 \begin{equation}
-G_{\mu\nu}\equiv R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}=8\pi GT_{\mu\nu}\label{eq:einstein}
+\label{eq:G_zz}
+G_{zz}=-\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}+\frac{1}{r}\partial_{r}\nu -\frac{1}{r}\partial_{r}\sigma +\frac{1}{r}\partial_{r}\lambda 
 \end{equation}
 
-We have all of the relevant components, except the Ricci scalar:
+Taking a first order approximation to \Cref{eq:G_zz} eliminates the first two squared terms. Applying \Cref{eq:lambda-matter,eq:sigma-matter,eq:nu-matter,eq:f=g} reduces to:
 
 \begin{equation}
-R=R_{\mu}^{\mu}=g^{\mu\nu}R_{\mu\nu}
+\label{eq:G_zz_reduced}
+G_{zz}=-\frac{1}{r}\left(\partial_{r}\left(\nu_0+h(r,z)\right)\right) 
 \end{equation}
 
-Which is:
+Now, recalling \Cref{eq:h-limit} $h(r,z)$ can be taken as being defined at $r=0$. Recalling \Cref{eq:nu-elem-flat} cancels out the $\nu_0$ term, and we are left with:
 
 \begin{equation}
-R=2e^{2\left(\lambda-\nu\right)}\left(\partial^{2}_{r}\nu+\partial^{2}_{z}\nu-\partial^{2}_{r}\lambda-\partial^{2}_{z}\lambda+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}-\frac{1}{r}\partial_{r}\lambda\right)\label{eq:R}
+\label{eq:T_zz}
+T_{zz}=\frac{1}{8\pi G}G_{zz}=-\frac{1}{8\pi Gr}\partial_{r}h_0(0,z)
 \end{equation}
 
-Recall that earlier we asserted in \Cref{eq:vacuum-solutions} that we had a vacuum solution. In order for this to be true, our Ricci scalar better be equal to zero, since a vacuum solution actually corresponds to:
+The integration measure for \Cref{eq:F_z} $d\sigma=drd\phi$.
+
+Substituting:
 
 \begin{equation}
-G_{\mu\nu}=0
+F=\int d\phi\int dr T_{zz}=\frac{1}{8\pi Gr}2\pi r\int dr\partial_{r}h_0(0,z)=\frac{1}{4G}\frac{-4\mu_1\mu_2}{\left(z_1-z_2\right)^2}
 \end{equation}
 
-Using \Cref{eq:laplace,eq:R_phiphi=0} and plugging them into \Cref{eq:R} we see that this is indeed the case.
-
-Continuing, we get:
+The first order approximation (recalling that $\mu_{1}=Gm_{1}$ and $\mu_{2}=Gm_{2}$) is:
 
 \begin{equation}
-G_{zz}=\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}-\frac{1}{r}\partial_{r}\nu \label{eq:G_zz}
+F=-\frac{Gm_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}
 \end{equation}
 
-Again, generally speaking $G_{zz}=0$, which we can see by plugging \Cref{eq:nu_r} into \Cref{eq:G_zz}. So we have this object which is zero everywhere except along the z-axis.
+Where the negative sign indicates that gravity is attractive \cite{carroll2003spacetime}, and higher order terms from the derivative terms squared are corrections to Newton's law.
 
-That object is a conical singularity \cite{araujo_static_1995}.
-
-(fill in)
-
-Where the delta-function $\delta(r)$ is given by \cite{araujo_static_1995}:
-
-\begin{equation}
-\delta(r)=\int^{\infty}_{0} \int^{2\pi}_{0} \delta (r)e^{2\left(\lambda-\nu\right)}rdrd\phi =1
-\end{equation} 
-
-The two-dimensional sub-manifold in $\left(r,\phi\right)$ is diagonal, so that the only non vanishing components of the Ricci tensor are $R_{rr}=R_{\phi\phi}=K$. Applying Einstein's equation (\Cref{eq:einstein}) we have:
-
-\begin{equation}
-T_{zz}=\frac{1}{8\pi G}2\pi\left(1-e^{-\nu (r,z)}\right)\delta(r)
-\end{equation} 
-
-Thus:
-
-\begin{equation}
-F=\int T_{zz}dA=\frac{1}{4G}\left(1-e^{-\nu (r,z)}\right)
-\end{equation}
-
-Where G is Newton's constant. Looking over our Newtonian potentials ($\lambda$) from Equation (fill in) (which suppressed factors of G) and expanding the exponential:
-
-\begin{equation}
-e^{-\nu\left(0,z\right)}=1+\left(-\nu\left(0,z\right)\right)+\left(-\nu\left(0,z\right)\right)^{2}+...
-\end{equation}
-
-After applying the solution for $\nu(0,z)$ from Equation (\ref{eq:nu_r=0}), the first order approximation is (recalling that $\mu_{1}=Gm_{1}$ and $\mu_{2}=Gm_{2}$):
-
-\begin{equation}
-F=\frac{Gm_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}
-\end{equation}
-
-Where higher order terms of $\nu\left(0,z\right)$ are corrections to
-Newton's law.
+Thus, integrating the stress-energy of the Weyl strut between two stationary masses gives Newton's law.
 
 \subsection{The Schwarszchild solution in cylindrical coordinates}
 
-To address if we are justified in applying \Cref{eq:h-limit}, we should check to see if our solution reduces to the Schwarszchild solution for $r\rightarrow\infty$.
+We haveTo address if we are justified in applying \Cref{eq:h-limit}, we should check to see if our solution reduces to the Schwarszchild solution for $r\rightarrow\infty$.
 
 \subsection{Extrinsic Curvature}
 
