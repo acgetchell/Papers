@@ -384,8 +384,9 @@ complex.
 What this tells us is that we do not, in general, have elementary flatness around the z-axis. We must therefore exclude it from our solution.
 
 \subsection{Matter solution to the Weyl metric}
+\label{subsec:matter-solution}
 
-In principle, we have solutions for axially symmetric static vacuum spacetimes, subject to the conditions of \Cref{eq:lambda-elem-flat,eq:nu-elem-flat}. These solutions, however, exclude the general masses defined by \Cref{eq:lambda-0,eq:nu-0}, as well as the $z=0$ axis ("strut") between them. We now wish to consider these objects. 
+In principle, we have solutions for axially symmetric static vacuum spacetimes, subject to the conditions of \Cref{eq:lambda-elem-flat,eq:nu-elem-flat}. These solutions, however, exclude the general masses defined by \Cref{eq:lambda-0,eq:nu-0}, as well as the $z=0$ axis (the Weyl strut) between them. We now wish to consider these objects. 
 
 The most general cylindrically symmetric static metric may be expressed as:
 
@@ -477,19 +478,19 @@ Substituting:
 F=\int d\phi\int dr T_{zz}=\frac{1}{8\pi Gr}2\pi r\int dr\partial_{r}h_0(0,z)=\frac{1}{4G}\frac{-4\mu_1\mu_2}{\left(z_1-z_2\right)^2}
 \end{equation}
 
-The first order approximation (recalling that $\mu_{1}=Gm_{1}$ and $\mu_{2}=Gm_{2}$) is:
+The first order approximation (recalling that $\mu_{1}=Gm_{1}$ and $\mu_{2}=Gm_{2}$) is therefore:
 
 \begin{equation}
 F=-\frac{Gm_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}
 \end{equation}
 
-Where the negative sign indicates that gravity is attractive \cite{carroll2003spacetime}, and higher order terms from the derivative terms squared are corrections to Newton's law.
+Where the negative sign indicates that gravity is attractive \cite{carroll2003spacetime}, and the squared derivative terms we excluded from \Cref{eq:G_zz} are corrections to Newton's law.
 
 Thus, integrating the stress-energy of the Weyl strut between two stationary masses gives Newton's law.
 
 \subsection{The Schwarszchild solution in cylindrical coordinates}
 
-We haveTo address if we are justified in applying \Cref{eq:h-limit}, we should check to see if our solution reduces to the Schwarszchild solution for $r\rightarrow\infty$.
+We have a loose end in \Cref{subsec:matter-solution}. To address if we are justified in applying \Cref{eq:h-limit}, we should check to see if our solution reduces to the Schwarszchild solution for $r\rightarrow\infty$.
 
 \subsection{Extrinsic Curvature}
 
