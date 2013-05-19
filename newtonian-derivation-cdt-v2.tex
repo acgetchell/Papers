@@ -62,10 +62,10 @@ Starting from the cylindrically symmetric (Weyl) vacuum metric \cite{synge_relat
 
 \begin{equation}
 g_{\mu\nu}=\left(\begin{array}{cccc}
-e^{2\lambda}dt^{2} & 0 & 0 & 0\\
-0 & -e^{2\left(\nu-\lambda\right)}dr^{2} & 0 & 0\\
-0 & 0 & -e^{2\left(\nu-\lambda\right)}dz^{2} & 0\\
-0 & 0 & 0 & -\frac{r^{2}}{e^{2\lambda}}d\phi^{2}
+e^{2\lambda} & 0 & 0 & 0\\
+0 & -e^{2\left(\nu-\lambda\right)} & 0 & 0\\
+0 & 0 & -e^{2\left(\nu-\lambda\right)} & 0\\
+0 & 0 & 0 & -\frac{r^{2}}{e^{2\lambda}}
 \end{array}\right)\label{eq:general-axisymmetric-static-matrix-metric}
 \end{equation}
 
@@ -140,12 +140,42 @@ R_{\phi\phi}&=re^{-2\nu}\left(r\partial^{2}_{r}\lambda+r\partial^{2}_{z}\lambda+
 \label{eq:ricci-tensor-components}
 \end{equation}
 
-Einstein's equation in a vacuum is:
+The Ricci scalar is defined as:
+
 \begin{equation}
-R_{\mu\nu}=0\label{eq:vacuum-solutions}
+R=R_{\mu}^{\mu}=g^{\mu\nu}R_{\mu\nu}
 \end{equation}
 
-Applying this complete set of relations to \Cref{eq:ricci-tensor-components} gives the following:
+Which is:
+
+\begin{equation}
+R=2e^{2\left(\lambda-\nu\right)}\left(\partial^{2}_{r}\nu+\partial^{2}_{z}\nu-\partial^{2}_{r}\lambda-\partial^{2}_{z}\lambda+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}-\frac{1}{r}\partial_{r}\lambda\right)\label{eq:R}
+\end{equation}
+
+Einstein's equation in a vacuum is:
+
+\begin{equation}
+\label{eq:einstein-vacuum-equation}
+G_{\mu\nu}=0
+\end{equation}
+
+Whence Einstein's equation:
+
+\begin{equation}
+G_{\mu\nu}\equiv R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}=8\pi GT_{\mu\nu}
+\label{eq:einstein}
+\end{equation}
+
+However, we can take a shortcut by using:
+
+\begin{equation}
+R_{\mu\nu}=0
+\label{eq:vacuum-solutions}
+\end{equation}
+
+Since the trace of a zero-valued matrix is identically zero, and thus \Cref{eq:vacuum-solutions} automatically satisfies \Cref{eq:einstein-vacuum-equation}.
+
+Applying \Cref{eq:vacuum-solutions} to \Cref{eq:ricci-tensor-components} gives the following:
 \begin{equation}
 \partial^{2}_{r}\lambda+\frac{1}{r}\partial_{r}\lambda+\partial^{2}_{z}\lambda=0\label{eq:laplace}
 \end{equation}
@@ -200,34 +230,9 @@ r_2=\sqrt{r^2+(z-z_2)^2}
 \label{eq:r_2}
 \end{equation}
 
-Recall that earlier we asserted in \Cref{eq:vacuum-solutions} that we had a vacuum solution. In order for this to be true, our Ricci scalar better be equal to zero, since a vacuum solution actually corresponds to:
+Just as a final check, plugging \Cref{eq:laplace,eq:R_phiphi=0} into \Cref{eq:R} gives $R=0$, which shows that our solutions are consistent with our assumptions.
 
-\begin{equation}
-G_{\mu\nu}=0
-\end{equation}
-
-Whence Einstein's equation:
-
-\begin{equation}
-G_{\mu\nu}\equiv R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}=8\pi GT_{\mu\nu}
-\label{eq:einstein}
-\end{equation}
-
-We have all of the relevant components, except the Ricci scalar:
-
-\begin{equation}
-R=R_{\mu}^{\mu}=g^{\mu\nu}R_{\mu\nu}
-\end{equation}
-
-Which is:
-
-\begin{equation}
-R=2e^{2\left(\lambda-\nu\right)}\left(\partial^{2}_{r}\nu+\partial^{2}_{z}\nu-\partial^{2}_{r}\lambda-\partial^{2}_{z}\lambda+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}-\frac{1}{r}\partial_{r}\lambda\right)\label{eq:R}
-\end{equation}
-
-Using \Cref{eq:laplace,eq:R_phiphi=0} and plugging them into \Cref{eq:R} we see that this is indeed the case.
-
-Thus by construction, these solutions only apply to empty space (recall \Cref{eq:vacuum-solutions}). In addition, as noted by Synge \cite{synge_relativity}, the z axis between $z_1$ and $z_2$ must also be excluded due to violation of elementary flatness. We will examine this in the next section.
+By construction, these solutions only apply to empty space, and so must exclude the two objects at $z_1$ and $z_2$. In addition, as noted by Synge \cite{synge_relativity}, the z axis between the two objects must also be excluded due to violation of elementary flatness. We will examine this in the next section.
 
 \subsection{Elementary Flatness}
 
@@ -470,15 +475,17 @@ Now, recalling \Cref{eq:h-limit} $h(r,z)$ can be taken as being defined at $r=0$
 T_{zz}=\frac{1}{8\pi G}G_{zz}=-\frac{1}{8\pi Gr}\partial_{r}h_0(0,z)
 \end{equation}
 
-The integration measure for \Cref{eq:F_z} $d\sigma=drd\phi$.
+The integration measure for \Cref{eq:F_z} $d\sigma=rdrd\phi$.
 
 Substituting:
 
 \begin{equation}
-F=\int d\phi\int dr T_{zz}=\frac{1}{8\pi Gr}2\pi r\int dr\partial_{r}h_0(0,z)=\frac{1}{4G}\frac{-4\mu_1\mu_2}{\left(z_1-z_2\right)^2}
+F=\int rd\phi\int dr T_{zz}=\frac{1}{8\pi Gr}2\pi r\int dr\partial_{r}h_0(0,z)=\frac{1}{4G}\frac{-4\mu_1\mu_2}{\left(z_1-z_2\right)^2}
 \end{equation}
 
-The first order approximation (recalling that $\mu_{1}=Gm_{1}$ and $\mu_{2}=Gm_{2}$) is therefore:
+Recall that \Cref{eq:lambda-0,eq:nu-0} as solutions to \Cref{eq:einstein-vacuum-equation} contain the length parameters $\mu_1$ and $\mu_2$ in order to make them dimensionless overall. Dimensional analysis (recall we are working in units of $c=1$) shows that $\mu_1$ can be taken as $Gm_{1}$ and $\mu_2=Gm_2$.
+
+Thus, the first order approximation is:
 
 \begin{equation}
 F=-\frac{Gm_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}
@@ -486,7 +493,7 @@ F=-\frac{Gm_{1}m_{2}}{\left(z_{1}-z_{2}\right)^{2}}
 
 Where the negative sign indicates that gravity is attractive \cite{carroll2003spacetime}, and the squared derivative terms we excluded from \Cref{eq:G_zz} are corrections to Newton's law.
 
-Thus, integrating the stress-energy of the Weyl strut between two stationary masses gives Newton's law.
+Therefore, integrating the stress-energy of the Weyl strut between two stationary masses gives Newton's law (plus higher order corrections).
 
 \subsection{The Schwarszchild solution in cylindrical coordinates}
 
