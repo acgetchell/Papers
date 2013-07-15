@@ -1,0 +1,140 @@
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\hypersetup{
+%    bookmarks=true,         % show bookmarks bar?
+%    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+%    pdftoolbar=true,        % show Acrobat’s toolbar?
+%    pdfmenubar=true,        % show Acrobat’s menu?
+%    pdffitwindow=false,     % window fit to page when opened
+%    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={The Newtonian approximation in Causal Dynamical Triangulations},    % title
+    pdfauthor={Adam Getchell},     % author
+    pdfsubject={Causal Dynamical Triangulations},   % subject of the document
+%    pdfcreator={Creator},   % creator of the document
+%    pdfproducer={Producer}, % producer of the document
+    pdfkeywords={cdt quantum gravity}, % list of keywords
+%    pdfnewwindow=true,      % links in new window
+    colorlinks=true,         % false: boxed links; true: colored links, false is default
+    linkcolor=blue,          % color of internal links, red is default
+    citecolor=red,        % color of links to bibliography, 'green' is default
+%    filecolor=magenta,      % color of file links
+%    urlcolor=violet             % color of external links, cyan is default
+}
+
+\usepackage{cleveref}
+\crefname{equation}{equation}{equations}
+
+\title{The Newtonian approximation in Causal Dynamical Triangulations}
+\author{\textbf{Adam Getchell}\footnote{\href{mailto:acgetchell@ucdavis.edu}{acgetchell@ucdavis.edu}}\\\textit{Department of Physics, University of California, Davis, CA, 95616}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Your abstract.
+\end{abstract}
+
+\section{Introduction}
+
+Causal Dynamical Triangulations \cite{cdt} is a promising approach to the problems of quantum gravity. Since the 1930's \cite{rovelli_notes_2000} attempts have been made to unify quantum mechanics with general relativity. "This is a hard problem, no one agrees on the answers, and perhaps if we knew why it was hard maybe it wouldn't be hard." The underlying difficulties are that observables in general relativity are necessarily non-local, making it difficult to write down a theory that extracts observable results.
+
+Causal Dynamical Triangulations uses the path integral approach, and has had notable successes \cite{kommu_validation_2011}. However, a difficulty is taking and extracting data that has physical meaning. One cannot identify points in a path integral, nor talk about functions of a point.
+
+A fundamental question is, does Causal Dynamical Triangulations have physical meaning? Attempts have been made before to relate CDT to the semi-classical limit \cite{ambjorn_semiclassical_2011,ambjorn_semiclassical}, but not everyone is convinced.
+
+This paper attempts to answer this question by directly finding the Newtonian approximation in Causal Dynamical Triangulations.
+
+\section{Newton's Law of Gravitation from General Relativity}
+\label{sec:newtons-law}
+
+Starting from the cylindrically symmetric (Weyl) vacuum metric \cite{synge_relativity}
+
+\begin{equation}
+	ds^{2}=e^{2\lambda}dt^{2}-e^{2\left(\nu-\lambda\right)}\left(dr^{2}+dz^{2}\right)-r^{2}e^{-2\lambda}d\phi^{2}
+	\label{eq:weyl-vacuum-metric}
+\end{equation}
+where $\lambda$ and $\nu$ are both functions of $r$ and $z$ we find that
+
+\begin{equation}
+\partial^{2}_{r}\lambda+\frac{1}{r}\partial_{r}\lambda+\partial^{2}_{z}\lambda=\nabla^2\lambda(r,z)=0
+\label{eq:laplace-r-z}
+\end{equation}
+
+\begin{equation}
+\nu=\int r[\left(\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}\right)dr+\left(2\partial_{r}\lambda\partial_{z}\lambda\right)dz].
+\label{eq:nu}
+\end{equation}
+
+The solutions must satisfy \Cref{eq:laplace-r-z,eq:nu}. A particular solution corresponding to two objects (given by Curzon in 1924 \cite{curzon1924} ) is
+
+\begin{equation}
+\lambda_0=-\frac{\mu_1}{r_1}-\frac{\mu_2}{r_2}
+\label{eq:lambda-0}
+\end{equation}
+
+\begin{equation}
+	\label{eq:nu-0}
+	\nu_0=\frac{1}{2}\frac{\mu_{1}^{2}r^2}{r_{1}^{4}}-\frac{1}{2}\frac{\mu_{2}^{2}r^2}{r_{2}^{4}}+\frac{2\mu_1\mu_2}{(z-z_2)^2}\left[\frac{r^2+(z-z_1)(z-z_2)}{r_{1}r_{2}}-1\right]
+\end{equation}
+where $z_1$ and $z_2$ correspond to the positions on the z-axis for the two objects, $\mu_1$ and $\mu_2$ are length parameters, and
+
+\begin{equation}
+r_1=\sqrt{r^2+(z-z_1)^2}
+\label{eq:r_1}
+\end{equation}
+
+\begin{equation}
+r_2=\sqrt{r^2+(z-z_2)^2}.
+\label{eq:r_2}
+\end{equation}
+
+Up to this point we have been assuming spacetime is truly flat. We check this assumption via the condition of elementary flatness: the ratio of the circumference to the radius is equal to $2\pi$. 
+
+To do this we integrate in the $\hat{\phi}$ direction at
+some $r$ and then divide by $r$. This gives
+
+\begin{equation}
+  \label{eq:phi-hat-length}
+  C=\int ds =
+  \int_0^{2\pi}\sqrt{r^2e^{-2\lambda}d\phi^2}={2\pi re^{-\lambda}}.
+\end{equation}
+
+Then the condition that $\frac{C}{r}=2\pi$ holds provided that
+
+\begin{equation}
+	\label{eq:lambda-elem-flat}
+	\lambda(0,z)\rightarrow 0.
+\end{equation} 
+
+But \Cref{eq:lambda-0} contradicts \Cref{eq:lambda-elem-flat} and $\frac{C}{r}$ is not at all well-defined as $r\rightarrow 0$. Indeed, Einstein and Rosen \cite{einstein-rosen-1936} first noted that the Weyl metric cannot be a purely vacuum solution, and that there must be a strut on the z-axis.
+
+Now to the salient point: we can use this strut to our advantage by obtaining $T_{zz}$ and thence the Newtonian gravitational interaction via
+
+\begin{equation}
+	\label{eq:F_z}
+	F_{z}=\int T_{zz}d\sigma
+\end{equation}
+as was done by Katz in 1967 \cite{katz1967derivation}. We will use a different approach, however, from either Katz or more recent literature \cite{letelier_superposition_1997}.
+
+Taking the parallel transport of a vector around the strut, we obtain
+
+TODO
+
+Using the appropriate connections we obtain
+
+TODO
+
+Now we can just read off the value of $G_{zz}$ and thence $T_{zz}$ to get
+
+TODO
+
+\bibliographystyle{ieeetr}
+\bibliography{cdt-newtonian-limit-biblio}
+
+\end{document}
