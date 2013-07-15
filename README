@@ -6,9 +6,17 @@ Higgs = A look at the Higg's search at the TevaTron (out of date due to results 
 
 LIGO = A look at the  Laser Interferometer Gravitational Wave Observatory and what we might find from it
 
-newtonian-derivation-cdt = Current research into the Newtonian limit of CDT
-* newtonian-derivation-cdt.tex = LaTeX source
-* cdt-newtonian-limit-biblio.bib = BibTeX bibliography
+newtonian-derivation-cdt-v2 = All the equations in detail for the Newtonian limit of CDT
+* newtonian-derivation-cdt-v2.tex = LaTeX source
+* newtonian-derivation-cdt-v2.bib = BibTeX bibliography
 * Initialization.png = Proposed algorithm overview
+* newtonian-derivation-cdt-v2.* = LaTeX compilation stuff
+This paper is archived on WriteLaTeX
+
+cdt-newtonian-limit = Writeup of planned research
+* cdt-newtonian-limit.tex = LaTeX source
+* cdt-newtonian-limit-biblio.bi = BibTeX bibliography
+* cdt-newtonian-limit.* = LaTex compilation stuff
+This paper is also on WriteLaTeX
 
 TraversableLorenzianWormholes-Overview = A paper examining the 1988 findings of Morris/Thorne and results since on the practicality of constructing wormholes
