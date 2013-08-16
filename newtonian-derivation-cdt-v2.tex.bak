@@ -526,7 +526,7 @@ Given \eqref{eq:path-integral} and \cite{kommu2011}
 
 
 \bibliographystyle{ieeetr}
-\bibliography{cdt-newtonian-limit-biblio}
+\bibliography{newtonian-derivation-cdt-v2}
 
 
 \end{document}
