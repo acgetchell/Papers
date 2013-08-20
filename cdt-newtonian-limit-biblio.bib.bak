@@ -1,0 +1,136 @@
+@article{cdt,
+	title = {A non-perturbative Lorentzian path integral for gravity},
+	volume = {85},
+	lccn = {0000},
+	url = {http://arxiv.org/abs/hep-th/0002050},
+	abstract = {A well-defined regularized path integral for Lorentzian quantum gravity in three and four dimensions is constructed, given in terms of a sum over dynamically triangulated causal space-times. Each Lorentzian geometry and its associated action have a unique Wick rotation to the Euclidean sector. All space-time histories possess a distinguished notion of a discrete proper time. For finite lattice volume, the associated transfer matrix is self-adjoint and bounded. The reflection positivity of the model ensures the existence of a well-defined Hamiltonian. The degenerate geometric phases found previously in dynamically triangulated Euclidean gravity are not present. The phase structure of the new Lorentzian quantum gravity model can be readily investigated by both analytic and numerical methods.},
+	urldate = {2008-05-05},
+	journal = {Physical Review Letters},
+	author = {{J. Ambjorn} and {J. Jurkiewicz} and {R. Loll}},
+	month = feb,
+	year = {2000},
+	note = {{Phys.Rev.Lett.} 85 (2000)},
+	keywords = {Causal Dynamical Triangulations, quantum gravity, Read},
+	pages = {924--7},
+	file = {0002050v3.pdf:files/381/0002050v3.pdf:application/pdf}
+}
+
+@article{rovelli_notes_2000,
+	title = {Notes for a brief history of quantum gravity},
+	lccn = {0104},
+	url = {http://arxiv.org/abs/gr-qc/0006061},
+	abstract = {I sketch the main lines of development of the research in quantum gravity, from the first explorations in the early thirties to nowadays.},
+	urldate = {2011-03-11},
+	journal = {gr-qc/0006061},
+	author = {Rovelli, Carlo},
+	month = jun,
+	year = {2000},
+	keywords = {General Relativity and Quantum Cosmology, High Energy Physics - Theory},
+	file = {arXiv.org Snapshot:/Users/getchell/Library/Application Support/Zotero/Profiles/2wundcq4.default/zotero/storage/5UJDHQ52/0006061.html:text/html;gr-qc/0006061 PDF:/Users/getchell/Library/Application Support/Zotero/Profiles/2wundcq4.default/zotero/storage/32WNE2JJ/Rovelli - 2000 - Notes for a brief history of quantum gravity.pdf:application/pdf}
+}
+
+@article{kommu_validation_2011,
+	title = {A Validation of Causal Dynamical Triangulations},
+	url = {http://arxiv.org/abs/1110.6875},
+	abstract = {The Causal Dynamical Triangulation ({CDT)} approach to quantum gravity is a lattice approximation to the gravitational path integral. Developed by Ambj{\textbackslash}o\{\}rn, Jurkiewicz and Loll, it has yielded some important results, notably the emergence of classical spacetime and short scale dimensional reduction. However, virtually all the results reported so far have been based on a single computer code. In this paper we present the first completely independent verification of the {CDT} algorithm, and report the successful reproduction of the emergence of classical spacetime and smooth reduction in the spectral dimension of the 2+1 and 3+1 dimensional spacetimes.},
+	urldate = {2012-11-10},
+	journal = {{arXiv:1110.6875}},
+	author = {Kommu, Rajesh},
+	month = oct,
+	year = {2011},
+	keywords = {General Relativity and Quantum Cosmology, High Energy Physics - Theory},
+	file = {1110.6875 PDF:/Users/getchell/Library/Application Support/Zotero/Profiles/2wundcq4.default/zotero/storage/6UPTQD3T/Kommu - 2011 - A Validation of Causal Dynamical Triangulations.pdf:application/pdf;arXiv.org Snapshot:/Users/getchell/Library/Application Support/Zotero/Profiles/2wundcq4.default/zotero/storage/MJFZF93S/1110.html:text/html}
+}
+
+@article{ambjorn_semiclassical,
+	title = {Semiclassical Universe from First Principles},
+	volume = {607},
+	lccn = {0059},
+	url = {http://arxiv.org/abs/hep-th/0411152},
+	abstract = {Causal Dynamical Triangulations in four dimensions provide a background-independent definition of the sum over space-time geometries in nonperturbative quantum gravity. We show that the macroscopic four-dimensional world which emerges in the Euclidean sector of this theory is a bounce which satisfies a semiclassical equation. After integrating out all degrees of freedom except for a global scale factor, we obtain the ground state wave function of the universe as a function of this scale factor.},
+	number = {2005},
+	urldate = {2009-03-16},
+	journal = {Physics Letters B},
+	author = {{J. Ambjorn} and {J. Jurkiewicz} and {R. Loll}},
+	keywords = {Causal Dynamical Triangulations, Read},
+	pages = {205--213},
+	annote = {Read 6th},
+	file = {[hep-th/0411152] Semiclassical Universe from First Principles:/Users/getchell/Library/Application Support/Zotero/Profiles/2wundcq4.default/zotero/storage/TC2AM4T6/0411152.html:text/html;0411152v1.pdf:/Users/getchell/Library/Application Support/Zotero/Profiles/2wundcq4.default/zotero/storage/IXTTMJU5/0411152v1.pdf:application/pdf}
+}
+
+@book{synge_relativity,
+	title = {Relativity: the general theory},
+	shorttitle = {Relativity},
+	publisher = {{North-Holland} Pub. Co.},
+	author = {Synge, John Lighton},
+	year = {1960},
+	keywords = {General relativity {(Physics)}, Relativity {(Physics)}, Science / Relativity}
+}
+
+@article{curzon1924,
+	title = {Cylindrical {S}olutions of {E}instein's {G}ravitational {E}quations},
+	volume = {s2--23},
+	journal = {Proceedings of the London Mathematical Society},
+	author = {Curzon, H. E. J.},
+	year = {1925},
+	pages = {477--480}
+}
+
+@article{einstein-rosen-1936,
+  title = {Two-Body Problem in General Relativity Theory},
+  author = {Einstein, A. and Rosen, N.},
+  journal = {Phys. Rev.},
+  volume = {49},
+  issue = {5},
+  pages = {404--405},
+  year = {1936},
+  month = {Mar},
+  doi = {10.1103/PhysRev.49.404.2},
+  url = {http://link.aps.org/doi/10.1103/PhysRev.49.404.2},
+  publisher = {American Physical Society}
+}
+
+@article{katz1967derivation,
+	title = {Derivation of {N}ewton's {L}aw of {G}ravitation from {G}eneral {R}elativity},
+	volume = {9},
+	lccn = {0000},
+	abstract = {A static situation of two objects held apart by a strut is considered within the framework of general relativity, and the gravitational attraction between the objects is inferred from the stress in the strut. In the Newtonian limit -- the objects are well separated and the field weak everywhere except in their immediate vicinity -- Newton's law of gravitation is reproduced. This check goes well beyond verifications of the Newtonian limit based on considerations of "test particles", since arbitrarily strong self-fields are not excluded for either object. It is also an explicit verification of the equality of active and passive gravitational masses.},
+	number = {7},
+	journal = {Journal of Mathematical Physics},
+	author = {Katz, Amnon},
+	month = sep,
+	year = {1967},
+	pages = {983--985}
+}
+
+@article{ambjorn_semiclassical_2011,
+	title = {The Semiclassical Limit of Causal Dynamical Triangulations},
+	lccn = {0000},
+	url = {http://arxiv.org/abs/1102.3929},
+	abstract = {Previous work has shown that the macroscopic structure of the theory of quantum gravity defined by causal dynamical triangulations ({CDT)} is compatible with that of a de Sitter universe. After emphasizing the strictly nonperturbative nature of this semiclassical limit we present a detailed study of the three-volume data, which allows us to re-confirm the de Sitter structure, exhibit short-distance discretization effects, and make a first detailed investigation of the presence of higher-order curvature terms in the effective action for the scale factor. Technically, we make use of a novel way of fixing the total four-volume in the simulations.},
+	urldate = {2011-03-11},
+	journal = {1102.3929},
+	author = {Ambjorn, J. and Gorlich, A. and Jurkiewicz, J. and Loll, R. and Gizbert-Studnicki, J. and Trzesniewski, T.},
+	month = feb,
+	year = {2011},
+	keywords = {General Relativity and Quantum Cosmology, High Energy Physics - Lattice, High Energy Physics - Theory},
+	annote = {Read 8th},
+	file = {1102.3929 PDF:/Users/getchell/Library/Application Support/Zotero/Profiles/2wundcq4.default/zotero/storage/ACAD59PF/Ambjorn et al. - 2011 - The Semiclassical Limit of Causal Dynamical Triang.pdf:application/pdf;arXiv.org Snapshot:/Users/getchell/Library/Application Support/Zotero/Profiles/2wundcq4.default/zotero/storage/2C6256CT/1102.html:text/html}
+}
+
+
+@article{letelier_superposition_1997,
+	title = {Superposition of Weyl solutions: The equilibrium forces},
+	shorttitle = {Superposition of Weyl solutions},
+	url = {http://arxiv.org/abs/gr-qc/9710122},
+	doi = {10.1088/0264-9381/15/2/015},
+	abstract = {Solutions to the Einstein equation that represent the superposition of static isolated bodies with axially symmetry are presented. The equations nonlinearity yields singular structures (strut and membranes) to equilibrate the bodies. The force on the strut like singularities is computed for a variety of situations. The superposition of a ring and a particle is studied in some detail},
+	urldate = {2011-10-12},
+	journal = {{arXiv:gr-qc/9710122}},
+	author = {Letelier, Patricio. S and Oliveira, Samuel R},
+	month = oct,
+	year = {1997},
+	note = {{Class.Quant.Grav.} 15 (1998) 421-433},
+	keywords = {General Relativity and Quantum Cosmology},
+	file = {arXiv.org Snapshot:/Users/getchell/Library/Application Support/Zotero/Profiles/2wundcq4.default/zotero/storage/MRZIZQTF/9710122.html:text/html;gr-qc/9710122 PDF:/Users/getchell/Library/Application Support/Zotero/Profiles/2wundcq4.default/zotero/storage/R7QG93EB/Letelier and Oliveira - 1997 - Superposition of Weyl solutions The equilibrium f.pdf:application/pdf}
+}
