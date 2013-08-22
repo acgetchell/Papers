@@ -1,18 +1,46 @@
 .#*
 #ignore thumbnails created by windows
 Thumbs.db
-#ignore LaTeX build files
+###LaTeX###
+
+*.acn
+*.acr
+*.alg
 *.aux
 *.bbl
 *.blg
-*.log
-*.gz
-*.toc
 *.dvi
-*.~vsd
+*.fdb_latexmk
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ist
+*.lof
+*.log
+*.lot
+*.maf
+*.mtc
+*.mtc0
+*.nav
+*.nlo
+*.out
+*.pdfsync
+*.ps
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdy
+*.tdo
+
+# Mac 
 *.DS_Store
 #ignore EMACS region previews
 _region_*
 *.fmt
 #ignore RefTeX parse files
 *.rel
+
