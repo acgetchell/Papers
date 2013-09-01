@@ -37,7 +37,7 @@
 \maketitle
 
 \begin{abstract}
-We review how to derive Newton's law from the Weyl strut between two Chazy-Curzon particles. We then apply this approach in Causal Dynamical Triangulations, modifying the algorithm to keep two simplicial complexes with curvature (i.e. mass) a fixed distance within each other (modulo regularized deviations) across all time slices. We then examine the results to determine if CDT produces an equivalent Weyl strut, which can then be used to obtain the Newtonian limit.
+I review how to derive Newton's law from the Weyl strut between two Chazy-Curzon particles. I then apply this approach in Causal Dynamical Triangulations, modifying the algorithm to keep two simplicial complexes with curvature (i.e. mass) a fixed distance within each other (modulo regularized deviations) across all time slices. I then examine the results to determine if CDT produces an equivalent Weyl strut, which can then be used to obtain the Newtonian limit.
 \end{abstract}
 
 \section{Introduction}
@@ -136,17 +136,26 @@ TODO
 
 \section{Geometry}
 
-Triangulations in Causal Dynamical Triangulations refers to the use of $d$-simplices to construct a spacetime lattice. In general, a $d$-dimensional simplex has $d+1$ points, which are also referred to as $0$-simplices. For a $d$-dimensional simplex there are $\binom{d+1}{k+1}$ $k$-dimensional faces, or sub-simplices. Other properties summarized in Table 1.
+Triangulations in Causal Dynamical Triangulations refers to the use of $d$-simplices to construct a spacetime lattice. In general, a $d$-dimensional simplex has $d+1$ points, which are also referred to as $0$-simplices. For a $d$-dimensional simplex there are $\binom{d+1}{k+1}$ $k$-dimensional faces, or sub-simplices, as summarized in Table 1.
 
-Causal refers to the fact that the triangulations generally span two adjacent timeslices. This is a $2$-face in the timelike direction. For $d=4$ dimensions, we separate simplices into timelike and spacelike simplices, and in what follows, consider the extrinsic curvature of the spacelike simplices to be the equivalent to the continuum mass and stress-energy.
+Causal refers to the fact that the triangulations generally span two adjacent timeslices. For $d$-dimensions, this separates the simplex into $d-1$-dimensional timelike and spacelike sub-simplices. Using a notation ${k,n}$ where $k$ is the number of points on the higher timelike slice and $n$ is the number of points in the lower timelike slice, we can categorize the simplices as summarized in \Cref{table:simplices}. This will be useful in the discussion of ergodic moves.
 
 \begin{table}
 \centering
-\begin{tabular}{lccccc}
-
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+Name & Dimension & 0-faces & 1-faces & 2-faces & 3-faces & Causal Sub-simplices \\
+\hline
+\hline
+Vertex & 0 & 1 & & & & \\
+Edge & 1 & 2 & 1 & & & \{1,1\} \\
+Triangle & 2 & 3 & 3 & 1 & & \{2,1\} \{1,2\}\\
+Tetrahedron & 3 & 4 & 6 & 4 & 1 & \{3,1\} \{2,2\} \{1,3\} \\
+Hypertetrahedron & 4 & 5 & 10 & 10 & 5 & \{4,1\} \{3,2\} \{2,3\} \{1,4\} \\
+\hline
 \end{tabular}
-\caption[Simplex types]{The types of simplices, adapted from }
-\label{tab:standard-model}
+\caption[Simplex types]{Types and number of simplices and sub-simplices}
+\label{table:simplices}
 \end{table}
 
 \bibliographystyle{ieeetr}
