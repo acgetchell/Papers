@@ -43,6 +43,8 @@ I review how to derive Newton's law from the Weyl strut between two Chazy-Curzon
 
 \section{Introduction}
 
+Why is QG important? Why is QG hard? What is the CDT approach to QG? What are CDTs successes? What are CDT's problems? How does this paper solve one of its problems?
+
 Causal Dynamical Triangulations \cite{cdt} is a promising approach to the problems of quantum gravity. Since the 1930's \cite{rovelli_notes_2000} attempts have been made to unify quantum mechanics with general relativity. (This is a hard problem, no one agrees on the answers, and perhaps if we knew why it was hard maybe it wouldn't be hard.) The underlying difficulties are that observables in general relativity are necessarily non-local, making it difficult to write down a theory that extracts observable results.
 
 Causal Dynamical Triangulations uses the path integral approach, and has had notable successes \cite{kommu_validation_2011}. However, a difficulty is taking and extracting data that has physical meaning. One cannot identify points in a path integral, nor talk about functions of a point.
@@ -53,6 +55,8 @@ This paper attempts to answer this question by directly finding the Newtonian ap
 
 \section{Newton's Law of Gravitation from General Relativity}
 \label{sec:newtons-law}
+
+What is elementary flatness? What is a conical singularity? What is intrinsic curvature? What is extrinsic curvature? Why does a conical singularity give us Newton's law?
 
 Starting from the cylindrically symmetric (Weyl) vacuum metric \cite{synge_relativity}
 
@@ -137,6 +141,8 @@ TODO
 
 \section{Geometry}
 
+Discuss triangulations. Discuss dynamical triangulations. Discuss Regge calculus. Discuss getting the Einstein tensor in Regge calculus. Discuss getting mass from CDT insertions. Discuss ergodic moves. 
+
 Triangulations in Causal Dynamical Triangulations refers to the use of $d$-simplices to construct a spacetime lattice. In general, a $d$-dimensional simplex has $d+1$ points, which are also referred to as $0$-simplices. For a $d$-dimensional simplex there are $\binom{d+1}{k+1}$ $k$-dimensional faces, or sub-simplices.
 
 Causal refers to the fact that the triangulations generally span two adjacent timeslices. Using a notation $\{k,n\}$ where $k$ is the number of points on the higher timelike slice and $n$ is the number of points in the lower timelike slice, we summarize simplex geometry in \Cref{table:simplices}. This will be useful in the discussion of ergodic moves that follows.
@@ -179,9 +185,19 @@ TODO
 
 \section{Notes on Implementation}
 
+Discuss Computational Geometry. Discuss the CDT algorithm. Discuss the algorithm for getting mass. Discuss algorithm for getting stress-energy. Discuss other geometrical algorithms.
+
 These ideas are implemented using CGAL \cite{cgal}, a time-tested library of geometric algorithms in continuous development since 1995.
 
 TODO
+
+\section{Results}
+
+Discuss any preliminary results.
+
+\section{Conclusion}
+
+Discuss further work. Thank colleagues.
 
 \bibliographystyle{ieeetr}
 \bibliography{cdt-newtonian-limit-biblio}
