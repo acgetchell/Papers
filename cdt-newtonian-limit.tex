@@ -141,11 +141,20 @@ TODO
 
 \section{Geometry}
 
-\textit{Discuss triangulations. Discuss dynamical triangulations. Discuss Regge calculus. Discuss getting the Einstein tensor in Regge calculus. Discuss getting mass from CDT insertions. Discuss ergodic moves.}
+\textit{Discuss dynamical triangulations. Discuss Regge calculus. Discuss getting the Einstein tensor in Regge calculus. Discuss getting mass from CDT insertions. Discuss ergodic moves.}
 
-Triangulations in Causal Dynamical Triangulations refers to the use of $d$-simplices to construct a spacetime lattice. In general, a $d$-dimensional simplex has $d+1$ points, which are also referred to as $0$-simplices. For a $d$-dimensional simplex there are $\binom{d+1}{k+1}$ $k$-dimensional faces, or sub-simplices.
+In order to translate the concepts of General Relativity to discrete form, a simplicial manifold is used. As implied by their name, simplicial manifolds combine the properties of simplices -- a generalization of triangulations -- with those of manifolds. This allows the useful machinery of differential forms to be carried over to the discrete realm.
 
-Causal refers to the fact that the triangulations generally span two adjacent timeslices. Using a notation $\{k,n\}$ where $k$ is the number of points on the higher timelike slice and $n$ is the number of points in the lower timelike slice, we summarize simplex geometry in \Cref{table:simplices}. This will be useful in the discussion of ergodic moves in \Cref{ergodic}.
+The triangulations in Causal Dynamical Triangulations refers to the use of $d$-simplices to construct a spacetime lattice. In general, a $d$-dimensional simplex has $d+1$ points, which are also referred to as $0$-simplices. For a $d$-dimensional simplex there are $\binom{d+1}{k+1}$ $k$-dimensional faces, or sub-simplices.
+
+A simplicial manifold \textit{T} has two defining properties \cite{cgal:eb-12b}:
+
+\begin{enumerate}
+  \item Any face of a simplex in \textit{T} is a simplex in \textit{T}
+  \item Two simplices in \textit{T} are either disjoint or share a common face
+\end{enumerate}
+
+Causal refers to the fact that the triangulations generally span two adjacent timeslices (some simplices -- referred to as spacelike -- do not span timeslices). Using a notation $\{k,n\}$ where $k$ is the number of points on the higher timelike slice and $n$ is the number of points in the lower timelike slice, we summarize simplex geometry in \Cref{table:simplices}. This will be useful in the discussion of ergodic moves in \Cref{ergodic}.
 
 \begin{table}
 \centering
