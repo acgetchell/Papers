@@ -44,4 +44,4 @@ _region_*
 *.fmt
 #ignore RefTeX parse files
 *.rel
-
+Exported Items.bib
