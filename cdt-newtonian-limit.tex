@@ -184,7 +184,17 @@ Pentatope & 4 & 5 & 10 & 10 & 5 & 1 & \{4,1\} \{3,2\} \{2,3\} \{1,4\} \\
 \label{table:simplices}
 \end{table}
 
-The general idea behind Causal Dynamical Triangulations is
+The general idea behind Causal Dynamical Triangulations `is to perform a path integral over equivalence classes of metrics:
+
+\begin{equation}
+  Z[\Lambda,G,\Sigma_k,h]=\sum_{Top(M)}\int_{Riem(M)/Diff(M)}\mathcal{D}[g(M)]e^{-S_g[\Lambda,G,\Sigma]}
+\end{equation}
+
+weighted with the Einstein-Hilbert action associated with the Riemannian manifold (M,g):
+
+\begin{equation}
+  S_g[\Lambda,G,\Sigma]=\Lambda\int_{M}d^n\xi\sqrt{g}R + \textit{boundary terms}
+\end{equation}
 
 TODO
 
