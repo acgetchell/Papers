@@ -230,35 +230,10 @@ Just as a final check, plugging \Cref{eq:laplace,eq:R_phiphi=0} into \Cref{eq:R}
 
 By construction, these solutions only apply to empty space, and so must exclude the two objects at $z_1$ and $z_2$. In addition, as noted by Synge \cite{synge_relativity}, the z axis between the two objects must also be excluded due to violation of elementary flatness. We will examine this in the next section.
 
-\section{Elementary Flatness}
-
-In order to be certain that our spacetime is truly flat, we impose the condition of elementary flatness: the ratio of the circumference to the radius is equal to $2\pi$. This gives restrictions on solutions for $\lambda\left(r,z\right)$ and $\nu\left(r,z\right)$.
-
-To do this we will first integrate in the $\hat{\phi}$ direction at
-some $r$ and then divide by $r$. This gives:
-
-\begin{equation}
-  \label{eq:phi-hat-length}
-  L=\int ds =
-  \int_0^{2\pi}\sqrt{-r^2e^{-2\lambda}d\phi^2}=\pm2\pi r e^{-\lambda}
-\end{equation}
-
-Then the condition that $\frac{L}{r}=2\pi$ holds provided that
-$e^{-\lambda}=1$. That is,
-
-\begin{equation}
-	\label{eq:lambda-elem-flat}
-	\lambda(0,z)\rightarrow 0
-\end{equation} 
-
-But since $\frac{L}{r}$ is not well-defined as $r\rightarrow 0$, this is a sign
-that we need to look more carefully at the $z$-axis.
+\section{Curvature from Parallel Transport}
 
 Consider parallel transport of a vector $V$ about the $z$-axis in
-the $\hat{\phi}$ direction, demanding that the values
-for $\phi=0$ and $\phi=2\pi$ are equal. 
-
-The equation for parallel transport is generally given by:
+the $\hat{\phi}$ direction. The equation for parallel transport is generally given by:
   	
 \begin{equation}
 \begin{array}{rcl} \frac{D}{d\lambda}=\frac{dx^{\mu}}{d\lambda}\nabla_{\mu}=0 & \mbox{along} & x^{\mu}\left(\lambda\right)	  	
@@ -330,32 +305,79 @@ And from \Cref{eq:V_z-V_phi}:
 V^{z}=\frac{r^2 e^{-2\nu}\partial_z\lambda}{\chi}\left(A\cos\chi\phi-B\sin\chi\phi\right)
 \end{equation}
 
-At $\phi=0$ we set $V^\phi=V^r=\frac{1}{2}$ which leads to $B=\frac{1}{2}$ and:
+So our general vector is then:
 
 \begin{equation}
-  \label{eq:conditions}
-  \frac{A e^{-\nu}(\partial_r\lambda-\frac{1}{r_0})}{\sqrt{\left(\partial_z\lambda\right)^2+\left(\partial_r\lambda-\frac{1}{r}\right)^2}}=1
+\label{eq:V-from-par-transport}
+V=\frac{r^2e^{-2\nu}(\partial_r\lambda-\frac{1}{r})}{\chi}\left(A\cos\chi\phi-B\sin\chi\phi\right)\hat{e}_{r}+\frac{r^2 e^{-2\nu}\partial_z\lambda}{\chi}\left(A\cos\chi\phi-B\sin\chi\phi\right)\hat{e}_{z}+\left(A\sin\chi\phi+B\cos\chi\phi\right)\hat{e}_{\phi}
 \end{equation}
 
-We set $A=1$ for convenience. Then from \Cref{eq:conditions} taking
-the limit as $r_0\rightarrow 0$ we find:
+Normalizing $V(\phi=0)$:
 
 \begin{equation}
-  \label{eq:limit-r->0}
-  \lim_{r_0\rightarrow 0} \frac{e^{-\nu(r_0,z)}(\partial_r\lambda-\frac{1}{r_0})}{\sqrt{\left(\partial_z\lambda\right)^2+\left(\partial_r\lambda-\frac{1}{r}\right)^2}}=e^{-\nu(r_0,z)}=1
-\end{equation}
-As $r_0$ is completely arbitrary we can characterize this as:
-
-\begin{equation}
-  \label{eq:nu-elem-flat}
-  \lim_{r\rightarrow 0}\nu(0,z)=0
+\label{eq:inner-product}
+g_{\mu\nu}V^{\mu}V^{\nu}=1
 \end{equation}
 
-The general expression for the vector is then:
+We obtain the condition that:
 
 \begin{equation}
-\label{eq:v-from-par-transport}
-V=\left(\frac{r e^{-\nu}}{\sqrt{\left(\partial_z\lambda\right)^2+\left(\partial_r\lambda-\frac{1}{r}\right)^2}}\right)\left(\cos\chi\phi-\sin\chi\phi\right)\left(\left(\partial_r\lambda-\frac{1}{r}\right)\hat{e}_{r}+\partial_z\lambda\hat{e}_{z}\right)+\left(\sin(\chi\phi)+\cos(\chi\phi)\right)\hat{e}_{\phi}
+A^2+B^2=r^{-2}e^{2\lambda}
+\end{equation}
+
+For simplicity, we choose $A^2=r^{-2}e^{2\lambda}$ and $B^2=0$. 
+
+Now, when we parallel transport $V$ around to $\phi=2\pi$ there will be an angle between $V(\phi=0)$ and $V(\phi=2\pi)$ given by the definition of the scalar product:
+
+\begin{equation}
+\cos(\beta)=\frac{g_{\mu\nu}V^{\mu}(0)V^{\nu}(2\pi)}{g_{\mu\nu}V^{\mu}(0)V^{\nu}(0)}
+\end{equation}
+
+Since we have normalized our vectors, the denominator is equal to 1, and we get the expression that:
+
+\begin{equation}
+\cos\beta=\cos(2\pi\chi)
+\end{equation}
+
+Where $\chi$ is given by \Cref{eq:def-chi}. Hence $\beta=2\pi\chi$. We can now use the definition of the deficit angle:
+
+\begin{equation}
+\label{eq:deficit-angle}
+\Delta=2\pi-\beta=2\pi(1-\chi)
+\end{equation}
+
+To get the curvature $\mathcal{R}$ via:
+
+\begin{equation}
+\label{eq:curvature}
+\mathcal{R}=\lim_{A\rightarrow 0}\frac{\Delta}{A}
+\end{equation}
+
+The area $A$ is defined on the reduced metric:
+
+\begin{equation}
+ds^2=e^{2(\nu-\lambda)}dr^2+r^2 e^{-2\lambda}d\phi^2
+\end{equation}
+
+Via:
+
+\begin{equation}
+\label{eq:area}
+A=\int\sqrt{|g|}d^n x=\int_{\phi=0}^{\phi=2\pi}\int_{r=0}^{r=R}\sqrt{r^2 e^{2\nu-4\lambda}}drd\phi=2\pi\int_{r=0}^{r=R}re^{\nu-2\lambda}dr
+\end{equation}
+
+Plugging \Cref{eq:nu-0,eq:lambda-0} into \Cref{eq:area} gives:
+
+\begin{equation}
+\label{eq:area-solved}
+A=
+\end{equation}
+
+And thus the curvature is:
+
+\begin{equation}
+\label{eq:curvature-solved}
+\mathcal{R}=
 \end{equation}
 
 \section{Matter solution to the Weyl metric}
