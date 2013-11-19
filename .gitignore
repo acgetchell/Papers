@@ -46,3 +46,6 @@ _region_*
 #ignore RefTeX parse files
 *.rel
 Exported Items.bib
+
+# Maple
+*.bak
