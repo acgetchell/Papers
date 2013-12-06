@@ -31,6 +31,8 @@
 \usepackage{cleveref}
 \crefname{equation}{equation}{equations}
 
+\usepackage[toc,page]{appendix}
+
 \title{The Newtonian approximation in Causal Dynamical Triangulations}
 \author{\textbf{Adam Getchell}\footnote{\href{mailto:acgetchell@ucdavis.edu}{acgetchell@ucdavis.edu}}\\\textit{Department of Physics, University of California, Davis, CA, 95616}}
 
@@ -43,21 +45,29 @@ I review how to derive Newton's law from the Weyl strut between two Chazy-Curzon
 
 \section{Introduction}
 
-\textit{Why is QG important? Why is QG hard? What is the CDT approach to QG? What are CDTs successes? What are CDT's problems? How does this paper solve one of its problems?}
+\textit{(Why is QG important? Why is QG hard? What is the CDT approach to QG? What are CDTs successes? What are CDT's problems? How does this paper solve one of its problems?)}
 
-A major unsolved problem in physics is reconciling the classical approach of General Relativity with quantum field theory. In QFT, the fields operate on a fixed background. In General Relativity, the background (spacetime) itself is a dynamical participant.
+A major unsolved problem in physics is reconciling the classical approach of General Relativity with Quantum Field Theory. In QFT, the fields operate on a fixed background. In GR, the background (spacetime) itself is a dynamical participant.
 
-The usual perturbative approach of QFT fails for a number of reasons: first, gravity is non-renormalizable. Second, the usual methods of converting a non-renormalizable theory to a renormalizable one, either by adding new fields (Electroweak) or adding new terms (QCD), fail. This does not altogther rule out these approaches, but folks have been trying to do this for a long time and no one has succeeded yet.
+The usual perturbative approach of QFT fails for a number of reasons: first, gravity is non-renormalizable. Second, the usual methods of converting a non-renormalizable theory to a renormalizable one, either by adding new fields (Electroweak) or adding new terms (Quantum Chromodynamics), fail. This does not altogther rule out these approaches, but folks have been trying to do this for a long time and no one has succeeded yet. \textit{(This is another Carlip quote, rework or quantify)}
 
-The current proposals to quantize gravity include string theory, which adds infinitely many degrees of freedom, and loop quantum gravity, which quantizes Hilbert space of states in a non-standard way and defines the holonomies of connections as finite quantum objects. A third approach, asymptotic safety, assumes that nonrenormalizable quantum gravity is just the infrared end of a renormalization group flow, which in turn originates from a nonperturbative UV fixed point. By adjusting a finite number of coupling constants, the parameter space of the critical surface around the UV fixed point can be reached.
+The current proposals to quantize gravity include string theory, which adds infinitely many degrees of freedom, and loop quantum gravity, which quantizes Hilbert space of states in a non-standard way and defines the holonomies of connections as finite quantum objects. \textit{(Discuss holonomy better, or take out reference if too complicated?)} A third approach, asymptotic safety, assumes that nonrenormalizable quantum gravity is just the infrared end of a renormalization group flow, which in turn originates from a nonperturbative UV fixed point. By adjusting a finite number of coupling constants, the parameter space of the critical surface around the UV fixed point can be reached. \textit{(Better discussion of RNG flow needed or warranted, given the topic?)}
 
 Causal Dynamical Triangulations (CDT) is a lattice field theory which defines a nonperturbative quantum field theory of gravity as a sum over spacetime geometries. The lattice spacing parameter introduces a UV cutoff, which allows a systematic search for a fixed point via adjustment of the bare coupling constants. But even if asymptotic safety proves to be an invalid assumption, a lattice theory of quantum gravity is an effective quantum gravity theory, obtained by integrating out all degrees of freedom except for the spin-2 field. 
 
-CDT \cite{ambjorn_geometry_1996,cdt,ambjorn_nonperturbative_2012} is a promising approach to the problems of quantum gravity. Since the 1930's \cite{rovelli_notes_2000} attempts have been made to unify quantum mechanics with general relativity. Steve Carlip observed, `This is a hard problem, no one agrees on the answers, and perhaps if we knew why it was hard maybe it wouldn't be hard.' The underlying difficulties are that observables in general relativity are necessarily non-local, making it difficult to write down a theory that extracts observable results.
+CDT \cite{ambjorn_geometry_1996,cdt,ambjorn_nonperturbative_2012} is a promising approach to the problems of quantum gravity. Since the 1930's \cite{rovelli_notes_2000} attempts have been made to unify quantum mechanics with general relativity. 
 
-Causal Dynamical Triangulations uses the path integral approach, and has had notable successes \cite{kommu_validation_2011}. However, a difficulty is taking and extracting data that has physical meaning. (One cannot identify points in a path integral, nor talk about functions of a point.)
+\begin{quote}
+This is a hard problem, no one agrees on the answers, and perhaps if we knew why it was hard maybe it wouldn't be hard.
 
-Field correlator in matter-coupled quantum gravity
+--Steve Carlip
+\end{quote}
+
+The underlying difficulties are that observables in general relativity are necessarily non-local, making it difficult to write down a theory that extracts observable results.
+
+Causal Dynamical Triangulations uses the path integral approach, and has had notable successes \cite{kommu_validation_2011}. However, a difficulty is taking and extracting data that has physical meaning. \textit{(Explain why one cannot identify points in a path integral, nor talk about functions of a point. Explain the field correlator in matter-coupled quantum gravity)}
+
+
 
 A fundamental question is, does Causal Dynamical Triangulations have physical meaning? Attempts have been made before to relate CDT to the semi-classical limit \cite{ambjorn_semiclassical_2011,ambjorn_semiclassical}, but not everyone is convinced.
 
@@ -135,7 +145,7 @@ Now to the salient point: we can use this strut to our advantage by obtaining $T
 	\label{eq:F_z}
 	F_{z}=\int T_{zz}d\sigma
 \end{equation}
-as was done by Katz in 1967 \cite{katz1967derivation}. We will use a different approach, however, from either Katz or more recent literature \cite{letelier_superposition_1997}.
+as was done by Katz in 1967 \cite{katz1967derivation}. We will use a different approach, however, from either Katz or more recent literature \cite{letelier_superposition_1997}. The details are in Appendix ...
 
 Taking the parallel transport of a vector around the strut, we obtain
 
@@ -260,6 +270,341 @@ TODO
 \section{Conclusion}
 
 \textit{Discuss further work. Thank colleagues.}
+
+\begin{appendices}
+\section{Vacuum solution to the Weyl metric}
+
+The cylindrically symmetric (Weyl) vacuum metric \cite{synge_relativity}:
+
+\begin{equation}
+  ds^{2}=e^{2\lambda}dt^{2}-e^{2\left(\nu-\lambda\right)}\left(dr^{2}+dz^{2}\right)-r^{2}e^{-2\lambda}d\phi^{2}
+\end{equation}
+
+\begin{equation}
+g_{\mu\nu}=\left(\begin{array}{cccc}
+e^{2\lambda} & 0 & 0 & 0\\
+0 & -e^{2\left(\nu-\lambda\right)} & 0 & 0\\
+0 & 0 & -e^{2\left(\nu-\lambda\right)} & 0\\
+0 & 0 & 0 & -r^{2}e^{-2\lambda}
+\end{array}\right)\label{eq:general-axisymmetric-static-matrix-metric}
+\end{equation}
+
+In this coordinate basis, the definition of the Christoffel connection is: \cite{carroll_spacetime_2003} 
+\begin{equation}
+\Gamma_{\mu\nu}^{\lambda}=\frac{1}{2}g^{\lambda\sigma}\left(\partial_{\mu}g_{\nu\sigma}+\partial_{\nu}g_{\sigma\mu}-\partial_{\sigma}g_{\mu\nu}\right)
+\end{equation}
+
+The non-zero Christoffel connections are:
+\begin{equation}
+\begin{aligned}
+\Gamma^{t}_{tr}&=\partial_{r}\lambda\\
+\Gamma^{t}_{tz}&=\partial_{z}\lambda\\
+\Gamma^{r}_{tt}&=e^{4\lambda-2\nu}\partial_{r}\lambda\\
+\Gamma^{r}_{rr}&=\partial_{r}\nu-\partial_{r}\lambda\\
+\Gamma^{r}_{rz}&=\partial_{z}\nu-\partial_{z}\lambda\\
+\Gamma^{r}_{zz}&=\partial_{r}\lambda-\partial_{r}\nu\\
+\Gamma^{r}_{\phi\phi}&=re^{-2\nu}\left(r\partial_{r}\lambda-1\right)\\
+\Gamma^{z}_{tt}&=e^{4\lambda-2\nu}\partial_{z}\lambda\\
+\Gamma^{z}_{rr}&=\partial_{z}\lambda-\partial_{z}\nu\\
+\Gamma^{z}_{rz}&=\partial_{r}\nu-\partial_{r}\lambda\\ 
+\Gamma^{z}_{zz}&=\partial_{z}\nu-\partial_{z}\lambda\\
+\Gamma^{z}_{\phi\phi}&=r^{2}e^{-2\nu}\partial_{z}\lambda\\
+\Gamma^{\phi}_{r\phi}&=\frac{1}{r}-\partial_{r}\lambda\\
+\Gamma^{\phi}_{z\phi}&=-\partial_{z}\lambda\\
+\end{aligned}
+\label{eq:christoffel-connections}
+\end{equation}
+
+The components of the Riemann tensor are given by:
+\begin{equation}
+R_{\sigma\mu\nu}^{\rho}=\partial_{\mu}\Gamma_{\nu\sigma}^{\rho}-\partial_{\nu}\Gamma_{\mu\sigma}^{\rho}+\Gamma_{\mu\lambda}^{\rho}\Gamma_{\nu\sigma}^{\lambda}-\Gamma_{\nu\lambda}^{\rho}\Gamma_{\mu\sigma}^{\lambda}
+\end{equation}
+
+Using the properties of the Riemann tensor:
+\begin{equation}
+\begin{aligned}
+R_{\rho\sigma\mu\nu}&=-R_{\rho\sigma\nu\mu}\\
+R_{\rho\sigma\mu\nu}&=-R_{\sigma\rho\mu\nu}\\
+R_{\rho\sigma\mu\nu}&=R_{\mu\nu\rho\sigma}\\
+R_{\rho[\sigma\mu\nu]}&=0\\
+\end{aligned}
+\end{equation}
+The non-zero components of the Riemann tensor are:
+\begin{equation}
+\begin{aligned}
+R^{t}_{rtr}&=-\partial^{2}_{r}\lambda+\left(\partial_{z}\lambda\right)^{2}-2\left(\partial_{r}\lambda\right)^{2}+\partial_{r}\lambda\partial_{r}\nu-\partial_{z}\lambda\partial_{z}\nu\\
+R^{t}_{rtz}&=-\partial_{r}\partial_{z}\lambda-3\partial_{r}\lambda\partial_{z}\lambda+\partial_{r}\lambda\partial_{z}\nu+\partial_{r}\nu\partial_{z}\lambda\\
+R^{t}_{ztz}&=-\partial^{2}_{z}\lambda-2\left(\partial_{z}\lambda\right)^{2}+\left(\partial_{r}\lambda\right)^{2}-\partial_{r}\lambda\partial_{r}\nu+\partial_{z}\lambda\partial_{z}\nu\\
+R^{t}_{\phi t\phi}&=re^{-2\nu}\left(r\left(\partial_{r}\lambda\right)^{2}-\partial_{r}\lambda+r\left(\partial_{z}\lambda\right)^{2}\right)\\
+R^{r}_{zrz}&=\partial^{2}_{r}\lambda-\partial^{2}_{r}\nu+\partial^{2}_{z}\lambda-\partial^{2}_{z}\nu\\
+R^{z}_{\phi z\phi}&=re^{-2\nu}\left(r\partial^{2}_{z}\lambda-r\partial_{z}\lambda\partial_{z}\nu+r\partial_{r}\lambda\partial_{r}\nu-r\left(\partial_{r}\lambda\right)^{2}+\partial_{r}\lambda-\partial_{r}\nu\right)\\
+R^{z}_{\phi\phi r}&=re^{-2\nu}\left(-r\partial_{r}\partial_{z}\lambda+r\partial_{r}\nu\partial_{z}\lambda-r\partial_{r}\lambda\partial_{z}\lambda+r\partial_{r}\lambda\partial_{z}\nu-\partial_{z}\nu\right)\\
+R^{\phi}_{r\phi r}&=\partial^{2}_{r}\lambda+\frac{1}{r}\partial_{r}\nu-\partial_{r}\lambda\partial_{r}\nu-\left(\partial_{z}\lambda\right)^{2}+\partial_{z}\lambda\partial_{z}\nu+\frac{1}{r}\partial_{r}\lambda\\
+\end{aligned}
+\end{equation}
+
+The Ricci tensor is given by:
+\begin{equation}
+R_{\mu\nu}=R_{\mu\lambda\nu}^{\lambda}
+\end{equation}
+
+The non-zero components of the Ricci tensor are:
+\begin{equation}
+\begin{aligned}
+R_{tt}&=\frac{e^{4\lambda-2\nu}}{r}\left(r\partial^{2}_{r}\lambda+r\partial^{2}_{z}\lambda+\partial_{r}\lambda\right)\\
+R_{rr}&=\partial^{2}_{r}\lambda-\partial^{2}_{r}\nu+\partial^{2}_{z}\lambda-\partial^{2}_{z}\nu-2\left(\partial_{r}\lambda\right)^{2}+\frac{1}{r}\partial_{r}\lambda+\frac{1}{r}\partial_{r}\nu\\
+R_{rz}&=\frac{1}{r}\partial_{z}\nu-2\partial_{r}\lambda\partial_{z}\lambda\\
+R_{zz}&=\partial^{2}_{r}\lambda-\partial^{2}_{r}\nu+\partial^{2}_{z}\lambda-\partial^{2}_{z}\nu-2\left(\partial_{z}\lambda\right)^{2}+\frac{1}{r}\partial_{r}\lambda-\frac{1}{r}\partial_{r}\nu\\
+R_{\phi\phi}&=re^{-2\nu}\left(r\partial^{2}_{r}\lambda+r\partial^{2}_{z}\lambda+\partial_{r}\lambda\right)
+\end{aligned}
+\label{eq:ricci-tensor-components}
+\end{equation}
+
+The Ricci scalar is defined as:
+
+\begin{equation}
+R=R_{\mu}^{\mu}=g^{\mu\nu}R_{\mu\nu}
+\end{equation}
+
+Which is:
+
+\begin{equation}
+R=2e^{2\left(\lambda-\nu\right)}\left(\partial^{2}_{r}\nu+\partial^{2}_{z}\nu-\partial^{2}_{r}\lambda-\partial^{2}_{z}\lambda+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}-\frac{1}{r}\partial_{r}\lambda\right)\label{eq:R}
+\end{equation}
+
+Einstein's equation in a vacuum is:
+
+\begin{equation}
+\label{eq:einstein-vacuum-equation}
+G_{\mu\nu}=0
+\end{equation}
+
+Whence Einstein's equation:
+
+\begin{equation}
+G_{\mu\nu}\equiv R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}=8\pi GT_{\mu\nu}
+\label{eq:einstein}
+\end{equation}
+
+However, we can take a shortcut by using:
+
+\begin{equation}
+R_{\mu\nu}=0
+\label{eq:vacuum-solutions}
+\end{equation}
+
+Since the trace of a zero-valued matrix is identically zero, and thus \Cref{eq:vacuum-solutions} automatically satisfies \Cref{eq:einstein-vacuum-equation}.
+
+Applying \Cref{eq:vacuum-solutions} to \Cref{eq:ricci-tensor-components} gives the following:
+\begin{equation}
+\partial^{2}_{r}\lambda+\frac{1}{r}\partial_{r}\lambda+\partial^{2}_{z}\lambda=0\label{eq:laplace}
+\end{equation}
+\begin{equation}
+\partial_{r}\nu=r\left(\partial^{2}_{r}\nu+\partial^{2}_{z}\nu+2\left(\partial_{r}\lambda\right)^{2}\right)\label{eq:R_rr=0}
+\end{equation}
+\begin{equation}
+\partial_{z}\nu=2r\partial_{r}\lambda\partial_{z}\lambda\label{eq:nu_z}
+\end{equation}
+\begin{equation}
+\partial^{2}_{r}\nu+\partial^{2}_{z}\nu+\left(\partial_{r}\lambda\right)^{2}+\left(\partial_{z}\lambda\right)^{2}=0\label{eq:R_phiphi=0}
+\end{equation}
+
+\Cref{eq:laplace} is the two-dimensional Laplace equation in cylindrical coordinates. That is:
+
+\begin{equation}
+\nabla^2\lambda(r,z)=0
+\end{equation}
+
+Plugging \Cref{eq:R_phiphi=0} into \Cref{eq:R_rr=0} gives:
+
+\begin{equation}
+\partial_{r}\nu=r\left(\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}\right)\label{eq:nu_r}
+\end{equation}
+
+Using \Cref{eq:nu_z,eq:nu_r} we find solutions for $\nu$ are given by:
+\begin{equation}
+\nu=\int r[\left(\left(\partial_{r}\lambda\right)^{2}-\left(\partial_{z}\lambda\right)^{2}\right)dr+\left(2\partial_{r}\lambda\partial_{z}\lambda\right)dz]
+\end{equation}
+
+The solutions must satisfy \Cref{eq:laplace-r-z,eq:nu}. A particular solution corresponding to two objects (given by Curzon in 1924 \cite{curzon1924} ) is:
+
+\begin{equation}
+\lambda_0(r,z)=-\frac{\mu_1}{r_1}-\frac{\mu_2}{r_2}
+\end{equation}
+
+\begin{equation}
+  \nu_0(r,z)=-\frac{1}{2}\frac{\mu_{1}^{2}r^2}{r_{1}^{4}}-\frac{1}{2}\frac{\mu_{2}^{2}r^2}{r_{2}^{4}}+\frac{2\mu_1\mu_2}{(z_1-z_2)^2}\left[\frac{r^2+(z-z_1)(z-z_2)}{r_{1}r_{2}}-1\right]
+\end{equation}
+Where $z_1$ and $z_2$ correspond to the positions on the z-axis for the two objects, $\mu_1$ and $\mu_2$ are length parameters, and:
+
+\begin{equation}
+r_1=\sqrt{r^2+(z-z_1)^2}
+\end{equation}
+
+\begin{equation}
+r_2=\sqrt{r^2+(z-z_2)^2}
+\end{equation}
+
+Just as a final check, plugging \Cref{eq:laplace,eq:R_phiphi=0} into \Cref{eq:R} gives $R=0$, which shows that our solutions are consistent with our assumptions.
+
+By construction, these solutions only apply to empty space, and so must exclude the two objects at $z_1$ and $z_2$. In addition, as noted by Synge \cite{synge_relativity}, the z axis between the two objects must also be excluded due to violation of elementary flatness. We will examine this in the next section.
+
+\section{Curvature from Parallel Transport}
+
+Consider parallel transport of a vector $V$ about the $z$-axis in
+the $\hat{\phi}$ direction. The equation for parallel transport is generally given by:
+    
+\begin{equation}
+\begin{array}{rcl} \frac{D}{d\lambda}=\frac{dx^{\mu}}{d\lambda}\nabla_{\mu}=0 & \mbox{along} & x^{\mu}\left(\lambda\right)      
+\end{array}
+\end{equation}      
+That is, the directional covariant derivative is equal to zero along
+the curve $x^{\mu}$ parameterized by $\lambda$. For a vector this can
+be simply written as:
+
+\begin{equation}
+\label{eq:x-par-xport}
+\nabla_\mu V^{\nu}=\partial_\mu V^\nu+\Gamma^\nu_{\mu\lambda} V^\lambda=0
+\end{equation}      
+Starting with parallel transport along $\hat{e}_{\phi}$, \Cref{eq:x-par-xport} along with the relevant Christoffel symbols $\Gamma^{r}_{\phi\phi}$, $\Gamma^{z}_{\phi\phi}$, $\Gamma^{\phi}_{\phi r}$, and $\Gamma^{\phi}_{\phi z}$ gives:
+      
+\begin{equation}
+\begin{aligned}
+\partial_{\phi}V^{r}+\Gamma^{r}_{\phi\phi}V^{\phi}&=0\\
+\partial_{\phi}V^{z}+\Gamma^{z}_{\phi\phi}V^{\phi}&=0\\
+\partial_{\phi}V^{\phi}+\Gamma^{\phi}_{\phi r}V^{r}+\Gamma^{\phi}_{\phi z}V^{z}&=0\\
+\end{aligned}
+\end{equation}
+Plugging in the values from \Cref{eq:christoffel-connections}, our equations are: 
+
+\begin{equation}
+\partial_{\phi}V^{r}+\left(re^{-2\nu}\left(r\partial_{r}\lambda-1\right)\right)V^{\phi}=0\label{eq:V-r-phi}
+\end{equation}
+
+\begin{equation}
+\label{eq:V_z-V_phi}
+\partial_{\phi}V^{z}+\left(r^{2}e^{-2\nu}\partial_{z}\lambda\right)V^{\phi}=0
+\end{equation}
+
+\begin{equation}
+\partial_{\phi}V^{\phi}+\left(\frac{1}{r}-\partial_{r}\lambda\right)V^{r}-\partial_{z}\lambda V^{z}=0\label{eq:V-phi-r-z}
+\end{equation}
+
+Differentiating \Cref{eq:V-phi-r-z} with respect to $\phi$ and plugging it into \Cref{eq:V-r-phi} gives:
+
+\begin{equation}
+\partial^{2}_{\phi}V^{\phi}-\partial_z\lambda\partial_{\phi}V^z+r^{2}e^{-2\nu}\left(\partial_r\lambda-\frac{1}{r}\right)^2V^{\phi}=0
+\end{equation}
+Plugging in the expression for $\partial_{\phi}V^z$ from
+\Cref{eq:V_z-V_phi} and letting 
+
+\begin{equation}
+\label{eq:def-chi}
+\chi=re^{-\nu}\sqrt{\left(\partial_z\lambda\right)^2+\left(\frac{1}{r}-\partial_r\lambda\right)^2}
+\end{equation}
+We have the simple differential equation:
+
+\begin{equation}
+\partial^2_\phi V^\phi+\chi^2 V^\phi=0
+\end{equation}
+For which the solution is:
+
+\begin{equation}
+V^{\phi}=A\sin\chi\phi+B\cos\chi\phi
+\end{equation}
+Therefore, integrating \Cref{eq:V-r-phi} with respect to $\phi$ we get:
+
+\begin{equation}
+V^{r}=\frac{r^2e^{-2\nu}(\partial_r\lambda-\frac{1}{r})}{\chi}\left(A\cos\chi\phi-B\sin\chi\phi\right)
+\end{equation}
+
+And from \Cref{eq:V_z-V_phi}:
+
+\begin{equation}
+V^{z}=\frac{r^2 e^{-2\nu}\partial_z\lambda}{\chi}\left(A\cos\chi\phi-B\sin\chi\phi\right)
+\end{equation}
+
+So our general vector is then:
+
+\begin{equation}
+\label{eq:V-from-par-transport}
+\begin{split}
+V=\frac{r^2e^{-2\nu}(\partial_r\lambda-\frac{1}{r})}{\chi}\left(A\cos\chi\phi-B\sin\chi\phi\right)\hat{e}_{r} \\
++\frac{r^2 e^{-2\nu}\partial_z\lambda}{\chi}\left(A\cos\chi\phi-B\sin\chi\phi\right)\hat{e}_{z} \\
++\left(A\sin\chi\phi+B\cos\chi\phi\right)\hat{e}_{\phi}
+\end{split}
+\end{equation}
+
+Normalizing $V(\phi=0)$:
+
+\begin{equation}
+\label{eq:inner-product}
+g_{\mu\nu}V^{\mu}V^{\nu}=1
+\end{equation}
+
+We obtain the condition that:
+
+\begin{equation}
+A^2+B^2=r^{-2}e^{2\lambda}
+\end{equation}
+
+For simplicity, we choose $A^2=r^{-2}e^{2\lambda}$ and $B^2=0$. 
+
+Now, when we parallel transport $V$ around to $\phi=2\pi$ there will be an angle between $V(\phi=0)$ and $V(\phi=2\pi)$ given by the definition of the scalar product:
+
+\begin{equation}
+\cos(\beta)=\frac{g_{\mu\nu}V^{\mu}(0)V^{\nu}(2\pi)}{g_{\mu\nu}V^{\mu}(0)V^{\nu}(0)}
+\end{equation}
+
+Since we have normalized our vectors, the denominator is equal to 1, and we get the expression that:
+
+\begin{equation}
+\cos\beta=\cos(2\pi\chi)
+\end{equation}
+
+Where $\chi$ is given by \Cref{eq:def-chi}. Hence $\beta=2\pi\chi$. We can now use the definition of the deficit angle:
+
+\begin{equation}
+\label{eq:deficit-angle}
+\Delta=2\pi-\beta=2\pi(1-\chi)
+\end{equation}
+
+To get the curvature $\mathcal{R}$ via:
+
+\begin{equation}
+\label{eq:curvature}
+\mathcal{R}=\lim_{A\rightarrow 0}\frac{\Delta}{A}
+\end{equation}
+
+The area $A$ is defined on the reduced metric:
+
+\begin{equation}
+ds^2=e^{2(\nu-\lambda)}dr^2+r^2 e^{-2\lambda}d\phi^2
+\end{equation}
+
+Via:
+
+\begin{equation}
+\label{eq:area}
+A=\int\sqrt{|g|}d^n x=\int_{\phi=0}^{\phi=2\pi}\int_{r=0}^{r=R}\sqrt{r^2 e^{2\nu-4\lambda}}drd\phi=2\pi\int_{r=0}^{r=R}re^{\nu-2\lambda}dr
+\end{equation}
+
+Plugging \Cref{eq:nu-0,eq:lambda-0} into \Cref{eq:area} gives:
+
+\begin{equation}
+\label{eq:area-solved}
+A=
+\end{equation}
+
+And thus the curvature is:
+
+\begin{equation}
+\label{eq:curvature-solved}
+\mathcal{R}=
+\end{equation}
+
+From the definition of the curvature in \Cref{eq:R} we can obtain the Ricci tensor, and hence the Einstein tensor. Then reading off the value of $G_{zz}$ we obtain the desired $T_{zz}$.
+\end{appendices}
 
 \bibliographystyle{ieeetr}
 \bibliography{cdt-newtonian-limit-biblio}
