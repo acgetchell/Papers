@@ -38,7 +38,7 @@ Thumbs.db
 *.tdo
 Output/*
 
-# Mac 
+# Mac
 *.DS_Store
 #ignore EMACS region previews
 _region_*
