@@ -92,10 +92,10 @@ program. I highlight inefficiencies and propose solutions.
   --Einstein, 1916 {\it Approximative Integration of the Field Equations of Gravitation, p.209}
 \end{quote}
 
-Quantum gravity is, perhaps, the pre-eminent hard problem\cite{steve_carlip_why_2014} remaining in theoretical physics that has been worked on for many years\cite{rovelli_notes_2000}.
+Quantum gravity is, perhaps, the preeminent hard problem\cite{steve_carlip_why_2014} remaining in theoretical physics, and has been worked on for many years\cite{rovelli_notes_2000}.
 
 Although difficult to test experimentally, a quantum theory of gravity appears to be the key to resolving several important
-questions, such as the black hole information paradox.
+questions, such as the black hole information paradox.\cite{preskill_black_1992}
 
 Causal Dynamical Triangulations (CDT) \cite{j._ambjorn_dynamically_2001} is a useful approach to
 quantum gravity. It is based on the Regge action\cite{regge_general_1961}, which describes General Relativity on simplicial manifolds similarly to the Einstein-Hilbert action on differentiable manifolds.
@@ -184,7 +184,16 @@ In 1961 Regge developed his calculus replacing smooth differentiable manifolds w
 \end{enumerate}
 \vspace*{-1ex}
 
-From here on, simplicial manifolds will be referred to as triangulations. Of special note are Delaunay Triangulations, which behave a circumsphere property for simplices, which may be seen in 
+From here on, simplicial manifolds will be referred to as triangulations. Of special note are Delaunay Triangulations, which are well-behaved simplicial manifolds
+with a circumsphere property of member simplices which may be seen intuitively in \Cref{DT}.
+
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=2in]{DT1.pdf}
+   \includegraphics[width=2in]{NDT.pdf}
+  \caption{Delaunay triangulation (left) Not a Delaunay triangulation (right) \label{DT}}
+  \end{center}
+\end{figure}
 
 The discrete version of the Einstein-Hilbert action is the Regge action:
 
@@ -192,71 +201,51 @@ The discrete version of the Einstein-Hilbert action is the Regge action:
   I_{R}=\frac{1}{8\pi G_{N}}\left(\sum\limits_{hinges}A_{h}\delta_{h}-\Lambda\sum\limits_{simplices}V_{s}\right)\label{equation:Regge-Action}
 \end{align}
 
-The causal relations $\prec$ may be viewed as determining ``most'' of the metric.
-In general, the causal structure of a globally hyperbolic manifold determines the metric
-up to a conformal factor ; for a causal set, the missing conformal factor
-is simply the number of points in a region.
+And the discrete version of the path integral is (after a Wick rotation:
 
-Most causal sets are not at all manifold-like, and it is an open question whether one
-can find a dynamical principle that limits sets to those that look like nice spacetimes.
-The converse process, however---finding a causal set that approximates
-a given manifold $M$---is straightforward.   Starting with a finite-volume region of a
-globally hyperbolic manifold $M$ with metric $g$, we select  a ``sprinkling'' of points
-by a Poisson process such that the probability of finding $m$ points in any region of
-volume $V$ is
 \begin{align}
-P_V(m) = \frac{(\rho V)^m}{m!}e^{-\rho V}
-\label{a1}
+  \langle B|T|A\rangle=\sum\limits_{triangulations}\frac{1}{C(T)}e^{-I_{R}(T)} \label{CDT1}
 \end{align}
-for a discreteness scale $\rho^{-1}$.  We assign to these points the causal relations
-determined by the metric $g$, and then ``forget'' the original manifold, keeping only
-a set of points and their relations.   At scales larger than $\rho^{-1}$, the resulting
-causal set is expected to be a good approximation of $M$.  In particular, if $M$ is
-Minkowski space, such a causal set preserves statistical Lorentz invariance ,
-a highly nontrivial result.
 
-In this paper, we will limit ourselves to causal sets obtained from such sprinklings in
-Minkowski space.  This is implicitly a dynamical claim: we are assuming that whatever
-dynamics underlies causal set theory, it will pick out manifold-like sets.  On large
-scales, the quantity we use to measure the dimension requires corrections to
-account for curvature , but as long as the curvature scale is much larger
-than the Planck scale, our small-distance results should hold for any manifold-like
-causal set.
+Here, we take a sum over all inequivalent triangulations. In 1991 Pachner\cite{pachner_p.l._1991}, building on Alexander's work in the 1930s\cite{alexander_combinatorial_1930}
+showed that elementary operations, now called Pachner moves, could transform a triangulation $T$ to another manifold $T'$ homeomorphic to $T$. The set of all inequivalent triangulations could be then be explored via a series of Pachner moves.\cite{gross_elementary_1992}
 
-As in other approaches to quantum gravity, it is not immediately obvious how to
-define the dimension of a causal set .  Causal sets are inherently
-Lorentzian, and we should presumably look for a ``dimensional estimator'' that
-takes this into account.  The standard choice is the Myrheim-Meyer dimension,
-which is based on counting causally related points.
+\Cref{CDT1} takes advantage of the distinctly causal nature of Causal Dynamical Triangulations. That is, the triangulations are foliated by hypersurfaces of distinct time.
+Using this innovation allows an explicit calculation of the CDT action, which has been done for 2, 3, and 4 dimensions. The subject of this paper is the 3D action:
 
-Start with a causal set obtained from a Poisson sprinkling on $d$-dimensional
-Minkowski space.  Select an Alexandrov interval, or ``causal diamond,'' $\mathcal{A}$%
----that is, a set consisting of the intersection of the future of a point $p$ and the past
-of another point $q$.  Define $\langle C_1\rangle$ to be the average number of
-points in $\mathcal{A}$, and $\langle C_2\rangle$ to be the average number of causal
-relations, that is, pairs $x,y$ such that $x\prec y$.  The quantities $\langle C_1\rangle$
-and $\langle C_2\rangle$ depend on the volume and the discreteness scale, but a
-suitable ratio depends only on the dimension:
+\begin{eqnarray*}
+  I_{CDT}^{(3)} &=& 2\pi k\sqrt{\alpha}N_1^{TL} \\
+    &+& N_3^{(3,1)}\left[-3k\text{arcsinh}\left(\frac{1}{\sqrt{3}
+    \sqrt{4\alpha +1}}\right)-3k\sqrt{\alpha}\text{arccos}\left(\frac{2\alpha+1}
+    {4\alpha+1}\right)-\frac{\lambda}{12}\sqrt{3\alpha+1}\right] \\
+    &+& N_3^{(2,2)}\left[2k\text{arcsinh}\left(\frac{2\sqrt{2}\sqrt{2\alpha+1}}
+    {4\alpha +1}\right)-4k\sqrt{\alpha}\text{arccos}\left(\frac{-1}{4\alpha+1}
+    \right)-\frac{\lambda}{12}\sqrt{4\alpha +2}\right]\label{CDT2}
+\end{eqnarray*}
+
+Where $\alpha$ is the length of the timelike edges (spacelike edges are length 1), $k=\frac{1}{8\pi G_{N}}$, and $\lambda=k*\Lambda$.
+
+To evaluate \Cref{CDT1}, we use the Metropolis-Hastings algorithm as follows:\\[-4ex]
+\begin{enumerate}\addtolength{\itemsep}{-1.5ex}
+\item Selection: Pick a Pachner move;  
+\item Acceptance: Make that move with a probability of $a=a_1a_2$, where
+\end{enumerate}
+\vspace*{-1ex}
+
 \begin{align}
-\frac{\langle C_2\rangle\,}{\langle C_1\rangle^2} =
-   \frac{\Gamma(d+1)\Gamma(\frac{d}{2})}{4\Gamma(\frac{3d}{2})}
-\label{b1}
+  a_{1}=\frac{move[i]}{\sum\limits_{i}move[i]}
 \end{align}
-The right-hand side of (\ref{b1}) is a monotonic function, and can be inverted.
-For an arbitrary causal set, the Myrheim-Meyer dimension $d_M$ is then defined to
-be the value $d$ for which (\ref{b1}) holds.
 
-As noted earlier, there is an ambiguity in this definition when a causal set contains an
-isolated point, a point with no causal relations with any others.  A single point should
-presumably have dimension $d=0$, but the left-hand side of (\ref{b1}) is zero for
-such a point, which would correspond to $d\rightarrow\infty$ on the right-hand
-side.  There seem to be two natural ways to treat such isolated points: we can ascribe
-a dimension of zero to them, or we can simply neglect them, on the grounds that
-a completely causally disconnected point is not really part of spacetime.  For large
-causal sets, the choice  makes no appreciable difference to the Myrheim-Meyer
-dimension, but as we shall see, for small enough sets it matters.
+\begin{align}
+  a_{2}=e^{\Delta I_{CDT}}
+\end{align}
 
-\section{Approach}
+Note that we have divided out the partition function $\frac{1}{C(T)}$ in \Cref{CDT1}, which we didn't know how to evaluate anyway.
+
+After thermalization, the Metropolis-Hastings algorithm gives us the distribution of triangulations for comoputing the path integral. We can then perform measures
+on these representative ensembles to calculate properties such as spectral dimension.\cite{j._ambjorn_spectral_nodate,sotiriou_spectral_2011}
+
+\section{Dynamical System}
 
 To generate the causal sets used in our analysis, we created a Mathematica notebook
  that allowed us to select random points uniformly from a causal diamond in
