@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-\usepackage{amssymb,amsmath,cite,geometry,graphicx,url,cleveref}
+\usepackage{amssymb,amsmath,cite,geometry,graphicx,url,hyperref,cleveref}
 \addtolength{\textheight}{.8in}
 \addtolength{\textwidth}{.9in}
 \addtolength{\topmargin}{-.4in}
@@ -59,7 +59,7 @@ June 2018\\  %date
 \vspace{.4in}
 {A.~G{\sc etchell}\footnote{\it email: acgetchell@ucdavis.edu}\\
        {\small\it Department of Physics}\\
-       {\small\it Univeristy of California}\\
+       {\small\it University of California}\\
        {\small\it Davis, CA 95616}\\{\small\it USA}}\\[2ex]
 \end{center}
 
@@ -97,24 +97,27 @@ Quantum gravity is, perhaps, the preeminent hard problem\cite{steve_carlip_why_2
 Although difficult to test experimentally, a quantum theory of gravity appears to be the key to resolving several important
 questions, such as the black hole information paradox.\cite{preskill_black_1992}
 
-Causal Dynamical Triangulations (CDT) \cite{j._ambjorn_dynamically_2001} is a useful approach to
-quantum gravity. It is based on the Regge action\cite{regge_general_1961}, which describes General Relativity on simplicial manifolds similarly to the Einstein-Hilbert action on differentiable manifolds.
+Causal Dynamical Triangulations (CDT) \cite{ambjorn_non-perturbative_2000,j._ambjorn_dynamically_2001,loll_discrete_2003,ambjorn_quantum_2013,cooperman_making_2014} is a useful
+approach to quantum gravity. It is based on the Regge action\cite{regge_general_1961}, which describes General Relativity on simplicial manifolds similarly to the Einstein-Hilbert
+action on differentiable manifolds, and has been independently validated in 3 and 4 dimensions.\cite{kommu_validation_2011}
 
-Using the Metropolis-Hasting algorithm, in the class of Markov Chain Monte Carlo methods (MCMC), unlike other methods it allows
-for the analysis of complex distributions in higher dimensions. Better still, in calculating the path integral as a ratio, it allows
-the factoring out of terms that we would have a hard time of finding out.
+Using the Metropolis-Hasting algorithm\cite{robert_metropolis-hastings_2015}, in the class of Markov Chain Monte Carlo methods (MCMC), allows
+for the analysis of complex distributions in higher dimensions, unlike other methods.\cite{grisins_metropolishastings_2014}
 
-Nevetheless, MCMC algorithms suffer from known problems such as exponentially long convergence times to stationary distributions and sensitivity to step size.
+However, and this is the central point of this paper, Metropolis-Hastings algorithms suffer from known problems such as exponentially long convergence times to stationary distributions and sensitivity to step size (from 23\% to 70\% is given as a suitable acceptance rate \cite{bedard_optimal_2008,xing_markov_nodate}); both may occur within the context of CDT.
 
-Methods such as slice sampling, Hamiltonian Monte Carlo, and Simulated Annealing are other methods that may be used instead of MCMC.
+Methods such as slice sampling, Hamiltonian Monte Carlo, and Simulated Annealing are other methods that may be used instead.
 But each has respective drawbacks:
 
-Slice sampling requires that the sample is evaluatable, which is not always possible. It also runs into difficulties at higher dimensions.
+Slice sampling \cite{neal_slice_2003} requires that the sample is evaluatable, which is not always possible. It also runs into difficulties at higher dimensions.
 
 Hamiltonian Monte Carlo (HMC) computes expectations by exploring a continuous parameter space of probability distributions.\cite{betancourt_conceptual_2017}. In certain implementations
 it has been show to be extremely fast and efficient\cite{hoffman_no-u-turn_2011}, but it's not necessarily clear how to set this up for the Regge action. Additionally, the parameters may be hard to tune, and it does not handle multimodality well, which is an expected output of quantum gravity ("crumpled or polymer" phase and "other phase of CDT"). Nontheless, I think this is a worthwhile possiblity worth exploring in a future paper.
 
 Like HMC, Simulated Annealing also requires a global parameter space to optimize.\cite{busetti_simulated_nodate} Implementing this in the context of CDT has not, to my knowledge, been explored.
+
+In this paper, I address efficiencies in the Causal Dynamical Triangulations approach by:
+
 
 \section{Background}
 
@@ -211,7 +214,7 @@ Here, we take a sum over all inequivalent triangulations. In 1991 Pachner\cite{p
 showed that elementary operations, now called Pachner moves, could transform a triangulation $T$ to another manifold $T'$ homeomorphic to $T$. The set of all inequivalent triangulations could be then be explored via a series of Pachner moves.\cite{gross_elementary_1992}
 
 \Cref{CDT1} takes advantage of the distinctly causal nature of Causal Dynamical Triangulations. That is, the triangulations are foliated by hypersurfaces of distinct time.
-Using this innovation allows an explicit calculation of the CDT action, which has been done for 2, 3, and 4 dimensions. The subject of this paper is the 3D action:
+Using this innovation allows an explicit calculation of the CDT action, which has been done for 2, 3, and 4 dimensions. The subject of this paper is the 3D action (Equation 35 from \cite{j._ambjorn_dynamically_2001}):
 
 \begin{eqnarray*}
   I_{CDT}^{(3)} &=& 2\pi k\sqrt{\alpha}N_1^{TL} \\
@@ -247,116 +250,11 @@ on these representative ensembles to calculate properties such as spectral dimen
 
 \section{Dynamical System}
 
-To generate the causal sets used in our analysis, we created a Mathematica notebook
- that allowed us to select random points uniformly from a causal diamond in
-Minkowski space, initially in four dimensions.   We calculated the Myrheim-Meyer dimension
-and verified that it agreed with the dimension of of the background manifold in the  limit
-of dense sprinklings.  As is evident from figure \ref{fig1}, this limit was already reached
-with sprinklings of about 20 points, so we used this as a typical size.
-
-\begin{figure}
-\begin{center}
-\includegraphics[height=2.5in]{CSDimRedLrg.pdf}
-\caption{Myrheim-Meyer dimension for subsets of a relatively large causal set \label{fig1}}
-\end{center}
-\end{figure}
-
-To investigate the dependence of dimension on volume, one must choose a way to
-of select causal sets of ``small" volume.  Since the volume of a causal set is
-determined by the number of points in the set, it is tempting to simply average
-over all subsets containing a given number of points.  This can be misleading, though:
-while such sets are ``small" if viewed outside the context of the background
-spacetime, most of them do not come from a small region of the background spacetime,
-but include points spread across a large region of the background manifold.   In
-particular, two points with a lightlike separation can be ``adjacent'' in a causal set
-even if they are widely separated in spacetime.
-
-As an alternative, for each of our sprinklings we considered successively smaller sub-diamonds
-in the background spacetime.  The points in each sub-diamond constitute a new causal
-set, whose volume and Myrheim-Meyer dimension we computed.  We repeated the
-process for 10,000 sprinklings, and then averaged the dimension at
-each volume.  We initially applied this analysis to four-dimensional Minkowski space,
-but subsequently repeated it for $d=3$ and $d=5$.
-
-As noted above, the Myrheim-Meyer dimension is not well-defined for single points or
-causal sets with no edges.  While this concern is unimportant for large causal sets, it
-must be confronted for the very small sets  we are interested in.  We explored
-two reasonable possibilities: taking the volume of an isolated point to be zero (they are,
-after all, single points) or dropping edgeless causal sets from our counting (they
-are causally disconnected from the rest of spacetime).
+\section{Methods}
 
 \section{Results}
 
-In each of the background dimensions we studied, we found that dimensional reduction
-does indeed occur as the volume decreases.   As shown in figures \ref{fig2}--\ref{fig4},
-the process appears to be smooth, but has a rather abrupt onset.  The
-transition to lower dimension starts at a volume of approximately $V=8$ points in
-three dimensions, $V=16$ points in four dimensions, and $V=22$ points in five
-dimensions.\footnote{Fractional volumes appear in the graphs because at a given
-background volume in Minkowski space, causal sets with varying numbers of points
-may be present.}
-
-At volumes above the transition, the Myrheim-Meyer dimension remains stable and
-equal to the dimension of the background Minkowski space.  Below the transition,
-the decrease is quite rapid.  For each of the background dimensions we considered,
-the minimum Myrheim-Meyer dimension falls to $d_M\approx 0$ if edgeless causal
-sets are taken to have dimension zero, and $d_M\approx 2$ if they are omitted.
-We can understand the latter result by noting that the smallest causal set with an
-edge---two points with one relation---has a Myrheim-Meyer dimension of two.
-
-Figures \ref{fig2}--\ref{fig4} show $1\, \sigma$ error bars.  We believe these are not
-a result of poor statistics, but are rather a consequence of our definition of
-volume.  A causal diamond of a given volume in a background Minkowski space can
-contain many different causal sets, which will not all have identical Myrheim-Meyer
-dimensions.  This leads to a genuine statistical fluctuation in dimension, especially
-at small volumes.
-
-The end point $d_M\approx 2$ is reminiscent of the behavior seen in other
-investigations of quantum gravity.  More precisely, when edgeless causal
-sets are discarded, we find a minimum dimension of $d_M = 2.08 \pm .26$ in three
-background dimensions, $d_M = 2.13 \pm .39$ in four background dimensions, and
-$d_M = 2.19 \pm .40$ in five background  dimensions.  It would be interesting to
-understand the fluctuations better, especially since a few other approaches to
-quantum gravity suggest a minimum dimension of $3/2$
-
-We would also like to understand what determines the scale at which dimensional
-reduction sets in.  For three and four background dimensions, the transition seems to
-occur at a characteristic length of about twice the sprinkling length---that is,
-$V\sim 2^d$ points---but this pattern appears to break down for background
- dimension five.  We also plan to investigate the behavior of another standard
-dimensional estimator, midpoint scaling dimension 
-
-Ideally, we would like to do more.  The results we have presented here have the
-awkward feature of relying on the background Minkowski space to define the
-small regions whose dimension we measure.  This was necessary to avoid picking
-out causal subsets that were ``small'' in the sense of having few points, but
-``large'' in the sense of occupying a highly extended region.  Recently, some
-progress has been made in defining ``local'' regions entirely in the context of
-causal sets, without reference to any background .  It might be
-possible to use this work to investigate dimensional reduction more intrinsically.
-
-
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=3.15in]{CSDimRed3D.pdf}
- \includegraphics[width=3.15in]{CSDimRed3D2.pdf}
-\caption{Myrheim-Meyer dimension in a three-dimensional background,
-with edgeless sets counted as dimension zero (left) or omitted (right) \label{fig2}}
-\end{center}
-\begin{center}
-\includegraphics[width=3.15in]{CSDimRed.pdf}
- \includegraphics[width=3.15in]{CSDimRed2.pdf}
-\caption{Myrheim-Meyer dimension in a four-dimensional background,
-with edgeless sets counted as dimension zero (left) or omitted (right) \label{fig3}}
-\end{center}
-\begin{center}
-\includegraphics[width=3.15in]{CSDimRed5D.pdf}
- \includegraphics[width=3.15in]{CSDimRed5D2.pdf}
-\caption{Myrheim-Meyer dimension in a five-dimensional background,
-with edgeless sets counted as dimension zero (left) or omitted (right) \label{fig4}}
-\end{center}
-\end{figure}
+\section{Conclusion}
 
 \newpage
 
