@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-\usepackage{amssymb,amsmath,cite,geometry,graphicx,url}
+\usepackage{amssymb,amsmath,cite,geometry,graphicx,url,cleveref}
 \addtolength{\textheight}{.8in}
 \addtolength{\textwidth}{.9in}
 \addtolength{\topmargin}{-.4in}
@@ -98,15 +98,9 @@ Although difficult to test experimentally, a quantum theory of gravity appears t
 questions, such as the black hole information paradox.
 
 Causal Dynamical Triangulations (CDT) \cite{j._ambjorn_dynamically_2001} is a useful approach to
-quantum gravity. It is based on the Regge action\cite{regge_general_1961}:
+quantum gravity. It is based on the Regge action\cite{regge_general_1961}, which describes General Relativity on simplicial manifolds similarly to the Einstein-Hilbert action on differentiable manifolds.
 
-\begin{align}
-  I_{R}=\frac{1}{8\pi G_{N}}\left(\sum\limits_{hinges}A_{h}\delta_{h}-\Lambda\sum\limits_{simplices}V_{s}\right)
-\end{align}
-
-Which describes General Relativity on simplicial manifolds similarly to the Einstein-Hilbert action on differentiable manifolds.
-
-Using the Metropolis-Hasting algorithm, in the class of Markov Chain Monte Carlo methods, unlike other methods it allows
+Using the Metropolis-Hasting algorithm, in the class of Markov Chain Monte Carlo methods (MCMC), unlike other methods it allows
 for the analysis of complex distributions in higher dimensions. Better still, in calculating the path integral as a ratio, it allows
 the factoring out of terms that we would have a hard time of finding out.
 
@@ -130,19 +124,74 @@ The Einstein equation describes the curvature of spacetime $R_{\mu\nu}$ in terms
   R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}=8\pi G_{N}T_{\mu\nu}
 \end{align}
 
+The Reimann tensor is given by:
 
+\begin{align}
+  R_{\sigma\mu\nu}^{\rho}=\partial_{\mu}\Gamma_{\nu\sigma}^{\rho}-\partial_{\nu}\Gamma_{\mu\sigma}^{\rho}+\Gamma_{\mu\lambda}^{\rho}\Gamma_{\nu\sigma}^{\lambda}-\Gamma_{\nu\lambda}^{\rho}\Gamma_{\mu\sigma}^{\lambda}
+\end{align}
 
-A causal set  is the natural Lorentzian version of a discrete spacetime,
-a discrete set of events with prescribed causal relations.  Such a set can be described
-by a partial order $\prec$, where $x\prec y$ means ``$x$ is to the past of $y$,''
-obeying the conditions\\[-4ex]
+Where the Affine connection $\Gamma_{\mu\nu}^{\lambda}$ is defined by:
+
+\begin{align}
+  \Gamma_{\mu\nu}^{\lambda}=\frac{1}{2}g^{\lambda\sigma}\left(\partial_{\mu}g_{\nu\sigma}+\partial_{\nu}g_{\sigma\mu}-\partial_{\sigma}g_{\mu\nu}\right)
+\end{align}
+
+And the (cylindrically symmetric) metric is:
+
+\begin{align}
+  g_{\mu\nu}=\left(\begin{array}{cccc}
+    e^{2\lambda} & 0 & 0 & 0\\
+    0 & -e^{2\left(\nu-\lambda\right)} & 0 & 0\\
+    0 & 0 & -e^{2\left(\nu-\lambda\right)} & 0\\
+    0 & 0 & 0 & -\frac{r^{2}}{e^{2\lambda}}
+    \end{array}\right)
+\end{align}
+$R^{\rho}_{\sigma\mu\nu}$ can be thought of as encapsulating the intrinsic curvature (see \Cref{parallel-transport-figure}).
+\begin{figure}
+  \centering
+  \includegraphics[width=2in]{Parallel_Transport.pdf}
+  \caption{Parallel Transport on a spherical surface by Fred the Oyster, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=35124171 \label{parallel-transport-figure}}
+\end{figure}
+
+From the Reimann tensor one obtains the Ricci tensor using $R_{\mu\nu}=R^{\rho}_{\mu\rho\nu}$, and likewise the Ricci scalar is $R=R^{\mu}_{\mu}$ using the Einstein summation convention.
+
+Given the Ricci scalar the Einstein-Hilbert action is:
+
+\begin{align}
+I_{EH}=\frac{1}{16\pi G_{N}}\int d^{4}x\sqrt{-g}(R-2\Lambda)
+\end{align}
+
+Where $G_{N}$ is Newton's Gravitational constant and $\Lambda$ is the cosmological constant.
+
+Extremizing the Einstein-Hilbert action produces the equations of motion.
+
+\begin{align}
+  \partial I_{EH} = 0 \rightarrow R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}=8\pi G_{N}T_{\mu\nu}
+\end{align}
+
+In quantum mechanics, one is interested in the transition probability amplitude $\langle B|T|A\rangle$, which is the conditional probability of being in state $B$ given previously being in state $A$. This is generally computed using the path integral.
+
+\begin{align}
+  \langle B|T|A\rangle=\int\mathcal{D}[g]e^{iI_{EH}}
+\end{align}
+
+Such path integrals are typically not directly computable, for a number of reasons. Quantum Field Theory uses perturbative summation techniques such as Feynman diagrams, but these require a notion of renormalizability for various infinite divergences, and gravity has been shown to be definitively non-renormalizable.\cite{shomer_pedagogical_2007}
+
+In 1961 Regge developed his calculus replacing smooth differentiable manifolds with simplicial manifolds, obeying the following two properties\\[-4ex]
 \begin{enumerate}\addtolength{\itemsep}{-1.5ex}
-\item transitivity: $x\prec y$ and $y\prec z \Rightarrow x\prec z$;
-\item acyclicity: $x \prec y$ and $y \prec x \Rightarrow x=y$;
-\item local finiteness: given any two elements $x$ and $y$, the number of elements
-   $z$ lying between them (i.e.,  $x\prec z\prec y$) is finite.
+\item close: every $(n-1)$-dimensional subsimplex of a simplex in the manifold is also in the manifold;  
+\item connectivity: two connected $n$-dimensional simplices share one and only one $(n-1)$-dimensional subsimplex;
 \end{enumerate}
 \vspace*{-1ex}
+
+From here on, simplicial manifolds will be referred to as triangulations. Of special note are Delaunay Triangulations, which behave a circumsphere property for simplices, which may be seen in 
+
+The discrete version of the Einstein-Hilbert action is the Regge action:
+
+\begin{align}
+  I_{R}=\frac{1}{8\pi G_{N}}\left(\sum\limits_{hinges}A_{h}\delta_{h}-\Lambda\sum\limits_{simplices}V_{s}\right)\label{equation:Regge-Action}
+\end{align}
+
 The causal relations $\prec$ may be viewed as determining ``most'' of the metric.
 In general, the causal structure of a globally hyperbolic manifold determines the metric
 up to a conformal factor ; for a causal set, the missing conformal factor
