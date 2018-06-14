@@ -1,5 +1,5 @@
 \documentclass[12pt]{article}
-\usepackage{amssymb,amsmath,cite,geometry,graphicx,url,hyperref,cleveref}
+\usepackage{amssymb,amsmath,cite,caption,geometry,graphicx,url,hyperref,cleveref}
 \addtolength{\textheight}{.8in}
 \addtolength{\textwidth}{.9in}
 \addtolength{\topmargin}{-.4in}
@@ -33,6 +33,8 @@
 
 % Different font in captions
 \newcommand{\captionfonts}{\small}
+% Attribution of images
+\newcommand{\source}[1]{\caption*{Source: {#1}} }
 \makeatletter  % Allow the use of @ in command names
 \long\def\@makecaption#1#2{%
   \vskip\abovecaptionskip
@@ -95,7 +97,9 @@ program. I highlight inefficiencies and propose solutions.
 Quantum gravity is, perhaps, the preeminent hard problem\cite{steve_carlip_why_2014} remaining in theoretical physics, and has been worked on for many years\cite{rovelli_notes_2000}.
 
 Although difficult to test experimentally, a quantum theory of gravity appears to be the key to resolving several important
-questions, such as the black hole information paradox.\cite{preskill_black_1992}
+questions, such as the black hole information paradox.\cite{preskill_black_1992} In many cases, the conclusions of the quantum theory reverse the results of the classical theory
+(black hole complementarity\cite{almheiri_black_2013}, wormhole no-go theorems \cite{visser_lorentzian_1996}). Therefore, only a quantum theory of gravity will tell us the ultimate fate of life, the universe, and everything (with apologies to the
+late Douglas Adams).\cite{adams_life_1997}
 
 Causal Dynamical Triangulations (CDT) \cite{ambjorn_non-perturbative_2000,j._ambjorn_dynamically_2001,loll_discrete_2003,ambjorn_quantum_2013,cooperman_making_2014} is a useful
 approach to quantum gravity. It is based on the Regge action\cite{regge_general_1961}, which describes General Relativity on simplicial manifolds similarly to the Einstein-Hilbert
@@ -109,12 +113,12 @@ However, and this is the central point of this paper, Metropolis-Hastings algori
 
 Methods such as slice sampling, Hamiltonian Monte Carlo, and Simulated Annealing are other methods that may be used instead, and which have comparitive advantages over Metropolis algorithms. But each has respective drawbacks:
 
-Slice sampling \cite{neal_slice_2003} adapts to the characteristic of the sample distribution. However, it must be able to sample distributions directly, which is not always possible. It also runs into difficulties at higher dimensions, as it is non-obvious how to obtain "efficient" samples.
+Slice sampling \cite{neal_slice_2003} adapts to the characteristic of the sample distribution. However, it must be able to sample distributions directly, which is not always possible. It also runs into difficulties at higher dimensions, as it is non-obvious how to obtain ``efficient" samples.
 
 Hamiltonian Monte Carlo (HMC) computes expectations by exploring a continuous parameter space of probability distributions.\cite{betancourt_conceptual_2017}. In certain implementations
-it has been show to be extremely fast and efficient\cite{hoffman_no-u-turn_2011}, but it's not necessarily clear how to set this up for the Regge action. Additionally, the parameters may be hard to tune, and it does not handle multimodality well, and "crumpled" or "polymer" phases are generic features of Monte Carlo simulations.\cite{koibuchi_phase_2004} Nontheless, I think this is a worthwhile possiblity worth exploring in a future paper.
+it has been show to be extremely fast and efficient\cite{hoffman_no-u-turn_2011}, but it's not necessarily clear how to set this up for the Regge action. Additionally, the parameters may be hard to tune, and it does not handle multimodality well, and ``crumpled" or ``polymer" phases are generic features of Monte Carlo simulations.\cite{koibuchi_phase_2004} Nontheless, I think this is a possiblity worth exploring in a future paper.
 
-Like HMC, Simulated Annealing also requires a global parameter space to optimize.\cite{busetti_simulated_nodate} Implementing this in the context of CDT has not, to my knowledge, been explored.
+Like HMC, simulated annealing requires a global parameter space to optimize.\cite{busetti_simulated_nodate} Implementing this in the context of CDT has not, to my knowledge, been explored.
 
 In this paper, I examine efficiencies in the Causal Dynamical Triangulations approach by:\\[-4ex]
 \begin{enumerate}\addtolength{\itemsep}{-1.5ex}
@@ -209,17 +213,16 @@ The discrete version of the Einstein-Hilbert action is the Regge action:
   I_{R}=\frac{1}{8\pi G_{N}}\left(\sum\limits_{hinges}A_{h}\delta_{h}-\Lambda\sum\limits_{simplices}V_{s}\right)\label{equation:Regge-Action}
 \end{align}
 
-And the discrete version of the path integral is (after a Wick rotation:
+And the discrete version of the path integral is (after a Wick rotation to imaginary time):
 
 \begin{align}
-  \langle B|T|A\rangle=\sum\limits_{triangulations}\frac{1}{C(T)}e^{-I_{R}(T)} \label{CDT1}
+  \langle B|T|A\rangle=\sum\limits_{triangulations\ T}\frac{1}{C(T)}e^{-I_{R}(T)} \label{CDT1}
 \end{align}
 
 Here, we take a sum over all inequivalent triangulations. In 1991 Pachner\cite{pachner_p.l._1991}, building on Alexander's work in the 1930s\cite{alexander_combinatorial_1930}
-showed that elementary operations, now called Pachner moves, could transform a triangulation $T$ to another manifold $T'$ homeomorphic to $T$. The set of all inequivalent triangulations could be then be explored via a series of Pachner moves.\cite{gross_elementary_1992}
+showed that elementary operations, now called Pachner moves, could transform a triangulation $T$ to another manifold $T^{\prime}$ homeomorphic to $T$. The set of all inequivalent triangulations could be then be explored via a series of Pachner moves.\cite{gross_elementary_1992}
 
-\Cref{CDT1} takes advantage of the distinctly causal nature of Causal Dynamical Triangulations. That is, the triangulations are foliated by hypersurfaces of distinct time.
-Using this innovation allows an explicit calculation of the CDT action, which has been done for 2, 3, and 4 dimensions. The subject of this paper is the 3D action (Equation 35 from \cite{j._ambjorn_dynamically_2001}):
+\Cref{CDT1} takes advantage of the distinctly causal nature of Causal Dynamical Triangulations (along with the well-defined analytic continuation). The triangulations are foliated by hypersurfaces of distinct time. Using this innovation allows an explicit calculation of the CDT action, which has been done for 2-, 3-, and 4-dimensions. The subject of this paper is the 3D action (Equation 35 from \cite{j._ambjorn_dynamically_2001}):
 
 \begin{eqnarray*}
   I_{CDT}^{(3)} &=& 2\pi k\sqrt{\alpha}N_1^{TL} \\
@@ -248,10 +251,12 @@ To evaluate \Cref{CDT1}, we use the Metropolis-Hastings algorithm as follows:\\[
   a_{2}=e^{\Delta I_{CDT}}
 \end{align}
 
-Note that we have divided out the partition function $\frac{1}{C(T)}$ in \Cref{CDT1}, which we didn't know how to evaluate anyway.
+Note that we have divided out the measure factor $\frac{1}{C(T)}$ in \Cref{CDT1}, which we didn't know how to evaluate anyway. (It is a combinatorial weight
+of the symmetry group of a particular triangulation $T$, for which we'd have to know details of the distribution we are exploring.)
 
-After thermalization, the Metropolis-Hastings algorithm gives us the distribution of triangulations for comoputing the path integral. We can then perform measures
-on these representative ensembles to calculate properties such as spectral dimension.\cite{j._ambjorn_spectral_nodate,sotiriou_spectral_2011}
+After thermalization\footnote{Empirically derived at present, but another consideration for optimization.}, the Metropolis-Hastings algorithm gives us the distribution of
+triangulations for comoputing the path integral. We can then perform measures on these representative ensembles to calculate properties such as spectral dimension.
+\cite{j._ambjorn_spectral_nodate,sotiriou_spectral_2011}
 
 \section{Dynamical System}
 
