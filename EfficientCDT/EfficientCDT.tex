@@ -234,7 +234,7 @@ triangulations could be then be explored via a series of Pachner moves.\cite{gro
 
 \Cref{CDT1} takes advantage of the distinctly causal nature of Causal Dynamical Triangulations (along with the well-defined analytic continuation). The triangulations are foliated by
 hypersurfaces of distinct time. Using this innovation allows an explicit calculation of the CDT action, which has been done for 2-, 3-, and 4-dimensions. The subject of this paper is
-the 3D action (Equation 35 from \cite{j._ambjorn_dynamically_2001}):
+the 3D moves (\Cref{3D-moves}) and corresponding action (Equation 35 from \cite{j._ambjorn_dynamically_2001}):
 
 \begin{equation}
   \begin{aligned}
@@ -250,6 +250,13 @@ the 3D action (Equation 35 from \cite{j._ambjorn_dynamically_2001}):
 
 
 Where $\alpha$ is the length of the timelike edges (spacelike edges are length 1), $k=\frac{1}{8\pi G_{N}}$, and $\lambda=k*\Lambda$.
+
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=4in]{3Dmoves.pdf}
+  \caption{3D Pachner moves in CDT\label{3D-moves}}
+  \end{center}
+\end{figure}
 
 To evaluate \Cref{CDT1}, we use the Metropolis-Hastings algorithm as follows:\\[-4ex]
 \begin{enumerate}\addtolength{\itemsep}{-1.5ex}
@@ -285,7 +292,15 @@ A Hidden Markov Model (HMM) \cite{crutchfield_regularities_2003,singh_profile_19
   \item[] The observables probabilities $B=\{b_{j}(k)\} = P(v_k(t)|q_j(t))$ which is the probability of producing observable $v_k(t)$ given state $q_j(t)$.
   \end{itemize}
   \vspace*{-1ex}
-  For CDT, the states are the triangulations and the observables are the moves.
+
+  \begin{figure}
+    \begin{center}
+    \includegraphics[width=4in]{3D-states.pdf}
+    \caption{A large but representative foliated Delaunay Triangulation computed by the author.\label{3D-states}}
+    \end{center}
+  \end{figure}
+
+  For CDT, the states are the triangulations (\Cref{3D-states}) and the observables are the moves (\Cref{3D-moves}).
 
   This is an important simplification.
   
@@ -293,12 +308,12 @@ A Hidden Markov Model (HMM) \cite{crutchfield_regularities_2003,singh_profile_19
   A (2,3) and (3,2) move cannot be considered mutually inverse, because it is overwhelmingly likely that they will be done on different simplices;
   which then describes inequivalent triangulations.
 
-  But from the perspective of computing \Cref{cdt-eq}, a (2,3) move is the mutual inverse of a (3,2) move, because they increase and decrease by one the count of simplices
-  and timelike edges. The same applies to the (2,6) and (6,2) moves. The (4,4) move is self-inverse and does essentially nothing, but is still distinct from
+  But from the perspective of computing \Cref{cdt-eq}, the (2,3) move is the mutual inverse of the (3,2) move, because the pair increase or decrease by one the count of simplices
+  and timelike edges respectively. The same applies to the (2,6) and (6,2) moves. The (4,4) move is self-inverse and does essentially nothing, but is still distinct from
   the overwhelmingly likely no move.
   
   As we are interested in $V=\{(2,3), (3,2), (2,6), (6,2), (4,4), None\}$ this distinction preserves unifilarity in our representations of the HMM,
-  which makes the depiction of the $\epsilon$-machine intuitively as the bi-infinite line segment.
+  and the depiction of the $\epsilon$-machine is intuitively the bi-infinite line segment.
 \section{Methods}
 
 \section{Results}
