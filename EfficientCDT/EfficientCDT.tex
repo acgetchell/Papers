@@ -236,15 +236,18 @@ triangulations could be then be explored via a series of Pachner moves.\cite{gro
 hypersurfaces of distinct time. Using this innovation allows an explicit calculation of the CDT action, which has been done for 2-, 3-, and 4-dimensions. The subject of this paper is
 the 3D action (Equation 35 from \cite{j._ambjorn_dynamically_2001}):
 
-\begin{eqnarray*}
-  I_{CDT}^{(3)} &=& 2\pi k\sqrt{\alpha}N_1^{TL} \\
+\begin{equation}
+  \begin{aligned}
+    I_{CDT}^{(3)} &=& 2\pi k\sqrt{\alpha}N_1^{TL} \\
     &+& N_3^{(3,1)}\left[-3k\text{arcsinh}\left(\frac{1}{\sqrt{3}
     \sqrt{4\alpha +1}}\right)-3k\sqrt{\alpha}\text{arccos}\left(\frac{2\alpha+1}
     {4\alpha+1}\right)-\frac{\lambda}{12}\sqrt{3\alpha+1}\right] \\
     &+& N_3^{(2,2)}\left[2k\text{arcsinh}\left(\frac{2\sqrt{2}\sqrt{2\alpha+1}}
     {4\alpha +1}\right)-4k\sqrt{\alpha}\text{arccos}\left(\frac{-1}{4\alpha+1}
-    \right)-\frac{\lambda}{12}\sqrt{4\alpha +2}\right]\label{CDT2}
-\end{eqnarray*}
+    \right)-\frac{\lambda}{12}\sqrt{4\alpha +2}\right]\label{cdt-eq}
+  \end{aligned}
+\end{equation}
+
 
 Where $\alpha$ is the length of the timelike edges (spacelike edges are length 1), $k=\frac{1}{8\pi G_{N}}$, and $\lambda=k*\Lambda$.
 
@@ -272,6 +275,30 @@ triangulations for computing the path integral. We can then perform measures on 
 
 \section{Dynamical System}
 
+A Hidden Markov Model (HMM) \cite{crutchfield_regularities_2003,singh_profile_1999} is characterized by:\\[-4ex]
+
+\begin{itemize}\addtolength{\itemsep}{-1.5ex}
+  \item[] The set of states $Q$;  
+  \item[] The observables $V=\{v_k\}$;
+  \item[] The initial states $\pi(i)= P(q_i|t=0)$ which is the probability of being in state $q_i$ at $t=0$.
+  \item[] The transition probabilities $A=\{a_{ij}\} = P(q_j|t+1)$ which is the probability of entering state $q_j$ at $t+1$
+  \item[] The observables probabilities $B=\{b_{j}(k)\} = P(v_k(t)|q_j(t))$ which is the probability of producing observable $v_k(t)$ given state $q_j(t)$.
+  \end{itemize}
+  \vspace*{-1ex}
+  For CDT, the states are the triangulations and the observables are the moves.
+
+  This is an important simplification.
+  
+  When performing Pachner moves, the set of moves are conducted on particular simplices within the triangulation.
+  A (2,3) and (3,2) move cannot be considered mutually inverse, because it is overwhelmingly likely that they will be done on different simplices;
+  which then describes inequivalent triangulations.
+
+  But from the perspective of computing \Cref{cdt-eq}, a (2,3) move is the mutual inverse of a (3,2) move, because they increase and decrease by one the count of simplices
+  and timelike edges. The same applies to the (2,6) and (6,2) moves. The (4,4) move is self-inverse and does essentially nothing, but is still distinct from
+  the overwhelmingly likely no move.
+  
+  As we are interested in $V=\{(2,3), (3,2), (2,6), (6,2), (4,4), None\}$ this distinction preserves unifilarity in our representations of the HMM,
+  which makes the depiction of the $\epsilon$-machine intuitively as the bi-infinite line segment.
 \section{Methods}
 
 \section{Results}
