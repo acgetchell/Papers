@@ -101,23 +101,28 @@ Causal Dynamical Triangulations (CDT) \cite{ambjorn_non-perturbative_2000,j._amb
 approach to quantum gravity. It is based on the Regge action\cite{regge_general_1961}, which describes General Relativity on simplicial manifolds similarly to the Einstein-Hilbert
 action on differentiable manifolds, and has been independently validated in 3 and 4 dimensions.\cite{kommu_validation_2011}
 
-Using the Metropolis-Hasting algorithm\cite{robert_metropolis-hastings_2015}, in the class of Markov Chain Monte Carlo methods (MCMC), allows
-for the analysis of complex distributions in higher dimensions, unlike other methods.\cite{grisins_metropolishastings_2014}
+Using the Metropolis-Hasting algorithm\cite{robert_metropolis-hastings_2015}, one of several Markov Chain Monte Carlo (MCMC) methods, allows
+for the analysis of complex distributions in higher dimensions.\cite{grisins_metropolishastings_2014} It is also relatively straight forward to apply to calculations
+of the path integral.
 
 However, and this is the central point of this paper, Metropolis-Hastings algorithms suffer from known problems such as exponentially long convergence times to stationary distributions and sensitivity to step size (from 23\% to 70\% is given as a suitable acceptance rate \cite{bedard_optimal_2008,xing_markov_nodate}); both may occur within the context of CDT.
 
-Methods such as slice sampling, Hamiltonian Monte Carlo, and Simulated Annealing are other methods that may be used instead.
-But each has respective drawbacks:
+Methods such as slice sampling, Hamiltonian Monte Carlo, and Simulated Annealing are other methods that may be used instead, and which have comparitive advantages over Metropolis algorithms. But each has respective drawbacks:
 
-Slice sampling \cite{neal_slice_2003} requires that the sample is evaluatable, which is not always possible. It also runs into difficulties at higher dimensions.
+Slice sampling \cite{neal_slice_2003} adapts to the characteristic of the sample distribution. However, it must be able to sample distributions directly, which is not always possible. It also runs into difficulties at higher dimensions, as it is non-obvious how to obtain "efficient" samples.
 
 Hamiltonian Monte Carlo (HMC) computes expectations by exploring a continuous parameter space of probability distributions.\cite{betancourt_conceptual_2017}. In certain implementations
-it has been show to be extremely fast and efficient\cite{hoffman_no-u-turn_2011}, but it's not necessarily clear how to set this up for the Regge action. Additionally, the parameters may be hard to tune, and it does not handle multimodality well, which is an expected output of quantum gravity ("crumpled or polymer" phase and "other phase of CDT"). Nontheless, I think this is a worthwhile possiblity worth exploring in a future paper.
+it has been show to be extremely fast and efficient\cite{hoffman_no-u-turn_2011}, but it's not necessarily clear how to set this up for the Regge action. Additionally, the parameters may be hard to tune, and it does not handle multimodality well, and "crumpled" or "polymer" phases are generic features of Monte Carlo simulations.\cite{koibuchi_phase_2004} Nontheless, I think this is a worthwhile possiblity worth exploring in a future paper.
 
 Like HMC, Simulated Annealing also requires a global parameter space to optimize.\cite{busetti_simulated_nodate} Implementing this in the context of CDT has not, to my knowledge, been explored.
 
-In this paper, I address efficiencies in the Causal Dynamical Triangulations approach by:
-
+In this paper, I examine efficiencies in the Causal Dynamical Triangulations approach by:\\[-4ex]
+\begin{enumerate}\addtolength{\itemsep}{-1.5ex}
+\item Efficiently initialize using Delaunay tetrahedralization;\cite{cgal:eb-18a}  
+\item Apply minimal Deterministic Finite Automata, $\epsilon$-machines from Computational Mechanics\cite{shalizi_computational_1999}, to model entropy rate and other calculations;
+\item Improve the acceptance rate of Metropolis-Hastings via iteration of von Neumann's procedure
+\end{enumerate}
+\vspace*{-1ex}
 
 \section{Background}
 
