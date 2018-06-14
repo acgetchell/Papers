@@ -361,10 +361,10 @@ remaining points (however, the algorithms are able to conduct this in parallel f
 
 The resulting triangulation is already randomized; future work will determine how much thermalization is necessary.
 
-Further optimizations are possible. The formula for the number of simplices given the number of vertices is given by:
+Further optimizations are possible.
 
-In my implementation, this is not accurate due to many passes which throw away simplices. Thus, asking for some number of simplices often produces
-many more than desired, due to seemingly random effects.
+In my implementation, prediction of the final number of simplices is difficult due to many passes which throw them away simplices. 
+That is, asking for some number of simplices often produces many more than desired, and sometimes substantially less, due to seemingly random effects.
 
 Or are they?
 
@@ -372,9 +372,9 @@ During this process of re-tetrahedralization, I have noticed unexpectedly diverg
 regularities and random, possibly chaotic processes. Using parameter optimization methods from Comet.ml \cite{comet.ml_comet.ml_nodate} and
 TensorFlow\cite{noauthor_tensorflow_nodate}, I have run experiments to determine optimal hyperparameters for a given output.
 
-That is, given initial radius, radial spacing, desired timeslices, desired number of simplices, and a distribution function of points per timeslice,
-what is the number of simplices obtained, and which combination of factors minimizes the difference between desired and actual. (Related questions
-include good cost functions for optimization and good distributions).
+These experiments solve the following problem: given initial radius, radial spacing, desired timeslices, desired number of simplices, and a distribution
+function of points per timeslice, what is the number of simplices obtained, and which combination of factors minimizes the difference between desired and
+actual. (Related ongoing questions include developing good cost functions for optimization and good distributions).
 
 The last method employed is von Neumann's method of improving the take rate. This essentially solves the question: how do I make an unfair coin into
 a fair one? \cite{mitzenmacher_tossing_nodate} In the case of CDT, the probability of making a given move is vanishingly small: a small simulation with
@@ -399,7 +399,7 @@ ideal.
     \label{table-moveprob}
   \end{table}
 
-Von Neumann's Procedure seems to be related to the Entropy rate.
+Von Neumann's Procedure seems to be related to the Entropy rate. Further investigation and understanding on this point is necessary.
 
 \begin{figure}
   \begin{center}
@@ -413,6 +413,8 @@ Von Neumann's Procedure seems to be related to the Entropy rate.
 For the limited $\epsilon$-machine representing the CDT HMM in \Cref{CDT-eM}, \Cref{table-cmpy} lists the calculated parameters.
 
 The $\epsilon$-machine model itself may also be used for further simulations.
+
+The results of hyperparameter optimization for number of simplices requested versus number obtained are available for public review at \href{https://www.comet.ml/acgetchell/cdt-plusplus}{https://www.comet.ml/acgetchell/cdt-plusplus}.
 
 \begin{table}
   
@@ -433,6 +435,8 @@ The $\epsilon$-machine model itself may also be used for further simulations.
   \caption{Calculated values from the Computational Mechanics Python Module (CMPy) \cite{noauthor_welcome_nodate}}
   \label{table-cmpy}
 \end{table}
+
+\newpage
 
 \section{Conclusion}
 
