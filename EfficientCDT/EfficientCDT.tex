@@ -186,7 +186,7 @@ Where $G_{N}$ is Newton's Gravitational constant and $\Lambda$ is the cosmologic
 Extremizing the Einstein-Hilbert action produces the equations of motion.
 
 \begin{align}
-  \partial I_{EH} = 0 \rightarrow R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}=8\pi G_{N}T_{\mu\nu}
+  \delta I_{EH} = 0 \rightarrow R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}=8\pi G_{N}T_{\mu\nu}
 \end{align}
 
 In quantum mechanics, we are interested in the transition probability amplitude $\langle B|T|A\rangle$, which is the conditional probability of being in state $B$ having previously
@@ -198,21 +198,23 @@ been in state $A$. This is generally computed using the path integral.
 
 Such path integrals are typically not directly computable, for a number of reasons. Quantum Field Theory uses perturbative summation techniques such as Feynman diagrams, but these require a notion of renormalizability for various infinite divergences, and gravity has been shown to be definitively non-renormalizable.\cite{shomer_pedagogical_2007}
 
-In 1961 Regge developed his calculus replacing smooth differentiable manifolds with simplicial manifolds, which obey the following two properties\\[-4ex]
+In 1961 Regge developed his calculus replacing smooth differentiable manifolds with simplicial manifolds, which obey the following properties:\\[-4ex]
 \begin{enumerate}\addtolength{\itemsep}{-1.5ex}
-\item close: every $(n-1)$-dimensional subsimplex of a simplex in the manifold is also in the manifold;  
-\item connectivity: two connected $n$-dimensional simplices share one and only one $(n-1)$-dimensional subsimplex;
+\item closed: $\forall$ $n$-dimensional simplices in the manifold each $(n-1)$-dimensional subsimplex of that simplex is also in the manifold;  
+\item connected: any two $n$-dimensional simplices share at most one $(n-1)$-dimensional subsimplex;
+\item geometric realization: $\exists$ a functor between the simplicial set and the category of compactly-generated Hausdorff topological spaces
 \end{enumerate}
 \vspace*{-1ex}
 
-From here on, simplicial manifolds will be referred to as triangulations. Of special note are Delaunay Triangulations, which are well-behaved simplicial manifolds
-with a circumspherical property of member simplices which may be seen intuitively in \Cref{DT}.
+From here on, simplicial manifolds will be referred to as triangulations, as is common in the literature. (Simplicial complexes obey the first two
+properties but lack a geometric realization, and may also be encountered.) Of special note are Delaunay Triangulations, which are well-behaved simplicial
+manifolds with a circumspherical property of member simplices as seen in \Cref{DT}.
 
 \begin{figure}
   \begin{center}
   \includegraphics[width=2in]{DT1.pdf}
    \includegraphics[width=2in]{NDT.pdf}
-  \caption{Delaunay triangulation (left) Not a Delaunay triangulation (right) \label{DT}}
+  \caption{A 2D Delaunay triangulation (left) Not a 2D Delaunay triangulation (right) \label{DT}}
   \end{center}
 \end{figure}
 
@@ -276,8 +278,9 @@ To evaluate \Cref{CDT1}, we use the Metropolis-Hastings algorithm as follows:\\[
 Note that we have divided out the measure factor $\frac{1}{C(T)}$ in \Cref{CDT1}, which we didn't know how to evaluate anyway. (It is a combinatorial weight
 of the symmetry group of a particular triangulation $T$, for which we'd have to know details of the distribution we are exploring.)
 
-After thermalization\footnote{Empirically derived at present, but another consideration for optimization.}, the Metropolis-Hastings algorithm gives us the distribution of
-triangulations for computing the path integral. We can then perform measures on these representative ensembles to calculate properties such as spectral dimension.
+After thermalization\footnote{Empirically derived at present, but another consideration for optimization.}, the Metropolis-Hastings algorithm gives us
+the distribution of triangulations for computing the path integral. We can then perform measures on these representative ensembles to calculate
+properties such as spectral dimension.
 \cite{j._ambjorn_spectral_nodate,sotiriou_spectral_2011}
 
 \section{Dynamical System}
@@ -296,7 +299,7 @@ A Hidden Markov Model (HMM) \cite{crutchfield_regularities_2003,singh_profile_19
   \begin{figure}
     \begin{center}
     \includegraphics[width=4in]{3D-states.pdf}
-    \caption{A large but representative foliated Delaunay Triangulation computed by the author.\label{3D-states}}
+    \caption{A large but representative foliated Delaunay Triangulation computed by \cite{getchell_cdt-plusplus:_2018}.\label{3D-states}}
     \end{center}
   \end{figure}
 
@@ -314,9 +317,54 @@ A Hidden Markov Model (HMM) \cite{crutchfield_regularities_2003,singh_profile_19
   
   As we are interested in $V=\{(2,3), (3,2), (2,6), (6,2), (4,4), None\}$ this distinction preserves unifilarity in our representations of the HMM,
   and the depiction of the $\epsilon$-machine is intuitively the bi-infinite line segment.
-\section{Methods}
 
+  \begin{figure}
+    \begin{center}
+    \includegraphics[width=5in]{eM-CDT.pdf}
+    \caption{The $\epsilon$-machine for CDT out to a (2,6) and 2 (2,3) moves and their inverses computed on \cite{getchell_finalproject_2018}}.\label{CDT-eM}
+    \end{center}
+  \end{figure}
+
+  In \Cref{CDT-eM} the states are labelled by their offset from the starting state. To unpack this diagram, let's look at the starting state $Q$, which
+  is described by the following six transitions:
+  
+  \begin{enumerate}
+    \item[] $Q\rightarrow Q+1$ emitting a (2,3) move
+    \item[] $Q\rightarrow Q-1$ emitting a (3,2) move
+    \item[] $Q\rightarrow Q+4$ emitting a (2,6) move
+    \item[] $Q\rightarrow Q-4$ emitting a (6,2) move
+    \item[] $Q\rightarrow Q$ emitting a (4,4) move
+    \item[] $Q\rightarrow Q$ emitting a no-move
+  \end{enumerate}
+
+  We can likewise describe the same six (overlapping) transitions for all of the $\{Q-N,...,Q-1,Q,Q+1,Q+N\}$.
+  It's easy to see that this behaves like a 1D random walk, a much simpler system than the set of Pachner moves on a 3D triangulation.
+
+\section{Methods}
+test
 \section{Results}
+
+For the limited $\epsilon$-machine representing the CDT HMM in \Cref{CDT-eM}, we found the calculated the following parameters:
+
+\begin{table}
+  
+\begin{center}
+\begin{tabular}{|l|l|}
+  \hline
+  \multicolumn{2}{|c|}{$\epsilon$-machine Information Theoretic values} \\
+  \hline
+  Markov Order & $\infty$ \\
+  Cryptic Order & 0 \\
+  Excess Entropy & 3.68736404907 \\
+  Entropy Rate & 2.40009879218 \\
+  Predictive Information Rate & 2.017745851 \\
+  Residual Entropy Rate &0.382352941176 \\
+  \hline
+  \end{tabular}
+\end{center}
+  \caption{Calculated values from the Computational Mechanics Python Module (CMPy) \cite{noauthor_welcome_nodate}}
+  \label{table-cmpy}
+\end{table}
 
 \section{Conclusion}
 
