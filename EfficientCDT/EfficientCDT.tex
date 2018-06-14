@@ -341,10 +341,78 @@ A Hidden Markov Model (HMM) \cite{crutchfield_regularities_2003,singh_profile_19
   It's easy to see that this behaves like a 1D random walk, a much simpler system than the set of Pachner moves on a 3D triangulation.
 
 \section{Methods}
-test
+
+Our first method, given in the previous section, is modeling the Metropolis-Hastings algorithm with an $\epsilon$-machine to gain insight into
+the particular properties of the inferred distributions from CDT.
+
+Next, we look at more efficient algorithms in Computational Geometry, such as those provided by CGAL.
+
+Most implementations of CDT are concerned only with the combinatorial data which specifies simplices, vertices, and the incidence and adjacency relations
+between them (\Cref{combi-cell}). However, for future work that may want to impose mass or curvature and fixed distances in CDT, geometric information becomes relevant, especially for 2+1 and 3+1 spacetimes. \cite{cgal:pt-t3-18a,cgal:hdj-t-18a}
+
+CDT implementations initialize their spacetimes by starting with a small set of cells with spherical or toroidal topology, and then making a large number
+of volume-increasing and foliation preserving moves. This very regular structure is then thermalized by a very large number of additional moves (typically 50-100,000 passes, where a pass attempts a number of moves equal to the total number of simplices in the triangulation).
+
+However, modern algorithms can directly generate 3D Delaunay triangulations very rapidly. CGAL is capable of triangulating 1 million points in about 6
+seconds on a laptop, and recent algorithms have generated three billion tetrahedra in one minute on a start of the art laptop! \cite{marot_one_2018}
+In my CDT implementation, I create concentric radii of points which are tetrahedralized. By marking each point with it's time value on creation,
+successive sweeps are able to remove those tetrahedra that do not span two adjacent timeslices. The removed tetrahedra force a re-triangulation of the
+remaining points (however, the algorithms are able to conduct this in parallel for localized regions), and the process is repeated until only validly foliated simplices remain.
+
+The resulting triangulation is already randomized; future work will determine how much thermalization is necessary.
+
+Further optimizations are possible. The formula for the number of simplices given the number of vertices is given by:
+
+In my implementation, this is not accurate due to many passes which throw away simplices. Thus, asking for some number of simplices often produces
+many more than desired, due to seemingly random effects.
+
+Or are they?
+
+During this process of re-tetrahedralization, I have noticed unexpectedly divergent behavior that implies both unseen
+regularities and random, possibly chaotic processes. Using parameter optimization methods from Comet.ml \cite{comet.ml_comet.ml_nodate} and
+TensorFlow\cite{noauthor_tensorflow_nodate}, I have run experiments to determine optimal hyperparameters for a given output.
+
+That is, given initial radius, radial spacing, desired timeslices, desired number of simplices, and a distribution function of points per timeslice,
+what is the number of simplices obtained, and which combination of factors minimizes the difference between desired and actual. (Related questions
+include good cost functions for optimization and good distributions).
+
+The last method employed is von Neumann's method of improving the take rate. This essentially solves the question: how do I make an unfair coin into
+a fair one? \cite{mitzenmacher_tossing_nodate} In the case of CDT, the probability of making a given move is vanishingly small: a small simulation with
+16 timeslices and 490K simplices typically produces move probabilities given in \Cref{table-moveprob}. Note these are very far away from the Metropolis
+ideal.
+
+\begin{table}
+\begin{center}
+  \begin{tabular}{|l|l|}
+    \hline
+    \multicolumn{2}{|c|}{Move probabilities} \\
+    \hline
+    (2,3) & 0.005 \\
+    (3,2) & 0.036 \\
+    (2,6) & 0.031 \\
+    (6,2) & 0.00200 \\
+    (4,4) & 1\footnote{A (4,4) is automatically accepted to improve $A_1$}\\
+    \hline
+    \end{tabular}
+  \end{center}
+    \caption{Observed simulation values of move probabilities}
+    \label{table-moveprob}
+  \end{table}
+
+Von Neumann's Procedure seems to be related to the Entropy rate.
+
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=3in]{repres.pdf}
+  \caption{CGAL cell combinatorial data structure \cite{cgal:pt-tds3-18a}.\label{combi-cell}}
+  \end{center}
+\end{figure}
+
 \section{Results}
 
-For the limited $\epsilon$-machine representing the CDT HMM in \Cref{CDT-eM}, we found the calculated the following parameters:
+For the limited $\epsilon$-machine representing the CDT HMM in \Cref{CDT-eM}, \Cref{table-cmpy} lists the calculated parameters.
+
+The $\epsilon$-machine model itself may also be used for further simulations.
 
 \begin{table}
   
@@ -367,6 +435,20 @@ For the limited $\epsilon$-machine representing the CDT HMM in \Cref{CDT-eM}, we
 \end{table}
 
 \section{Conclusion}
+
+A lot of work remains to be done, but it is apparent that the principles of Computational Mechanics, Information Theory, and modern algorithms
+can provide a real boost in computing efficiency over and above throwing more hardware and computer time at an admittedly intractable problem. A (perhaps
+apocryphal) story related to me first hand about the race to sequence the human genome is instructive: one of the world's largest supercomputers at the
+time, with custom hardware was nevertheless beaten by a plucky group of university researchers writing extremely efficient algorithms in C.\cite{nguyen_race_nodate}
+
+I hope that time spent learning to teach computers how to calculate quantum gravity efficiently may have great impact.
+
+\begin{figure}
+  \begin{center}
+  \includegraphics[width=4in]{here_to_help.pdf}
+  \caption{\url{https://www.xkcd.com/1831/}}
+  \end{center}
+\end{figure}
 
 \newpage
 
