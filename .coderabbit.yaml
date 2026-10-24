@@ -2,9 +2,12 @@
 language: en-US
 reviews:
   profile: chill
+  auto_approvals:
+    enabled: true
   high_level_summary_in_walkthrough: true
   review_status: true
-  review_progress: true
+  # Publish the commit status required by the main ruleset, as in Delaunay.
+  review_progress: false
   commit_status: true
   fail_commit_status: true
   poem: false

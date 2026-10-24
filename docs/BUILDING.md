@@ -66,7 +66,12 @@ The Papers workflow runs on PRs and pushes to `main`. Selection uses exact Git
 event revisions and the shared safe file inventory. A change anywhere within a
 paper directory rebuilds that paper's standalone source variants. Changes to
 explicit shared bibliographies also rebuild their consumers. Changes to the
-paper toolchain or build scripts rebuild all standalone TeX sources.
+paper toolchain, build scripts, or root Justfile rebuild all standalone TeX sources.
+
+The stable `Changed paper builds` result is a required merge check, including
+for native auto-merge. It fails on selection or compilation failure. When no
+paper is affected it passes without compiling; the remaining required reviews,
+CI, and security checks still apply.
 
 Manual workflow dispatch builds all available sources. PDF-only directories
 have no source to compile. No scientific notebook is executed. The pilot keeps

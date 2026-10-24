@@ -66,7 +66,12 @@ for authenticated workflow-security auditing.
 Workflows use read-only repository permissions and pinned external actions.
 Dependabot proposes Python and Actions updates; maintainers review them before
 merging. CodeRabbit is configured for automatic PR and incremental review,
-including drafts. Other external review services require a separate request.
+including drafts, and approves after its findings are addressed and the latest
+commit is reviewed. GitHub native auto-merge can be enabled per ready PR; it
+waits for the required approval, resolved threads, CI/security checks, and
+successful LaTeX compilation of affected papers. PRs with no affected papers
+pass the paper gate without compilation. Other external review services require
+a separate request.
 See [SECURING](docs/SECURING.md) for live setting ownership, required checks,
 and the administrator bypass inherited from Delaunay's policy.
 

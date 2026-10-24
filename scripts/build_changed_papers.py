@@ -21,6 +21,7 @@ BUILD_INPUTS = frozenset(
         ".github/actions/setup-just/action.yml",
         ".github/workflows/papers.yml",
         ".python-version",
+        "justfile",
         "pyproject.toml",
         "rust-toolchain.toml",
         "scripts/build-paper.sh",

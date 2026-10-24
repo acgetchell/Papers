@@ -16,6 +16,9 @@ policy files document the expected configuration and validate workflow changes.
 - Apply [main-ruleset.json](../.github/settings/main-ruleset.json) to the default
   branch. It requires a PR, one approval, resolved review threads, current
   required checks, and blocks deletion and force pushes.
+- Allow GitHub native auto-merge using
+  [repository.json](../.github/settings/repository.json). Maintainers opt in
+  each ready PR; all required checks and reviews still gate the merge.
 - Retain the repository-administrator bypass used by Delaunay. Ordinary
   development still uses PRs and waits for checks and review.
 
@@ -33,7 +36,10 @@ policy files document the expected configuration and validate workflow changes.
 The ruleset binds checks to their provider application IDs. Paper build
 selection runs for every PR so the stable aggregate check succeeds for a
 change with no affected TeX. A selection failure cannot become a successful
-skipped build.
+skipped build. When sources are selected, their LaTeX builds must succeed.
+Changes to shared paper tooling, including the root Justfile, rebuild all
+standalone sources. This required check applies to native auto-merge as well as
+manual merging.
 
 ## Security workflows
 
@@ -49,12 +55,31 @@ or notebook workload is run in this repository. Workflow checking also enforces
 the selected-actions policy through the shared allowlist command.
 
 CodeRabbit automatically reviews PRs and subsequent pushes, including drafts.
+Its `reviews.auto_approvals.enabled` setting requests changes for blocking
+findings and approves after required threads are resolved, the latest commit
+is reviewed, and its pre-merge checks pass. This is the current name for the
+`request_changes_workflow` setting used in the other research repositories.
+`review_progress: false` retains the `CodeRabbit` commit status required by the
+ruleset. A successful commit status reports review completion; the separate
+approving review satisfies the required approval.
 Its instructions preserve author-owned scientific prose and focus TeX feedback
 on correctness and build plumbing. Review does not publish papers or refresh
 their reviewer PDFs. [Blog publishing](https://github.com/acgetchell/Papers/issues/2)
 has a separate scope and approval path.
 
 ## Applying settings
+
+Enable native auto-merge with the committed repository setting:
+
+```sh
+gh api --method PATCH repos/acgetchell/Papers \
+  --input .github/settings/repository.json
+```
+
+Enabling this repository setting does not arm every PR. Maintainers enable
+auto-merge separately on each ready PR in GitHub or with
+`gh pr merge NUMBER --repo acgetchell/Papers --auto --merge`. Drafts remain
+unmergeable. No workflow grants itself approval or bypasses the ruleset.
 
 After reviewing a policy change, repository administrators can apply the action
 allowlist with the GitHub CLI:

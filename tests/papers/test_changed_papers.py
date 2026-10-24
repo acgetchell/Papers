@@ -33,8 +33,9 @@ def test_documentation_only_change_selects_no_papers() -> None:
     assert papers.affected_sources(ROOT, {"CONTRIBUTING.md", "SECURITY.md"}) == ()
 
 
-def test_toolchain_change_selects_all_standalone_sources() -> None:
-    selected = papers.affected_sources(ROOT, {"tooling/papers.toml"})
+@pytest.mark.parametrize("changed_input", ["justfile", "tooling/papers.toml"])
+def test_build_tooling_change_selects_all_standalone_sources(changed_input: str) -> None:
+    selected = papers.affected_sources(ROOT, {changed_input})
     assert set(selected) == set(papers.manuscript_sources(ROOT))
     assert len(selected) == 9
 
