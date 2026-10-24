@@ -4,6 +4,12 @@ reviews:
   profile: chill
   auto_approvals:
     enabled: true
+    max_merge_risk: low
+    # max_security_risk requires Advanced; the current plan is Essentials.
+    overrides:
+      - enabled: false
+        paths:
+          - '.github/**'
   high_level_summary_in_walkthrough: true
   review_status: true
   # Publish the commit status required by the main ruleset, as in Delaunay.

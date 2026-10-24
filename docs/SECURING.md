@@ -57,7 +57,13 @@ the selected-actions policy through the shared allowlist command.
 CodeRabbit automatically reviews PRs and subsequent pushes, including drafts.
 Its `reviews.auto_approvals.enabled` setting requests changes for blocking
 findings and approves after required threads are resolved, the latest commit
-is reviewed, and its pre-merge checks pass. This is the current name for the
+is reviewed, its pre-merge checks pass, and merge risk is at most `low`.
+PRs changing `.github/**` are excluded from automatic approval and require
+human review. The security-risk cap is not configured because the current
+Essentials plan does not provide the required assessment; configuring it would
+withhold approvals. See CodeRabbit's
+[approval risk limits](https://docs.coderabbit.ai/pr-reviews/approval-risk-limits).
+`reviews.auto_approvals.enabled` is the current name for the
 `request_changes_workflow` setting used in the other research repositories.
 `review_progress: false` retains the `CodeRabbit` commit status required by the
 ruleset. A successful commit status reports review completion; the separate

@@ -39,6 +39,13 @@ layout warnings remain advisory for every paper. The pilot retains its existing
 ChkTeX policy. Missing tools, failed checks, and compilation errors still fail
 the build.
 
+### Merge requirements
+
+The stable `Changed paper builds` result is a required merge check, including
+for native auto-merge. It fails on selection or compilation failure. When no
+paper is affected it passes without compiling; the remaining required reviews,
+CI, and security checks still apply.
+
 ## Explicit writes
 
 `just fix` formats active tooling and documentation. `just paper-tex-fmt`
@@ -66,8 +73,10 @@ for authenticated workflow-security auditing.
 Workflows use read-only repository permissions and pinned external actions.
 Dependabot proposes Python and Actions updates; maintainers review them before
 merging. CodeRabbit is configured for automatic PR and incremental review,
-including drafts, and approves after its findings are addressed and the latest
-commit is reviewed. GitHub native auto-merge can be enabled per ready PR; it
+including drafts, and approves eligible low merge-risk PRs after its findings
+are addressed and the latest commit is reviewed. Automatic approval is disabled
+for PRs changing `.github/**`; those changes require human review.
+GitHub native auto-merge can be enabled per ready PR; it
 waits for the required approval, resolved threads, CI/security checks, and
 successful LaTeX compilation of affected papers. PRs with no affected papers
 pass the paper gate without compilation. Other external review services require
