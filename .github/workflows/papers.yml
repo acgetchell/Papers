@@ -67,7 +67,7 @@ jobs:
           key: tectonic-bundle-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('tooling/papers.toml') }}
       - name: Warm the Tectonic typesetting bundle
         run: bash scripts/ci-paper-warmup.sh
-      - name: Build selected papers without refreshing reviewer PDFs
+      - name: Lint and build selected papers without refreshing reviewer PDFs
         env:
           PAPER_SOURCES_JSON: ${{ needs.select.outputs.sources }}
         run: just paper-build-selected

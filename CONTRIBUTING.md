@@ -33,6 +33,11 @@ The separate Papers workflow builds affected manuscripts on PRs and pushes to
 also receives the retained-artifact comparison. Every generated paper build
 directory is removed on success or failure; the workflow uploads no LaTeX
 artifacts and never refreshes tracked reviewer PDFs.
+Selected legacy sources receive advisory ChkTeX checks. ChkTeX findings and
+overfull/underfull box warnings appear in the build log and CI job summary;
+layout warnings remain advisory for every paper. The pilot retains its existing
+ChkTeX policy. Missing tools, failed checks, and compilation errors still fail
+the build.
 
 ## Explicit writes
 

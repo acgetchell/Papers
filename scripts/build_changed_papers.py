@@ -1,6 +1,7 @@
 """Select affected manuscripts and compile them with the shared pinned toolchain."""
 
 import argparse
+import html
 import json
 import os
 import re
@@ -11,7 +12,7 @@ from pathlib import Path
 
 from research_repo_tools.paper_dates import read_source_date
 from research_repo_tools.paper_pdf import check_pdf
-from research_repo_tools.process import format_exception_diagnostics, run_command_live, run_git_bytes
+from research_repo_tools.process import ExecutableNotFoundError, format_exception_diagnostics, run_command, run_command_live, run_git_bytes
 from research_repo_tools.selection import select_files
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -35,6 +36,49 @@ UNRESOLVED = re.compile(
     r"LaTeX Warning: (?:Citation|Reference).*undefined|There were undefined (?:references|citations)|There were multiply-defined labels",
     re.IGNORECASE,
 )
+LAYOUT = re.compile(r"(?m)^(?:Over|Under)full \\[hv]box[^\n]*(?:\n(?!(?:Over|Under)full \\[hv]box)[^\n]+)*")
+
+
+def report_advisories(source: str, category: str, diagnostics: list[str]) -> None:
+    """Keep full diagnostics in logs and bounded, escaped details in CI summaries."""
+    status = f"{category}: {len(diagnostics)} advisory diagnostic(s)"
+    print(f"{source!r}: {status}")
+    details = "\n\n".join(diagnostics)
+    for line in details.splitlines():
+        # Tool output must not become a GitHub Actions workflow command.
+        print(f"    {line}")
+    summary = os.environ.get("GITHUB_STEP_SUMMARY")
+    if summary:
+        excerpt = "\n".join(details.splitlines()[:100])[:8000]
+        if excerpt != details:
+            excerpt += "\n[Summary truncated; full diagnostics are in the build log.]"
+        with Path(summary).open("a", encoding="utf-8") as stream:
+            stream.write(f"<h3>{html.escape(source)}: {html.escape(category)}</h3>\n\n{status}\n\n")
+            if excerpt:
+                stream.write(f"<pre>{html.escape(excerpt)}</pre>\n\n")
+
+
+def lint_legacy_source(root: Path, source: str) -> None:
+    """Report legacy ChkTeX findings without hiding operational failures."""
+    environment = {**os.environ, "PATH": os.pathsep.join(("/Library/TeX/texbin", os.environ.get("PATH", "")))}
+    result = run_command(
+        "chktex",
+        ["-q", "-f", "%f:%l:%c: %k %n: %m\n", Path(source).name],
+        cwd=(root / source).parent,
+        env=environment,
+        errors="replace",
+        timeout=60,
+        check=False,
+    )
+    report_advisories(source, "ChkTeX", result.stdout.splitlines())
+    # ChkTeX documents 2/3 as manuscript warnings/errors; legacy findings are
+    # advisory. Exit 1, signals, and unexpected statuses are tool failures.
+    if result.returncode not in (0, 2, 3):
+        result.check_returncode()
+    # ChkTeX can exit zero when it could not open an input; those messages go
+    # to stderr rather than its formatted manuscript diagnostics on stdout.
+    if result.stderr.strip():
+        raise ValueError(f"ChkTeX could not fully check {source}: {result.stderr.strip()}")
 
 
 def manuscript_sources(root: Path) -> tuple[str, ...]:
@@ -120,10 +164,11 @@ def build_source(root: Path, source: str) -> None:
     if output.is_symlink() or output.is_junction() or any(parent.is_symlink() or parent.is_junction() for parent in output.parents if parent != root.parent):
         raise ValueError("Paper output must not contain a symlink")
     try:
+        shutil.rmtree(output, ignore_errors=True)
         if pilot:
             run_command_live("just", ["paper-artifact-check"], cwd=root, timeout=900)
             return
-        shutil.rmtree(output, ignore_errors=True)
+        lint_legacy_source(root, source)
         output.mkdir(parents=True)
         environment = {**os.environ, "SOURCE_DATE_EPOCH": str(source_epoch(root, source))}
         run_command_live(
@@ -167,8 +212,13 @@ def build_source(root: Path, source: str) -> None:
         inspection = check_pdf(output / (Path(source).stem + ".pdf"))
         print(f"Built {source}: {inspection.page_count} pages; removing generated output.")
     finally:
-        if output.exists():
-            shutil.rmtree(output)
+        try:
+            log = output / (Path(source).stem + ".log")
+            if log.is_file():
+                report_advisories(source, "LaTeX layout", LAYOUT.findall(log.read_text(encoding="utf-8", errors="replace")))
+        finally:
+            if output.exists():
+                shutil.rmtree(output)
 
 
 def main() -> int:
@@ -191,7 +241,7 @@ def main() -> int:
                 raise ValueError("No paper sources were selected")
             for source in sources:
                 build_source(ROOT, source)
-    except (OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError) as error:
+    except (ExecutableNotFoundError, OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError) as error:
         print(format_exception_diagnostics(error), file=sys.stderr)
         return 1
     return 0

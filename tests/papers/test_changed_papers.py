@@ -4,6 +4,7 @@ import importlib.util
 import subprocess
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
@@ -109,10 +110,14 @@ def test_failed_typesetting_cleans_output_and_preserves_source(tmp_path: Path, m
     payload = b"\\documentclass{article}\n\\date{July 6, 2026}\n\\begin{document}Test\\end{document}\n"
     source.write_bytes(payload)
     monkeypatch.setattr(papers, "manuscript_sources", lambda root: ("legacy/paper.tex",))
+    monkeypatch.setattr(papers, "run_command", lambda *args, **kwargs: subprocess.CompletedProcess(args, 0, "", ""))
+    summary = tmp_path / "summary.md"
+    monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(summary))
 
     def fail_compiler(binary: str, arguments: list[str], *, cwd: Path, env: dict[str, str], timeout: int) -> int:
         output = Path(arguments[arguments.index("--outdir") + 1])
         (output / "paper.aux").write_bytes(b"incomplete build")
+        (output / "paper.log").write_text("Overfull \\hbox (3pt too wide) at lines 4--5\n", encoding="utf-8")
         raise subprocess.CalledProcessError(1, [binary, *arguments])
 
     monkeypatch.setattr(papers, "run_command_live", fail_compiler)
@@ -120,3 +125,116 @@ def test_failed_typesetting_cleans_output_and_preserves_source(tmp_path: Path, m
         papers.build_source(tmp_path, "legacy/paper.tex")
     assert source.read_bytes() == payload
     assert not any(path.is_file() for path in (tmp_path / "target/papers").rglob("*"))
+    assert "Overfull \\hbox (3pt too wide) at lines 4--5" in summary.read_text(encoding="utf-8")
+
+
+@pytest.mark.parametrize("lint_exit", [0, 2, 3])
+def test_legacy_findings_and_layout_warnings_are_advisory_and_cleaned(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str], lint_exit: int
+) -> None:
+    source = tmp_path / "legacy/paper.tex"
+    source.parent.mkdir()
+    payload = b"\\documentclass{article}\n\\date{July 6, 2026}\n"
+    source.write_bytes(payload)
+    monkeypatch.setattr(papers, "manuscript_sources", lambda root: ("legacy/paper.tex",))
+    summary = tmp_path / "summary.md"
+    monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(summary))
+
+    def lint(binary: str, arguments: list[str], **kwargs: object) -> subprocess.CompletedProcess[str]:
+        assert binary == "chktex"
+        assert arguments[-1] == source.name
+        assert kwargs["cwd"] == source.parent
+        return subprocess.CompletedProcess([binary, *arguments], lint_exit, "paper.tex:2:1: Warning 13: bad spacing\n::error::<script>\n", "")
+
+    def compile_paper(binary: str, arguments: list[str], **kwargs: object) -> None:
+        output = Path(arguments[arguments.index("--outdir") + 1])
+        (output / "paper.log").write_text(
+            "Overfull \\hbox (3pt too wide) in paragraph at lines\n4--5\n\n"
+            "Underfull \\vbox (badness 10000) while \\output is active\n"
+            "Overfull \\vbox (2pt too high) detected at line 10\n\n"
+            "Underfull \\hbox (badness 1000) at lines 11--12\n\n",
+            encoding="utf-8",
+        )
+        (output / "paper.pdf").write_bytes(b"generated PDF")
+
+    monkeypatch.setattr(papers, "run_command", lint)
+    monkeypatch.setattr(papers, "run_command_live", compile_paper)
+    monkeypatch.setattr(papers, "check_pdf", lambda path: SimpleNamespace(page_count=2))
+
+    papers.build_source(tmp_path, "legacy/paper.tex")
+
+    captured = capsys.readouterr()
+    assert "Built legacy/paper.tex: 2 pages" in captured.out
+    assert "LaTeX layout: 4 advisory diagnostic(s)" in captured.out
+    assert "\n::error::" not in captured.out
+    assert captured.err == ""
+    report = summary.read_text(encoding="utf-8")
+    assert "ChkTeX: 2 advisory diagnostic(s)" in report
+    assert "&lt;script&gt;" in report
+    assert "<script>" not in report
+    assert "4--5" in report
+    assert source.read_bytes() == payload
+    assert not any(path.is_file() for path in (tmp_path / "target/papers").rglob("*"))
+
+
+@pytest.mark.parametrize(
+    ("failure", "exception", "message"),
+    [
+        ("stderr", ValueError, "Unable to open the TeX file"),
+        ("exit", subprocess.CalledProcessError, "non-zero exit status 1"),
+        ("missing", papers.ExecutableNotFoundError, "chktex missing"),
+    ],
+)
+def test_linter_operational_failures_stop_builds(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, failure: str, exception: type[Exception], message: str
+) -> None:
+    monkeypatch.setattr(papers, "manuscript_sources", lambda root: ("legacy/paper.tex",))
+    monkeypatch.delenv("GITHUB_STEP_SUMMARY", raising=False)
+    monkeypatch.setattr(papers, "run_command_live", lambda *args, **kwargs: pytest.fail("A failed linter must stop compilation"))
+
+    def fail_lint(*args: object, **kwargs: object) -> subprocess.CompletedProcess[str]:
+        if failure == "missing":
+            raise papers.ExecutableNotFoundError("chktex missing")
+        if failure == "exit":
+            return subprocess.CompletedProcess(["chktex"], 1, "", "configuration failed")
+        return subprocess.CompletedProcess(["chktex"], 0, "", "Unable to open the TeX file")
+
+    monkeypatch.setattr(papers, "run_command", fail_lint)
+    with pytest.raises(exception, match=message):
+        papers.build_source(tmp_path, "legacy/paper.tex")
+
+
+def test_advisory_summary_is_bounded_and_full_details_stay_in_logs(tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]) -> None:
+    summary = tmp_path / "summary.md"
+    monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(summary))
+    diagnostics = [f"Warning {number}: " + "x" * 200 for number in range(200)]
+
+    papers.report_advisories("paper<1>.tex", "ChkTeX", diagnostics)
+
+    report = summary.read_text(encoding="utf-8")
+    assert "paper&lt;1&gt;.tex" in report
+    assert "200 advisory diagnostic(s)" in report
+    assert "Summary truncated" in report
+    assert "Warning 199:" not in report
+    assert "Warning 199:" in capsys.readouterr().out
+    assert len(report) < 17000
+
+
+def test_pilot_layout_is_reported_without_extra_legacy_lint(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    source = "delaunay-validation/validation.tex"
+    output = tmp_path / "target/papers/delaunay-validation"
+    summary = tmp_path / "summary.md"
+    monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(summary))
+    monkeypatch.setattr(papers, "manuscript_sources", lambda root: (source,))
+    monkeypatch.setattr(papers, "lint_legacy_source", lambda *args: pytest.fail("The pilot uses its existing strict ChkTeX recipe"))
+
+    def build_pilot(binary: str, arguments: list[str], **kwargs: object) -> None:
+        assert (binary, arguments) == ("just", ["paper-artifact-check"])
+        output.mkdir(parents=True)
+        (output / "validation.log").write_text("Overfull \\hbox (1pt too wide) at line 7\n", encoding="utf-8")
+
+    monkeypatch.setattr(papers, "run_command_live", build_pilot)
+    papers.build_source(tmp_path, source)
+
+    assert "LaTeX layout: 1 advisory diagnostic(s)" in summary.read_text(encoding="utf-8")
+    assert not output.exists()

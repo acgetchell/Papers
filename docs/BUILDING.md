@@ -42,8 +42,8 @@ scientific experiments.
 | --- | --- |
 | `just paper-artifact-check` | Run paper checks and compare the result with the retained reviewer PDF |
 | `just paper-build` | Verify pinned figures, compile into `target/papers/delaunay-validation/`, normalize metadata, and reject unresolved references |
-| `just paper-build-all` | Compile every standalone TeX source and clean each generated build directory |
-| `just paper-build-selected SOURCE...` | Compile selected root-relative TeX sources and clean their output even on failure |
+| `just paper-build-all` | Lint and compile every standalone TeX source and clean each generated build directory |
+| `just paper-build-selected SOURCE...` | Lint and compile selected root-relative TeX sources and clean their output even on failure |
 | `just paper-check` | Check TeX formatting/lint, compile, and check required PDF text and structure |
 | `just paper-clean` | Remove only generated paper build output |
 | `just paper-inputs-check` | Verify the pinned commit metadata, complete figure inventory, and SHA-256 hashes |
@@ -73,6 +73,17 @@ have no source to compile. No scientific notebook is executed. The pilot keeps
 its shared explicit date, normalization, and reviewer comparison. Legacy sources
 with empty dates, `\\today`, or no date retain that author-owned source and use
 the source commit timestamp for `SOURCE_DATE_EPOCH` during compile checks.
+
+Selected legacy sources are checked with the installed ChkTeX using the shared
+process runner. Findings are advisory and do not rewrite manuscript prose or
+block builds. The pilot retains its existing ChkTeX suppressions and check.
+Missing ChkTeX, unreadable inputs, and other operational failures still fail.
+All selected builds report overfull/underfull horizontal and vertical boxes as
+advisory layout diagnostics, including any available log from a failed compile.
+Full diagnostics appear in the build log; GitHub Actions also receives a job
+summary with counts and bounded details before generated logs are deleted.
+Unresolved references/citations, duplicate labels, and bibliography errors
+remain build failures.
 
 All compiler writes go under `target/papers/`. The changed-paper command removes
 each generated directory through a `finally` block, and the workflow runs
