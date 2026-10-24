@@ -1,0 +1,46 @@
+schema = 1
+
+[source]
+repository = "https://github.com/acgetchell/delaunay"
+commit = "e365c531ea157469c0f8767153e75d0ac6db920e"
+crate-version = "0.8.2"
+base-release = "v0.8.2"
+base-release-commit = "1892b823c4600b56f9720517ed34dad4b155fb0f"
+commits-after-release = 17
+notebook = "notebooks/01_validation.ipynb"
+renderer = "tooling/python/notebook_validation_rendering.py"
+
+[migration]
+"validation.tex" = "675c3422750037354f5eec0ad05784d6a23e419dfccf12edbf622b2d6f164b75"
+"validation.bib" = "3ee15c96d0041b337cc396206241b3fdc4fce1d3c8626b9f3bea51f3c38ac6a4"
+"validation.pdf" = "165879fe3e397a556d767068cf5931397d15ba175ba71d5da7404ad4478f1e96"
+
+[[figures]]
+path = "figures/validation_hierarchy.png"
+upstream = "docs/assets/validation/validation_hierarchy.png"
+sha256 = "7c9014faa8223e0280ee4328b77749788d6c9047ecb65046f52880516920e6f4"
+
+[[figures]]
+path = "figures/validation_level_1_element_validity.png"
+upstream = "docs/assets/validation/validation_level_1_element_validity.png"
+sha256 = "2af25da247230d6b0e5e0d8d4cd2a7c7a62b3d048eccb0fab83be483ac5732cc"
+
+[[figures]]
+path = "figures/validation_level_2_combinatorial_consistency.png"
+upstream = "docs/assets/validation/validation_level_2_combinatorial_consistency.png"
+sha256 = "68fc64e354a48ddf4988d7d34cb32c9799ff41e9ae78354160ade06cc0d14477"
+
+[[figures]]
+path = "figures/validation_level_3_intrinsic_pl_topology.png"
+upstream = "docs/assets/validation/validation_level_3_intrinsic_pl_topology.png"
+sha256 = "bbbb16f5565a7862d84d6440f316658c9d03fb8135b226f1694b82cbea59c916"
+
+[[figures]]
+path = "figures/validation_level_4_valid_realization.png"
+upstream = "docs/assets/validation/validation_level_4_valid_realization.png"
+sha256 = "0a8ed860a41acd73a0781274d2e69bf2a689029e581a4d54ce419867a42ba760"
+
+[[figures]]
+path = "figures/validation_level_5_geometric_predicates.png"
+upstream = "docs/assets/validation/validation_level_5_geometric_predicates.png"
+sha256 = "9aa5e75c195fb01c69a4d4d34e427b57740a4a1d487c54853461eeda80e00070"

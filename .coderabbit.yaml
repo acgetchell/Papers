@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: en-US
+reviews:
+  profile: chill
+  high_level_summary_in_walkthrough: true
+  review_status: true
+  review_progress: true
+  commit_status: true
+  fail_commit_status: true
+  poem: false
+  auto_review:
+    enabled: true
+    auto_incremental_review: true
+    drafts: true
+  path_filters:
+    - '!**/*.pdf'
+    - '!**/*.png'
+    - '!**/*.vsd'
+    - '!target/**'
+    - '!uv.lock'
+  path_instructions:
+    - path: '**/*.tex'
+      instructions: >-
+        Preserve author-owned manuscript prose, scientific claims, attribution,
+        captions, and TODOs. Review mechanical LaTeX correctness, references,
+        bibliography and figure paths, and build reproducibility. Give critique
+        rather than replacement publication prose.
+    - path: '.github/**'
+      instructions: >-
+        Check least-privilege permissions, pinned and allowlisted actions,
+        untrusted PR input handling, required-check names, and cleanup after
+        failed builds. PDF build outputs must not be committed or uploaded.

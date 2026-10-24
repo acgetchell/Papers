@@ -49,3 +49,16 @@ Exported Items.bib
 
 # Maple
 *.bak
+
+# Root development environment and generated build output
+.venv/
+.pytest_cache/
+.ruff_cache/
+__pycache__/
+*.pyc
+target/
+
+# Preserve the already tracked historical backups after directory organization.
+!cdt-newtonian-limit/cdt-newtonian-limit-biblio.bib.bak
+!cdt-newtonian-limit/cdt-newtonian-limit.tex.bak
+!newtonian-derivation-cdt/newtonian-derivation-cdt-v2.tex.bak

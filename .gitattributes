@@ -1,0 +1,26 @@
+* text=auto
+*.bib text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.sh text eol=lf
+*.tex text eol=lf
+*.toml text eol=lf
+*.yml text eol=lf
+justfile text eol=lf
+*.pdf binary
+*.png binary
+
+# Preserve historical manuscript and calculation bytes across checkout platforms.
+agent-based-modeling/** -text
+cdt-newtonian-limit/** -text
+cdt-survey/** -text
+efficient-cdt/** -text
+higgs/** -text
+ligo/** -text
+local-global-flatness/** -text
+newtonian-derivation-cdt/** -text
+orions-arm-wormholes/** -text
+shared/bibliography/** -text
+traversable-wormholes/** -text
+weyl-metric-calculations/** -text
+docs/legacy-catalog.txt -text
