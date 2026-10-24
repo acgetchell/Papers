@@ -187,6 +187,8 @@ def main() -> int:
             sources = list(manuscript_sources(ROOT)) if args.all else args.sources or json.loads(os.environ.get("PAPER_SOURCES_JSON", "[]"))
             if not isinstance(sources, list) or any(not isinstance(source, str) for source in sources):
                 raise ValueError("Selected paper sources must be a JSON list of paths")
+            if not sources:
+                raise ValueError("No paper sources were selected")
             for source in sources:
                 build_source(ROOT, source)
     except (OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError) as error:

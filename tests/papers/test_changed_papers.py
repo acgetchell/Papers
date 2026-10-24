@@ -2,6 +2,7 @@
 
 import importlib.util
 import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -50,6 +51,56 @@ def test_invalid_explicit_date_does_not_fall_back_to_legacy_timestamp(tmp_path: 
     (tmp_path / "paper.tex").write_bytes(b"\\documentclass{article}\n\\date{February 30, 2026}\n")
     with pytest.raises(ValueError, match="invalid paper calendar date"):
         papers.source_epoch(tmp_path, "paper.tex")
+
+
+@pytest.mark.parametrize(
+    ("selection", "expected"),
+    [
+        (None, "No paper sources were selected"),
+        ("[]", "No paper sources were selected"),
+        ("{}", "Selected paper sources must be a JSON list of paths"),
+        ("null", "Selected paper sources must be a JSON list of paths"),
+        ('"paper.tex"', "Selected paper sources must be a JSON list of paths"),
+        ('["paper.tex", 1]', "Selected paper sources must be a JSON list of paths"),
+    ],
+)
+def test_build_rejects_invalid_selection_before_compilation(
+    selection: str | None, expected: str, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    monkeypatch.setattr(sys, "argv", ["build_changed_papers.py", "build"])
+    if selection is None:
+        monkeypatch.delenv("PAPER_SOURCES_JSON", raising=False)
+    else:
+        monkeypatch.setenv("PAPER_SOURCES_JSON", selection)
+    monkeypatch.setattr(papers, "build_source", lambda root, source: pytest.fail("Rejected selections must not start compilation"))
+
+    assert papers.main() == 1
+    captured = capsys.readouterr()
+    assert captured.out == ""
+    assert captured.err == expected + "\n"
+
+
+def test_build_all_rejects_empty_inventory(monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]) -> None:
+    monkeypatch.setattr(sys, "argv", ["build_changed_papers.py", "build", "--all"])
+    monkeypatch.setattr(papers, "manuscript_sources", lambda root: ())
+    monkeypatch.setattr(papers, "build_source", lambda root, source: pytest.fail("An empty inventory must not start compilation"))
+
+    assert papers.main() == 1
+    captured = capsys.readouterr()
+    assert captured.out == ""
+    assert captured.err == "No paper sources were selected\n"
+
+
+def test_build_accepts_nonempty_selection(monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]) -> None:
+    selected: list[str] = []
+    monkeypatch.setattr(sys, "argv", ["build_changed_papers.py", "build"])
+    monkeypatch.setenv("PAPER_SOURCES_JSON", '["paper.tex"]')
+    monkeypatch.setattr(papers, "build_source", lambda root, source: selected.append(source))
+
+    assert papers.main() == 0
+    assert selected == ["paper.tex"]
+    captured = capsys.readouterr()
+    assert captured.out == captured.err == ""
 
 
 def test_failed_typesetting_cleans_output_and_preserves_source(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
