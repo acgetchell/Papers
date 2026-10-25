@@ -28,12 +28,26 @@
         "do_not_enforce_on_create": true,
         "strict_required_status_checks_policy": true,
         "required_status_checks": [
+          {"context": "Analyze (actions)", "integration_id": 15368},
+          {"context": "Analyze (python)", "integration_id": 15368},
           {"context": "Tooling validation", "integration_id": 15368},
           {"context": "Gitleaks secret scan", "integration_id": 15368},
           {"context": "OSV dependency scan", "integration_id": 15368},
           {"context": "GitHub Actions Security Analysis", "integration_id": 15368},
           {"context": "Changed paper builds", "integration_id": 15368},
           {"context": "CodeRabbit", "integration_id": 347564}
+        ]
+      }
+    },
+    {
+      "type": "code_scanning",
+      "parameters": {
+        "code_scanning_tools": [
+          {
+            "tool": "CodeQL",
+            "alerts_threshold": "errors",
+            "security_alerts_threshold": "high_or_higher"
+          }
         ]
       }
     }

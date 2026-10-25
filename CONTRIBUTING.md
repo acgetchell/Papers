@@ -46,6 +46,10 @@ for native auto-merge. It fails on selection or compilation failure. When no
 paper is affected it passes without compiling; the remaining required reviews,
 CI, and security checks still apply.
 
+The CodeQL Actions and Python analysis jobs are required. Hosted code-scanning
+protection also blocks CodeQL error-level alerts and high or critical security
+alerts; a successful analysis job alone does not mean its findings are accepted.
+
 The hosted ruleset requires CODEOWNER approval for `.coderabbit.yaml`,
 `.coderabbit.yml`, and `.github/**`, including CODEOWNERS itself. Paper files
 have no human ownership requirement, so eligible paper PRs can still receive
@@ -76,9 +80,27 @@ Run `just security` to compose the root lockfile and full-history/current-input
 scans, or select `just security-osv` and `just security-secrets` individually.
 They use the shared managed scanners. Use `just security-workflows --require-online`
 for authenticated workflow-security auditing.
-Workflows use read-only repository permissions and pinned external actions.
-Dependabot proposes Python and Actions updates; maintainers review them before
-merging. CodeRabbit is configured for automatic PR and incremental review,
+Gitleaks, OSV, and zizmor use the lightweight `security` dependency group and
+the shared verified binary installer. Their CI setup does not install Cargo
+tools or paper dependencies. Full tooling and paper jobs keep their existing
+setup profile.
+
+Workflows use read-only permissions by default and pinned external actions.
+Dependabot proposes Actions updates. The pinned shared approval workflow
+verifies Dependabot identity, signed commits, exact changed-file policy, and
+the current head before approving and enabling native auto-merge. Required
+checks, resolved threads, and human CODEOWNER review still apply; an Actions
+approval does not satisfy the human owner requirement for `.github/**`.
+
+Hosted uv updates are paused because Dependabot rejects the inherited Python
+3.15 baseline. Use `just update-python-dependencies` and `just ci` for Python
+maintenance, and the shared adoption commands for shared-package upgrades.
+Keep the dependency graph, security alerts, and OSV scans enabled. Graph-update
+jobs may still report the same upstream limitation. Restore uv updates after
+[Python 3.15 support](https://github.com/dependabot/dependabot-core/issues/16524)
+is available; do not lower the inherited baseline to accommodate the updater.
+
+CodeRabbit is configured for automatic PR and incremental review,
 including drafts, and approves eligible low merge-risk PRs after its findings
 are addressed and the latest commit is reviewed. Automatic approval is disabled
 for PRs changing `.github/**`; the hosted CODEOWNER rule also protects approval
