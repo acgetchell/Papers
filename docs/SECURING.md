@@ -18,7 +18,7 @@ policy files document the expected configuration and validate workflow changes.
   required checks, and blocks deletion and force pushes. It also requires
   CODEOWNER approval for the paths assigned in
   [CODEOWNERS](../.github/CODEOWNERS).
-- Allow GitHub native auto-merge using
+- Allow GitHub native auto-merge and automatic deletion of merged PR branches using
   [repository.json](../.github/settings/repository.json). Maintainers opt in
   each ready PR; all required checks and reviews still gate the merge.
 - Retain the repository-administrator bypass used by Delaunay. Ordinary
@@ -100,7 +100,7 @@ has a separate scope and approval path.
 
 ## Applying settings
 
-Enable native auto-merge with the committed repository setting:
+Enable native auto-merge and delete merged PR branches with the committed settings:
 
 ```sh
 gh api --method PATCH repos/acgetchell/Papers \
