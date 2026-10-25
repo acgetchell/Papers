@@ -30,11 +30,24 @@ policy files document the expected configuration and validate workflow changes.
 
 The hosted `require_code_owner_review` rule and the CODEOWNERS file on `main`
 require `@acgetchell` to approve changes to either root CodeRabbit configuration
-filename and to `.github/**`. This includes CODEOWNERS itself and the committed
-settings snapshots. GitHub uses the base branch's ownership file, so changing
-or deleting the ownership mapping in a PR does not remove its required review.
-The hosted rule is managed by a repository administrator, independently of
-PR-controlled CodeRabbit approval settings.
+filename and to GitHub controls by default. This includes CODEOWNERS itself,
+committed settings snapshots, Dependabot configuration, and the Dependabot
+approval workflow. Exact routine workflow and setup-action paths have empty
+owners in CODEOWNERS, so the verified shared Dependabot approval can satisfy
+their normal one-approval requirement. Unknown GitHub paths remain owned.
+
+These path exceptions apply to every author. Ordinary workflow PRs still need
+manual review: CodeRabbit automatic approval remains disabled for `.github/**`,
+and the shared approval job only accepts verified Dependabot updates. Updates
+to the approval workflow itself still require human ownership review, even
+when proposed by Dependabot. No application gets a ruleset bypass.
+
+GitHub uses the base branch's ownership file, so changing or deleting the
+ownership mapping in a PR does not remove its required review. The exceptions
+take effect after the CODEOWNERS change merges into `main`; affected Dependabot
+PRs must then be current with `main` and pass the required checks. The hosted
+rule is managed by a repository administrator, independently of PR-controlled
+CodeRabbit approval settings.
 
 Paper files have no CODEOWNER entry. Their existing one-approval requirement
 can still be satisfied by CodeRabbit, subject to its low merge-risk policy and
@@ -100,7 +113,8 @@ Its `reviews.auto_approvals.enabled` setting requests changes for blocking
 findings and approves after required threads are resolved, the latest commit
 is reviewed, its pre-merge checks pass, and merge risk is at most `low`.
 PRs changing `.github/**` are excluded from automatic approval and require
-human review. The security-risk cap is not configured because the current
+manual review, except verified Dependabot updates approved by the shared job.
+The security-risk cap is not configured because the current
 Essentials plan does not provide the required assessment; configuring it would
 withhold approvals. See CodeRabbit's
 [approval risk limits](https://docs.coderabbit.ai/pr-reviews/approval-risk-limits).
@@ -135,9 +149,9 @@ not a required check because it intentionally skips ordinary PRs.
 The hosted Actions allowlist includes the shared reusable workflow and its
 pinned `dependabot/fetch-metadata` action. Default tokens remain read-only;
 write permissions are limited to the approval job. Its bot approval cannot
-replace `@acgetchell`'s owner approval for GitHub controls. The caller becomes
-active after merging into `main`; a later Dependabot open, reopen, or push event
-uses it. Rerunning an older job does not load a newly deployed caller.
+replace `@acgetchell`'s owner approval for owned policy files. The caller is
+active on `main`; Dependabot open, reopen, or push events use that trusted
+base-branch policy. Rerunning an older job does not load a newly deployed caller.
 
 ## Applying settings
 

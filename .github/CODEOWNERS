@@ -2,3 +2,14 @@
 /.coderabbit.yaml @acgetchell
 /.coderabbit.yml @acgetchell
 /.github/** @acgetchell
+
+# Exact routine dependency-update targets use the normal one-approval rule.
+# Empty owners let the verified shared Dependabot approval count for these paths.
+# The approval workflow itself retains the human owner assigned above.
+/.github/actions/setup-just/action.yml
+/.github/workflows/ci.yml
+/.github/workflows/codeql.yml
+/.github/workflows/gitleaks.yml
+/.github/workflows/osv.yml
+/.github/workflows/papers.yml
+/.github/workflows/zizmor.yml

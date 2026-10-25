@@ -51,10 +51,15 @@ protection also blocks CodeQL error-level alerts and high or critical security
 alerts; a successful analysis job alone does not mean its findings are accepted.
 
 The hosted ruleset requires CODEOWNER approval for `.coderabbit.yaml`,
-`.coderabbit.yml`, and `.github/**`, including CODEOWNERS itself. Paper files
-have no human ownership requirement, so eligible paper PRs can still receive
-CodeRabbit approval and use native auto-merge. GitHub evaluates ownership from
-the base branch; a PR cannot remove its own required owner by editing the file.
+`.coderabbit.yml`, and GitHub controls, including CODEOWNERS, settings snapshots,
+and the Dependabot approval workflow. Exact routine workflow and setup-action
+paths are exempted in [CODEOWNERS](.github/CODEOWNERS), allowing verified
+Dependabot approvals to satisfy the normal one-approval rule. Ordinary workflow
+PRs still need manual review because CodeRabbit automatic approval is disabled
+for `.github/**` and the shared approval job only accepts verified Dependabot PRs.
+Paper files have no human ownership requirement, so eligible paper PRs can still
+receive CodeRabbit approval and use native auto-merge. GitHub evaluates ownership
+from the base branch; a PR cannot remove its own required owner by editing the file.
 
 ## Explicit writes
 
@@ -89,8 +94,8 @@ Workflows use read-only permissions by default and pinned external actions.
 Dependabot proposes Actions updates. The pinned shared approval workflow
 verifies Dependabot identity, signed commits, exact changed-file policy, and
 the current head before approving and enabling native auto-merge. Required
-checks, resolved threads, and human CODEOWNER review still apply; an Actions
-approval does not satisfy the human owner requirement for `.github/**`.
+checks and resolved threads still apply. Routine dependency-update paths accept
+that approval; changes to owned policy files still require human CODEOWNER review.
 
 Hosted uv updates are paused because Dependabot rejects the inherited Python
 3.15 baseline. Use `just update-python-dependencies` and `just ci` for Python
