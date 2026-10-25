@@ -1,9 +1,24 @@
 name: Set up shared tooling
 description: Install the locked published package and declared base tools.
 
+inputs:
+  profile:
+    description: Full tooling, or security scanners without Cargo and paper tools.
+    default: full
+
 runs:
   using: composite
   steps:
+    - name: Validate tooling profile
+      shell: bash
+      env:
+        TOOLING_PROFILE: ${{ inputs.profile }}
+      run: |
+        case "$TOOLING_PROFILE" in
+          full|security) ;;
+          *) echo "Unsupported tooling profile: $TOOLING_PROFILE" >&2; exit 1 ;;
+        esac
+
     - name: Install declared uv
       uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884  # v10.3.0
       with:
@@ -14,8 +29,10 @@ runs:
       uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9  # v6.1.0
       with:
         path: ~/.cache/research-repo-tools
-        key: managed-tools-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('pyproject.toml','rust-toolchain.toml','.python-version','tooling/papers.toml') }}
-        restore-keys: managed-tools-${{ runner.os }}-${{ runner.arch }}-
+        key: >-
+          managed-tools-${{ runner.os }}-${{ runner.arch }}-${{ inputs.profile }}-${{
+          hashFiles('pyproject.toml','rust-toolchain.toml','.python-version','tooling/papers.toml') }}
+        restore-keys: managed-tools-${{ runner.os }}-${{ runner.arch }}-${{ inputs.profile }}-
 
     - name: Install the locked tooling package
       shell: bash
@@ -28,9 +45,17 @@ runs:
       run: uv run --locked --no-sync --no-python-downloads research-repo-tools toolchain sync-binaries
 
     - name: Install and export declared base tools
+      if: inputs.profile == 'full'
       shell: bash
       run: |
         set -euo pipefail
         uv run --locked --managed-python --only-group tooling research-repo-tools toolchain sync
         uv sync --locked --managed-python --group dev --group papers
         uv run --locked --no-sync --no-python-downloads research-repo-tools toolchain export
+
+    - name: Install security Python tools
+      if: inputs.profile == 'security'
+      shell: bash
+      run: |
+        set -euo pipefail
+        uv sync --locked --managed-python --only-group security

@@ -110,6 +110,10 @@ dev = [
 papers = [
     { name = "research-repo-tools", extra = ["papers", "python-tools"] },
 ]
+security = [
+    { name = "research-repo-tools", extra = ["python-tools"] },
+    { name = "zizmor" },
+]
 tooling = [
     { name = "research-repo-tools", extra = ["python-tools"] },
 ]
@@ -117,6 +121,7 @@ tooling = [
 [package.group-requires-python]
 dev = ">=3.15"
 papers = ">=3.15"
+security = ">=3.15"
 tooling = ">=3.15"
 
 [package.metadata]
@@ -131,6 +136,10 @@ dev = [
     { name = "zizmor", specifier = "==1.31.1" },
 ]
 papers = [{ name = "research-repo-tools", extras = ["papers", "python-tools"], marker = "python_full_version >= '3.15'", specifier = "==0.2.3" }]
+security = [
+    { name = "research-repo-tools", extras = ["python-tools"], marker = "python_full_version >= '3.15'", specifier = "==0.2.3" },
+    { name = "zizmor", specifier = "==1.31.1" },
+]
 tooling = [{ name = "research-repo-tools", extras = ["python-tools"], marker = "python_full_version >= '3.15'", specifier = "==0.2.3" }]
 
 [[package]]

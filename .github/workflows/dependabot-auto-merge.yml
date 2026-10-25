@@ -1,0 +1,38 @@
+name: Dependabot approval and auto-merge
+
+# Trusted base-branch policy; the shared job never checks out or runs PR code.
+on:  # zizmor: ignore[dangerous-triggers]
+  pull_request_target:
+    types: [opened, reopened, ready_for_review, synchronize]
+    branches: [main]
+
+permissions: {}
+
+concurrency:
+  group: dependabot-auto-merge-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  approve-and-enable-auto-merge:
+    permissions:
+      contents: write
+      pull-requests: write
+    # Exact published research-repo-tools v0.2.3 source, reviewed for this caller.
+    uses: acgetchell/research-repo-tools/.github/workflows/dependabot-approve.yml@4085125526e21b2855eb7c61a52ee312782ae31a
+    with:
+      repository: acgetchell/Papers
+      policy: >-
+        {"github_actions": {
+          "files": [
+            ".github/actions/setup-just/action.yml",
+            ".github/workflows/ci.yml",
+            ".github/workflows/codeql.yml",
+            ".github/workflows/dependabot-auto-merge.yml",
+            ".github/workflows/gitleaks.yml",
+            ".github/workflows/osv.yml",
+            ".github/workflows/papers.yml",
+            ".github/workflows/zizmor.yml"
+          ]
+        }, "uv": {
+          "files": ["pyproject.toml", "uv.lock"]
+        }}

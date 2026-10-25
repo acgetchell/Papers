@@ -8,8 +8,10 @@ policy files document the expected configuration and validate workflow changes.
 
 - Enable secret scanning, secret push protection, Dependabot alerts/security
   updates, and private vulnerability reporting.
-- Set the default Actions token permissions to read and disable Actions-created
-  pull request approvals. Jobs elevate only the permissions they need.
+- Set default Actions token permissions to read. Permit Actions-created PR
+  approvals for the trusted shared Dependabot workflow using
+  [workflow-permissions.json](../.github/settings/workflow-permissions.json);
+  jobs elevate only the permissions they need.
 - Permit only the explicit action patterns in
   [actions-selected.json](../.github/settings/actions-selected.json), with verified
   publishers and GitHub-owned actions not broadly allowed. Require full commit SHA pins.
@@ -38,12 +40,9 @@ Paper files have no CODEOWNER entry. Their existing one-approval requirement
 can still be satisfied by CodeRabbit, subject to its low merge-risk policy and
 all required checks. No blanket human approval is required for ordinary papers.
 
-PR #3 introduces the ownership map, so path-specific enforcement begins after
-it is merged into `main`. The hosted requirement is enabled before that merge;
-it cannot assign an owner while the base branch has no CODEOWNERS file.
 `@acgetchell` is currently the only human collaborator. GitHub does not permit
-self-approval, so maintainer-authored control changes, including this bootstrap
-PR, require deliberate manual review and use of the existing administrator
+self-approval, so maintainer-authored control changes require deliberate manual
+review and use of the existing administrator
 bypass, or an additional trusted human code owner. Automation must not use
 that bypass. See [GitHub's CODEOWNERS documentation](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners).
 
@@ -51,6 +50,8 @@ that bypass. See [GitHub's CODEOWNERS documentation](https://docs.github.com/en/
 
 | Check | Provider |
 | --- | --- |
+| Analyze (actions) | GitHub Actions |
+| Analyze (python) | GitHub Actions |
 | Changed paper builds | GitHub Actions |
 | CodeRabbit | CodeRabbit GitHub App |
 | GitHub Actions Security Analysis | GitHub Actions |
@@ -66,6 +67,13 @@ Changes to shared paper tooling, including the root Justfile, rebuild all
 standalone sources. This required check applies to native auto-merge as well as
 manual merging.
 
+The hosted ruleset also requires CodeQL scanning results. It blocks error-level
+alerts and high or critical security alerts, independently of the analysis jobs'
+success status. CodeQL already runs for Actions and Python, so this adds
+enforcement without another scanner. Review severity exceptions deliberately;
+the rule applies to alerts introduced on changed lines in PRs. See
+[GitHub's merge-protection documentation](https://docs.github.com/en/code-security/concepts/code-scanning/merge-protection).
+
 ## Security workflows
 
 Gitleaks and OSV run on PRs, `main` pushes, weekly schedules, and manual dispatch
@@ -73,6 +81,14 @@ through `research-repo-tools`. Gitleaks scans full reachable history and current
 inputs; OSV scans the root `uv.lock`. Validated JSON/SARIF security reports are
 retained for seven days, including on findings. These are security reports, not
 LaTeX build artifacts.
+
+Scanner jobs select the composite setup action's `security` profile. It installs
+the locked `security` Python group and uses `research-repo-tools toolchain
+sync-binaries` to verify native scanner pins without Rust/Cargo builds, full
+tooling, or paper dependencies. Just is provided by the inherited shared Python
+tools. Tooling validation and paper compilation retain the default `full`
+profile. Both profiles use the same root manifest, lockfile, and inherited
+Python/tool versions.
 
 The zizmor workflow uses the shared authenticated, required-online command and
 uploads SARIF to code scanning. CodeQL covers Actions and Python; no Rust crate
@@ -98,6 +114,31 @@ on correctness and build plumbing. Review does not publish papers or refresh
 their reviewer PDFs. [Blog publishing](https://github.com/acgetchell/Papers/issues/2)
 has a separate scope and approval path.
 
+## Dependency updates
+
+Dependabot's weekly GitHub Actions updates and seven-day cooldown remain
+enabled. Hosted uv version updates are paused until its updater supports the
+inherited Python 3.15 baseline. Keep the dependency graph enabled: its separate
+uv graph jobs may still fail until upstream support lands. OSV continues to
+audit the actual root lockfile. Use `just update-python-dependencies` for
+deliberate Python updates and the shared adoption flow for shared-package
+upgrades, followed by `just ci`.
+
+The Dependabot caller reuses the approval workflow at the exact
+`research-repo-tools` v0.2.3 commit. It runs from trusted base-branch policy,
+never checks out PR code, verifies signed Dependabot commits and current-head
+identity, and accepts only explicitly listed dependency files. It then approves
+and enables native squash auto-merge; CI, code scanning, thread resolution, and
+human CODEOWNER requirements still gate the merge. The optional approval job is
+not a required check because it intentionally skips ordinary PRs.
+
+The hosted Actions allowlist includes the shared reusable workflow and its
+pinned `dependabot/fetch-metadata` action. Default tokens remain read-only;
+write permissions are limited to the approval job. Its bot approval cannot
+replace `@acgetchell`'s owner approval for GitHub controls. The caller becomes
+active after merging into `main`; a later Dependabot open, reopen, or push event
+uses it. Rerunning an older job does not load a newly deployed caller.
+
 ## Applying settings
 
 Enable native auto-merge with the committed repository setting:
@@ -110,7 +151,8 @@ gh api --method PATCH repos/acgetchell/Papers \
 Enabling this repository setting does not arm every PR. Maintainers enable
 auto-merge separately on each ready PR in GitHub or with
 `gh pr merge NUMBER --repo acgetchell/Papers --auto --merge`. Drafts remain
-unmergeable. No workflow grants itself approval or bypasses the ruleset.
+unmergeable. The shared workflow approves only verified Dependabot updates;
+it never approves ordinary PRs or bypasses the ruleset.
 
 After reviewing a policy change, repository administrators can apply the action
 allowlist with the GitHub CLI:
@@ -121,7 +163,7 @@ gh api --method PUT repos/acgetchell/Papers/actions/permissions \
 gh api --method PUT repos/acgetchell/Papers/actions/permissions/selected-actions \
   --input .github/settings/actions-selected.json
 gh api --method PUT repos/acgetchell/Papers/actions/permissions/workflow \
-  -f default_workflow_permissions=read -F can_approve_pull_request_reviews=false
+  --input .github/settings/workflow-permissions.json
 ```
 
 For the ruleset, read `gh api repos/acgetchell/Papers/rulesets`, then update the
