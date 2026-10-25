@@ -46,6 +46,12 @@ for native auto-merge. It fails on selection or compilation failure. When no
 paper is affected it passes without compiling; the remaining required reviews,
 CI, and security checks still apply.
 
+The hosted ruleset requires CODEOWNER approval for `.coderabbit.yaml`,
+`.coderabbit.yml`, and `.github/**`, including CODEOWNERS itself. Paper files
+have no human ownership requirement, so eligible paper PRs can still receive
+CodeRabbit approval and use native auto-merge. GitHub evaluates ownership from
+the base branch; a PR cannot remove its own required owner by editing the file.
+
 ## Explicit writes
 
 `just fix` formats active tooling and documentation. `just paper-tex-fmt`
@@ -75,7 +81,8 @@ Dependabot proposes Python and Actions updates; maintainers review them before
 merging. CodeRabbit is configured for automatic PR and incremental review,
 including drafts, and approves eligible low merge-risk PRs after its findings
 are addressed and the latest commit is reviewed. Automatic approval is disabled
-for PRs changing `.github/**`; those changes require human review.
+for PRs changing `.github/**`; the hosted CODEOWNER rule also protects approval
+configuration independently of CodeRabbit's settings.
 GitHub native auto-merge can be enabled per ready PR; it
 waits for the required approval, resolved threads, CI/security checks, and
 successful LaTeX compilation of affected papers. PRs with no affected papers

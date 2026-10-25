@@ -15,12 +15,37 @@ policy files document the expected configuration and validate workflow changes.
   publishers and GitHub-owned actions not broadly allowed. Require full commit SHA pins.
 - Apply [main-ruleset.json](../.github/settings/main-ruleset.json) to the default
   branch. It requires a PR, one approval, resolved review threads, current
-  required checks, and blocks deletion and force pushes.
+  required checks, and blocks deletion and force pushes. It also requires
+  CODEOWNER approval for the paths assigned in
+  [CODEOWNERS](../.github/CODEOWNERS).
 - Allow GitHub native auto-merge using
   [repository.json](../.github/settings/repository.json). Maintainers opt in
   each ready PR; all required checks and reviews still gate the merge.
 - Retain the repository-administrator bypass used by Delaunay. Ordinary
   development still uses PRs and waits for checks and review.
+
+## Human review of control files
+
+The hosted `require_code_owner_review` rule and the CODEOWNERS file on `main`
+require `@acgetchell` to approve changes to either root CodeRabbit configuration
+filename and to `.github/**`. This includes CODEOWNERS itself and the committed
+settings snapshots. GitHub uses the base branch's ownership file, so changing
+or deleting the ownership mapping in a PR does not remove its required review.
+The hosted rule is managed by a repository administrator, independently of
+PR-controlled CodeRabbit approval settings.
+
+Paper files have no CODEOWNER entry. Their existing one-approval requirement
+can still be satisfied by CodeRabbit, subject to its low merge-risk policy and
+all required checks. No blanket human approval is required for ordinary papers.
+
+PR #3 introduces the ownership map, so path-specific enforcement begins after
+it is merged into `main`. The hosted requirement is enabled before that merge;
+it cannot assign an owner while the base branch has no CODEOWNERS file.
+`@acgetchell` is currently the only human collaborator. GitHub does not permit
+self-approval, so maintainer-authored control changes, including this bootstrap
+PR, require deliberate manual review and use of the existing administrator
+bypass, or an additional trusted human code owner. Automation must not use
+that bypass. See [GitHub's CODEOWNERS documentation](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners).
 
 ## Required checks
 
