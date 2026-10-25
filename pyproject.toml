@@ -9,6 +9,8 @@ requires-python = ">=3.15"
 tooling = ["research-repo-tools[python-tools]==0.2.3"]
 dev = [
   { include-group = "security" },
+  # The shared setup command requires this direct include.
+  { include-group = "tooling" },
   "actionlint-py==1.7.12.25",
   "shellcheck-py==0.11.0.1",
   "shfmt-py==4.2.0",
