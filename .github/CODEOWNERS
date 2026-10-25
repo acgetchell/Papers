@@ -1,0 +1,4 @@
+# Human review covers approval policy and GitHub controls, including this file.
+/.coderabbit.yaml @acgetchell
+/.coderabbit.yml @acgetchell
+/.github/** @acgetchell

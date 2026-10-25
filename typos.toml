@@ -1,0 +1,8 @@
+[files]
+extend-exclude = [
+  "*.bib",
+  "*.tex",
+  "docs/legacy-catalog.txt",
+  "uv.lock",
+  "efficient-cdt/**",
+]

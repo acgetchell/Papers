@@ -1,0 +1,91 @@
+name: Papers
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: papers-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  select:
+    name: Select changed papers
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      sources: ${{ steps.select.outputs.sources }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884  # v10.3.0
+        with:
+          version-file: pyproject.toml
+          enable-cache: false
+      - name: Install shared selection and process helpers
+        run: uv sync --locked --managed-python --only-group tooling
+      - name: Select affected standalone manuscripts
+        id: select
+        run: |
+          sources="$(uv run --locked --no-sync python scripts/build_changed_papers.py changed)"
+          echo "sources=$sources" >> "$GITHUB_OUTPUT"
+
+  compile:
+    name: Compile changed LaTeX papers
+    needs: select
+    if: needs.select.outputs.sources != '[]'
+    runs-on: macos-15
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: $/.github/actions/setup-just
+      - name: Install native paper dependencies and pinned TeX tools
+        run: bash scripts/ci-paper-setup.sh
+      - name: Resolve the Tectonic typesetting cache
+        id: bundle
+        run: |
+          cache_dir="$(uv run --locked --no-sync research-repo-tools --root . --config tooling/papers.toml \
+            toolchain run -- tectonic -X show user-cache-dir)"
+          test -n "$cache_dir"
+          mkdir -p "$cache_dir"
+          echo "path=$cache_dir" >> "$GITHUB_OUTPUT"
+      - name: Cache the typesetting bundle
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9  # v6.1.0
+        with:
+          path: ${{ steps.bundle.outputs.path }}
+          key: tectonic-bundle-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('tooling/papers.toml') }}
+      - name: Warm the Tectonic typesetting bundle
+        run: bash scripts/ci-paper-warmup.sh
+      - name: Lint and build selected papers without refreshing reviewer PDFs
+        env:
+          PAPER_SOURCES_JSON: ${{ needs.select.outputs.sources }}
+        run: just paper-build-selected
+      - name: Remove generated LaTeX output even after failure
+        if: always()
+        run: just paper-clean
+
+  result:
+    name: Changed paper builds
+    needs: [select, compile]
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Require selection and every selected paper build to succeed
+        env:
+          SELECT_RESULT: ${{ needs.select.result }}
+          BUILD_RESULT: ${{ needs.compile.result }}
+        run: |
+          test "$SELECT_RESULT" = success
+          test "$BUILD_RESULT" = success || test "$BUILD_RESULT" = skipped

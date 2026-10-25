@@ -1,0 +1,18 @@
+schema = 1
+
+[toolchain]
+inherit-python = true
+inherit-python-tools = true
+
+[toolchain.cargo]
+tectonic = "0.17.0"
+tex-fmt = "0.5.7"
+
+[papers.documents.validation]
+tex = "delaunay-validation/validation.tex"
+pdf = "target/papers/delaunay-validation/validation.pdf"
+# Preserve the original normalization identity across the repository move.
+identity = "papers/validation.tex"
+min-pages = 1
+require-text = ["Validation Architecture in delaunay", "REFERENCES"]
+forbid-text = ['\today', "Manuscript submitted to ACM"]

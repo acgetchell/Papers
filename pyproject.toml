@@ -1,0 +1,71 @@
+[project]
+name = "research-papers"
+version = "0.1.0"
+description = "Active manuscripts and reproducible research paper builds"
+# Checked mirror of the pinned research-repo-tools distribution's Python floor.
+requires-python = ">=3.15"
+
+[dependency-groups]
+tooling = ["research-repo-tools[python-tools]==0.2.3"]
+dev = [
+  { include-group = "tooling" },
+  "actionlint-py==1.7.12.25",
+  "shellcheck-py==0.11.0.1",
+  "shfmt-py==4.2.0",
+  "yamllint==1.38.0",
+  "zizmor==1.31.1",
+]
+papers = ["research-repo-tools[papers,python-tools]==0.2.3"]
+
+[tool.uv]
+package = false
+required-version = "==0.13.5"
+
+[tool.research-repo-tools]
+schema = 1
+
+[tool.research-repo-tools.changelog]
+owner = "acgetchell"
+repository = "Papers"
+
+[tool.research-repo-tools.toolchain]
+inherit-python = true
+inherit-python-tools = true
+
+[tool.research-repo-tools.toolchain.binaries]
+gitleaks = "8.30.1"
+osv-scanner = "2.7.0"
+rumdl = "0.3.0"
+
+[tool.research-repo-tools.toolchain.cargo]
+git-cliff = "2.14.2"
+taplo-cli = "0.10.0"
+typos-cli = "1.51.1"
+
+[tool.research-repo-tools.zizmor]
+persona = "regular"
+
+[tool.pytest.ini_options]
+testpaths = ["tests/papers"]
+addopts = ["--import-mode=importlib", "--strict-markers", "--strict-config"]
+
+[tool.ruff]
+# Checked development mirror of research-repo-tools, maintained by adoption.
+line-length = 160
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "ANN", "B", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+# Keep the published Python 3.8-compatible bootstrap byte-for-byte upstream.
+"tooling/python-bootstrap.py" = ["ANN001", "ANN201"]
+
+[tool.rumdl]
+line-length = 160
+
+[tool.rumdl.MD013]
+line-length = 160
+
+[tool.uv.dependency-groups]
+papers = { requires-python = ">=3.15" }
+tooling = { requires-python = ">=3.15" }
