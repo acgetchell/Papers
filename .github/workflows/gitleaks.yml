@@ -27,9 +27,11 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - uses: $/.github/actions/setup-just
+        with:
+          profile: security
       - name: Scan reachable history and current files
         id: scan
-        run: just security-secrets
+        run: uv run --locked --no-sync just security-secrets
       - name: Retain redacted security reports
         if: ${{ !cancelled() && steps.scan.outcome != 'skipped' }}
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9  # v7.0.2

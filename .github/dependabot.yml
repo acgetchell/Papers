@@ -9,12 +9,6 @@ updates:
     groups:
       actions:
         patterns: ['*']
-  - package-ecosystem: uv
-    directory: /
-    schedule:
-      interval: weekly
-    cooldown:
-      default-days: 7
-    groups:
-      python:
-        patterns: ['*']
+# Hosted uv updates reject the inherited Python >=3.15 baseline. Restore this
+# ecosystem after dependabot/dependabot-core#16524 is resolved. Keep the
+# dependency graph and OSV scans enabled; use just update-python-dependencies.
