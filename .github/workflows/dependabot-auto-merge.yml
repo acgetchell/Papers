@@ -18,7 +18,7 @@ jobs:
       contents: write
       pull-requests: write
     # Exact published research-repo-tools v0.2.3 source, reviewed for this caller.
-    uses: acgetchell/research-repo-tools/.github/workflows/dependabot-approve.yml@4085125526e21b2855eb7c61a52ee312782ae31a
+    uses: acgetchell/research-repo-tools/.github/workflows/dependabot-approve.yml@83ece3059e1b16b425c6f762900c08788730ceaf
     with:
       repository: acgetchell/Papers
       policy: >-
